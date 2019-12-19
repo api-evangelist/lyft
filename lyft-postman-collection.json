@@ -1,0 +1,518 @@
+{
+    "id": "4ed11f7c2d093af31ad2b09c65190cb9",
+    "name": "Lyft",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "e384d5b78d90a6bea7b782e380d24d0b",
+            "name": "Cost estimates",
+            "url": "httpsapi.lyft.com\/v1\/cost",
+            "description": "Estimate the cost of taking a Lyft between two points.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "start_lat",
+                    "description": "Latitude of the starting location",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "start_lng",
+                    "description": "Longitude of the starting location",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "end_lat",
+                    "description": "Latitude of the ending location",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "end_lng",
+                    "description": "Longitude of the ending location",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4ed11f7c2d093af31ad2b09c65190cb9",
+            "rawModeData": ""
+        },
+        {
+            "id": "af3b44d43bfc192cceeb14feb7090df1",
+            "name": "Available drivers nearby",
+            "url": "httpsapi.lyft.com\/v1\/drivers",
+            "description": "The drivers endpoint returns a list of nearby drivers' lat and lng at a given location.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4ed11f7c2d093af31ad2b09c65190cb9",
+            "rawModeData": ""
+        },
+        {
+            "id": "0034a7afc8a65b7608b0a08399497111",
+            "name": "Pickup ETAs",
+            "url": "httpsapi.lyft.com\/v1\/eta",
+            "description": "The ETA endpoint lets you know how quickly a Lyft driver can come get you\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4ed11f7c2d093af31ad2b09c65190cb9",
+            "rawModeData": ""
+        },
+        {
+            "id": "84c97ee1ed152d74f4fcb4504c1ecada",
+            "name": "The user's general info",
+            "url": "httpsapi.lyft.com\/v1\/profile",
+            "description": "The v1 of this endpoint returns the user's ID, v2 will return more general info about the user. We require authentication for this endpoint, so we extract the user ID from the access token.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4ed11f7c2d093af31ad2b09c65190cb9",
+            "rawModeData": ""
+        },
+        {
+            "id": "faaca1fac762ce3dbab8b942b7f268c9",
+            "name": "List rides",
+            "url": "httpsapi.lyft.com\/v1\/rides",
+            "description": "Get a list of past & current rides for this passenger.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4ed11f7c2d093af31ad2b09c65190cb9",
+            "rawModeData": ""
+        },
+        {
+            "id": "b42e770d019fe6e29a4184a3d1da11a0",
+            "name": "Request a Lyft",
+            "url": "httpsapi.lyft.com\/v1\/rides",
+            "description": "Request a Lyft come pick you up at the given location.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "request",
+                    "description": "Ride request information",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4ed11f7c2d093af31ad2b09c65190cb9",
+            "rawModeData": ""
+        },
+        {
+            "id": "31770ebabe09d9a83737bb2ef294eea0",
+            "name": "Get the ride detail of a given ride ID",
+            "url": "httpsapi.lyft.com\/v1\/rides\/{id}",
+            "description": "Get the status of a ride along with information about the driver, vehicle and price of a given ride ID\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The ID of the ride",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4ed11f7c2d093af31ad2b09c65190cb9",
+            "rawModeData": ""
+        },
+        {
+            "id": "d8a60471d1d230116a0cdcdf2ca8cd38",
+            "name": "Cancel a ongoing requested ride",
+            "url": "httpsapi.lyft.com\/v1\/rides\/{id}\/cancel",
+            "description": "Cancel a ongoing ride which was requested earlier by providing the ride id.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The ID of the ride",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "request",
+                    "description": "Ride request information",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4ed11f7c2d093af31ad2b09c65190cb9",
+            "rawModeData": ""
+        },
+        {
+            "id": "b2f9acfc760ff4c4d03837af1a649a7b",
+            "name": "Update the destination of the ride",
+            "url": "httpsapi.lyft.com\/v1\/rides\/{id}\/destination",
+            "description": "Add or update the ride's destination. Note that the ride must still be active (not droppedOff or canceled), and that destinations on Lyft Line rides can not be changed.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The ID of the ride",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "request",
+                    "description": "Ride request information",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4ed11f7c2d093af31ad2b09c65190cb9",
+            "rawModeData": ""
+        },
+        {
+            "id": "e8870f6acc248a6af1e97d35c5d964fe",
+            "name": "Add the passenger's rating, feedback, and tip",
+            "url": "httpsapi.lyft.com\/v1\/rides\/{id}\/rating",
+            "description": "Add the passenger's 1 to 5 star rating of the ride, optional written feedback, and optional tip amount in minor units and currency. The ride must already be dropped off, and ratings must be given within 24 hours of drop off. For purposes of display, 5 is considered the default rating. When this endpoint is successfully called, payment processing will begin.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The ID of the ride",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "request",
+                    "description": "Ride request information",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4ed11f7c2d093af31ad2b09c65190cb9",
+            "rawModeData": ""
+        },
+        {
+            "id": "226aea946b802d308534d9a1a89735e3",
+            "name": "Get the receipt of the rides.",
+            "url": "httpsapi.lyft.com\/v1\/rides\/{id}\/receipt",
+            "description": "Get the receipt information of a processed ride by providing the ride id. Receipts will only be available to view once the payment has been processed. In the case of canceled ride, cancellation penalty is included if applicable.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The ID of the ride",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4ed11f7c2d093af31ad2b09c65190cb9",
+            "rawModeData": ""
+        },
+        {
+            "id": "610941978a664d39845597ac624a2881",
+            "name": "Types of rides",
+            "url": "httpsapi.lyft.com\/v1\/ridetypes",
+            "description": "The ride types endpoint returns information about what kinds of Lyft rides you can request at a given location.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4ed11f7c2d093af31ad2b09c65190cb9",
+            "rawModeData": ""
+        },
+        {
+            "id": "51cdb856bc6351b9ba5c5edd95f63f16",
+            "name": "Preset Prime Time percentage",
+            "url": "httpsapi.lyft.com\/v1\/sandbox\/primetime",
+            "description": "Preset a Prime Time percentage in the region surrounding the specified location. This Prime Time percentage will be applied when requesting cost, or when requesting a ride in sandbox mode.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "request",
+                    "description": "Ride request information",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4ed11f7c2d093af31ad2b09c65190cb9",
+            "rawModeData": ""
+        },
+        {
+            "id": "5b6935133b9fecd7b677c6178dfcd04b",
+            "name": "Propagate ride through ride status",
+            "url": "httpsapi.lyft.com\/v1\/sandbox\/rides\/{id}",
+            "description": "Propagate a sandbox-ride through various ride status\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The ID of the ride",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "request",
+                    "description": "Ride request information",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4ed11f7c2d093af31ad2b09c65190cb9",
+            "rawModeData": ""
+        },
+        {
+            "id": "88b96bb2f3e139bce86f8bbb5edab07c",
+            "name": "Preset types of rides for sandbox",
+            "url": "httpsapi.lyft.com\/v1\/sandbox\/ridetypes",
+            "description": "The sandbox-ridetypes endpoint allows you to preset the ridetypes in the region surrounding the specified latitude and longitude to allow testing different scenarios\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "request",
+                    "description": "Ride request information",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4ed11f7c2d093af31ad2b09c65190cb9",
+            "rawModeData": ""
+        },
+        {
+            "id": "f722481424c2685c5cdee074b7e2671c",
+            "name": "Driver availability for processing ride request",
+            "url": "httpsapi.lyft.com\/v1\/sandbox\/ridetypes\/{ride_type}",
+            "description": "Set driver availability for the provided ride_type in the city\/region surrounding the specified location\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "request",
+                    "description": "Ride request information",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "4ed11f7c2d093af31ad2b09c65190cb9",
+            "rawModeData": ""
+        }
+    ]
+}
