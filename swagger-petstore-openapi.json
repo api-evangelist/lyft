@@ -3,6 +3,28 @@
     "servers": [],
     "paths": [],
     "components": {
-        "schemas": []
+        "schemas": {
+            "Order": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "petId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "quantity": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "shipDate": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            }
+        }
     }
 }
