@@ -1,5 +1,5 @@
 {
-    "id": "b87f3d3d25eeaa2ef23f2a432dca8e8c",
+    "id": "a3f097e43bec165162bd73171b178325",
     "name": "Swagger Petstore",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "ee0424967ef976b371e6f5bb829d1cc4",
+            "id": "e2153650f58568fd654d855106ae88c6",
             "name": "Add a new pet to the store",
             "url": "\/pet",
             "description": "",
@@ -37,11 +37,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "b87f3d3d25eeaa2ef23f2a432dca8e8c",
+            "collectionId": "a3f097e43bec165162bd73171b178325",
             "rawModeData": ""
         },
         {
-            "id": "112c5cfc7098b2c0e62a292303297fa0",
+            "id": "e30c82f8e41ef4ca3758010452cc512b",
             "name": "Update an existing pet",
             "url": "\/pet",
             "description": "",
@@ -68,11 +68,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "b87f3d3d25eeaa2ef23f2a432dca8e8c",
+            "collectionId": "a3f097e43bec165162bd73171b178325",
             "rawModeData": ""
         },
         {
-            "id": "08c582381476637aa7a3c92f021ab985",
+            "id": "5c0fc4bf36468822dc279d6a5778197b",
             "name": "Finds Pets by status",
             "url": "\/pet\/findByStatus",
             "description": "Multiple status values can be provided with comma separated strings",
@@ -99,11 +99,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "b87f3d3d25eeaa2ef23f2a432dca8e8c",
+            "collectionId": "a3f097e43bec165162bd73171b178325",
             "rawModeData": ""
         },
         {
-            "id": "7f5b6db7c75a382ae0e1b79af98d6c60",
+            "id": "b4accad9baa74edb82d0f772a235816f",
             "name": "Finds Pets by tags",
             "url": "\/pet\/findByTags",
             "description": "Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
@@ -130,11 +130,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "b87f3d3d25eeaa2ef23f2a432dca8e8c",
+            "collectionId": "a3f097e43bec165162bd73171b178325",
             "rawModeData": ""
         },
         {
-            "id": "1d47e63cf1ec62fd0a72416997325663",
+            "id": "2f4716eeccfa7ba780e23f12c200941b",
             "name": "Find pet by ID",
             "url": "\/pet\/{petId}",
             "description": "Returns a single pet",
@@ -161,7 +161,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "b87f3d3d25eeaa2ef23f2a432dca8e8c",
+            "collectionId": "a3f097e43bec165162bd73171b178325",
             "rawModeData": ""
         }
     ]
