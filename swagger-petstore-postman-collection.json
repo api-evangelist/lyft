@@ -1,5 +1,5 @@
 {
-    "id": "9fa154f687841de96f77a93eba89c578",
+    "id": "9cf48c7ab24a91d067f39faaf2f688cf",
     "name": "Swagger Petstore",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "097727be884a4c2475efd15d08564e8b",
+            "id": "296eabd35560abfd629e042c1d7940c4",
             "name": "Add a new pet to the store",
             "url": "\/pet",
             "description": "",
@@ -29,11 +29,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "30e9ba04acb2bf7069e87b76aa215386",
+            "id": "94a1abbd16f78c25c08f0b0853a8fd7e",
             "name": "Update an existing pet",
             "url": "\/pet",
             "description": "",
@@ -52,11 +52,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "f010dbea88a4adc0b501fa1431a42439",
+            "id": "0d7c7d25d1118c8ed02d71e7ca8d039f",
             "name": "Finds Pets by status",
             "url": "\/pet\/findByStatus",
             "description": "Multiple status values can be provided with comma separated strings",
@@ -65,7 +65,15 @@
             "headerData": null,
             "method": "get",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "status",
+                    "description": "Status values that need to be considered for filter",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -75,11 +83,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "8c9c5b037d0d20450ef98641a450edab",
+            "id": "0e174bbd12527a2209eb3fe500247313",
             "name": "Finds Pets by tags",
             "url": "\/pet\/findByTags",
             "description": "Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
@@ -88,7 +96,15 @@
             "headerData": null,
             "method": "get",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "tags",
+                    "description": "Tags to filter by",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -98,11 +114,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "80293813e4e38b0fa00a59904a0e4873",
+            "id": "9a89f3de821ffc064322a2c1605cdb08",
             "name": "Find pet by ID",
             "url": "\/pet\/{petId}",
             "description": "Returns a single pet",
@@ -111,7 +127,15 @@
             "headerData": null,
             "method": "get",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "petId",
+                    "description": "ID of pet to return",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -121,11 +145,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "fbdb2c6372752ac0fcd00f6b30722b51",
+            "id": "6631bf1b841101a7a06162b01a35689d",
             "name": "Updates a pet in the store with form data",
             "url": "\/pet\/{petId}",
             "description": "",
@@ -134,7 +158,29 @@
             "headerData": null,
             "method": "post",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "petId",
+                    "description": "ID of pet to return",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "name",
+                    "description": "Updated name of the pet",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "status",
+                    "description": "Updated status of the pet",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -144,11 +190,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "251cb20980fdc0ff7925f77dd3e00449",
+            "id": "cae8f28fde77662c5ce008d2848a17c1",
             "name": "Deletes a pet",
             "url": "\/pet\/{petId}",
             "description": "",
@@ -157,7 +203,15 @@
             "headerData": null,
             "method": "delete",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "petId",
+                    "description": "ID of pet to return",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -167,11 +221,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "47a0cfa2a482b9d9c64445a72d2902fb",
+            "id": "942518bda6874252aaf839d246c7f166",
             "name": "uploads an image",
             "url": "\/pet\/{petId}\/uploadImage",
             "description": "",
@@ -180,7 +234,29 @@
             "headerData": null,
             "method": "post",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "petId",
+                    "description": "ID of pet to return",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "additionalMetadata",
+                    "description": "Additional data to pass to server",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "file",
+                    "description": "file to upload",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -190,11 +266,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "c4089d96b4edab785f5ca38d508c91bd",
+            "id": "afa4c07c7242c89d401ed2e4b1a80946",
             "name": "Returns pet inventories by status",
             "url": "\/store\/inventory",
             "description": "Returns a map of status codes to quantities",
@@ -213,11 +289,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "29e83a9679d38c80ffa939db23957629",
+            "id": "b9f42119e7d405bb3a36876a201480b7",
             "name": "Place an order for a pet",
             "url": "\/store\/order",
             "description": "",
@@ -236,11 +312,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "1dc5f3e5e63cf28d18c1d80df1d9506d",
+            "id": "4719dfa4a58dfe6b40b6ddb72368ab70",
             "name": "Find purchase order by ID",
             "url": "\/store\/order\/{orderId}",
             "description": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions",
@@ -249,7 +325,15 @@
             "headerData": null,
             "method": "get",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "orderId",
+                    "description": "ID of pet that needs to be fetched",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -259,11 +343,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "fe63ecd70fd490b041017860cbdfb160",
+            "id": "d081831c502f99b59d0423d48184692f",
             "name": "Delete purchase order by ID",
             "url": "\/store\/order\/{orderId}",
             "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors",
@@ -272,7 +356,15 @@
             "headerData": null,
             "method": "delete",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "orderId",
+                    "description": "ID of pet that needs to be fetched",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -282,11 +374,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "11e29e5480ec8b64390e0ffaab48683b",
+            "id": "96bc155d8bc977a363bb13eef4861045",
             "name": "Create user",
             "url": "\/user",
             "description": "This can only be done by the logged in user.",
@@ -305,11 +397,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "2a91ec14900fddac1bdee4346d153bf8",
+            "id": "70cbfa9cb91a23c3a7587267ee346752",
             "name": "Creates list of users with given input array",
             "url": "\/user\/createWithArray",
             "description": "",
@@ -328,11 +420,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "dd760310c984b1eba907190eb302027c",
+            "id": "6a27cd9f94575208f703298b2c85ccb7",
             "name": "Creates list of users with given input array",
             "url": "\/user\/createWithList",
             "description": "",
@@ -351,11 +443,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "646ccb843838a4a131c0e20a63e95498",
+            "id": "6f3ee54caf5d7a65b9ae5d1f489824ae",
             "name": "Logs user into the system",
             "url": "\/user\/login",
             "description": "",
@@ -364,7 +456,22 @@
             "headerData": null,
             "method": "get",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "username",
+                    "description": "The user name for login",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "password",
+                    "description": "The password for login in clear text",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -374,11 +481,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "b896b172c19fe3d10e6c201429f7416b",
+            "id": "9e5785adf54e4a9e7a1bcd4cd2bfb689",
             "name": "Logs out current logged in user session",
             "url": "\/user\/logout",
             "description": "",
@@ -397,11 +504,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "7b45f0deeb3edb006398bb6b659c85f6",
+            "id": "617b5b7f8d38404af47776e9e0fc442c",
             "name": "Get user by user name",
             "url": "\/user\/{username}",
             "description": "",
@@ -410,7 +517,15 @@
             "headerData": null,
             "method": "get",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "username",
+                    "description": "The name that needs to be fetched. Use user1 for testing. ",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -420,11 +535,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "349b2f5db8c6c31dc1c1bf7e929a5762",
+            "id": "78e84e81a3c9976c5ac4f5d88ef5922e",
             "name": "Updated user",
             "url": "\/user\/{username}",
             "description": "This can only be done by the logged in user.",
@@ -433,7 +548,15 @@
             "headerData": null,
             "method": "put",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "username",
+                    "description": "The name that needs to be fetched. Use user1 for testing. ",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -443,11 +566,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         },
         {
-            "id": "c550d8c3036a615957944dfe8796cdcb",
+            "id": "4a70b0f4533e6e84e20812a0215645bf",
             "name": "Delete user",
             "url": "\/user\/{username}",
             "description": "This can only be done by the logged in user.",
@@ -456,7 +579,15 @@
             "headerData": null,
             "method": "delete",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "username",
+                    "description": "The name that needs to be fetched. Use user1 for testing. ",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -466,7 +597,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "9fa154f687841de96f77a93eba89c578",
+            "collectionId": "9cf48c7ab24a91d067f39faaf2f688cf",
             "rawModeData": ""
         }
     ]
