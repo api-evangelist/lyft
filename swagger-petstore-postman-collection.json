@@ -1,5 +1,5 @@
 {
-    "id": "544349e5905a17c5669f1d120c91855e",
+    "id": "8c9d25a5f5249519aa6b970e026e2019",
     "name": "Swagger Petstore",
     "description": null,
     "auth": null,
@@ -8,5 +8,659 @@
     "order": [],
     "folders_order": [],
     "folders": [],
-    "requests": []
+    "requests": [
+        {
+            "id": "483dab0d15a7c10a7ce89b3c0163bc53",
+            "name": "Add a new pet to the store",
+            "url": "\/pet",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "body",
+                    "description": "Pet object that needs to be added to the store",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "ad88bfa4377a45d500a3df3ba035dab8",
+            "name": "Update an existing pet",
+            "url": "\/pet",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "body",
+                    "description": "Pet object that needs to be added to the store",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "854ed53486615f618acfb2f2a0a70492",
+            "name": "Finds Pets by status",
+            "url": "\/pet\/findByStatus",
+            "description": "Multiple status values can be provided with comma separated strings",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "status",
+                    "description": "Status values that need to be considered for filter",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "13aac2d6e3d58ac0e40ea8926c189aee",
+            "name": "Finds Pets by tags",
+            "url": "\/pet\/findByTags",
+            "description": "Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "tags",
+                    "description": "Tags to filter by",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "5597fceeac7416c9ce6f294c1fa0c486",
+            "name": "Find pet by ID",
+            "url": "\/pet\/{petId}",
+            "description": "Returns a single pet",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "petId",
+                    "description": "ID of pet to return",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "3f024153372be3bf06a71ad31ff74ed7",
+            "name": "Updates a pet in the store with form data",
+            "url": "\/pet\/{petId}",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "petId",
+                    "description": "ID of pet to return",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "name",
+                    "description": "Updated name of the pet",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "status",
+                    "description": "Updated status of the pet",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "fa62d92d8460cfc1b062b7000f2be780",
+            "name": "Deletes a pet",
+            "url": "\/pet\/{petId}",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "api_key",
+                    "description": "Updated status of the pet",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "petId",
+                    "description": "ID of pet to return",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "113091c057de6bb97290ce5beef4e6d8",
+            "name": "uploads an image",
+            "url": "\/pet\/{petId}\/uploadImage",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "petId",
+                    "description": "ID of pet to return",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "additionalMetadata",
+                    "description": "Additional data to pass to server",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "file",
+                    "description": "file to upload",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "916a600b31b2d1335a61807bf6e0962b",
+            "name": "Returns pet inventories by status",
+            "url": "\/store\/inventory",
+            "description": "Returns a map of status codes to quantities",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "48afad92718e5f9f3a81803c5ddc033e",
+            "name": "Place an order for a pet",
+            "url": "\/store\/order",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "body",
+                    "description": "Pet object that needs to be added to the store",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "723ef77e4828f8c67ffd42597d6af6b5",
+            "name": "Find purchase order by ID",
+            "url": "\/store\/order\/{orderId}",
+            "description": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "orderId",
+                    "description": "ID of pet that needs to be fetched",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "888b198aa273e5613e9d5e12c544f4b3",
+            "name": "Delete purchase order by ID",
+            "url": "\/store\/order\/{orderId}",
+            "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "orderId",
+                    "description": "ID of pet that needs to be fetched",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "20b80671ba2c36633bafb8d5f8c75c04",
+            "name": "Create user",
+            "url": "\/user",
+            "description": "This can only be done by the logged in user.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "body",
+                    "description": "Pet object that needs to be added to the store",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "884c402e839447b4fd2db24857495373",
+            "name": "Creates list of users with given input array",
+            "url": "\/user\/createWithArray",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "body",
+                    "description": "Pet object that needs to be added to the store",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "6021c5c3505dac2cca456c7829392035",
+            "name": "Creates list of users with given input array",
+            "url": "\/user\/createWithList",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "body",
+                    "description": "Pet object that needs to be added to the store",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "8a5c442f9f0c404db6b91d779eae187a",
+            "name": "Logs user into the system",
+            "url": "\/user\/login",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "username",
+                    "description": "The user name for login",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "password",
+                    "description": "The password for login in clear text",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "52c6bce059fdce2f3a069a3b43029d25",
+            "name": "Logs out current logged in user session",
+            "url": "\/user\/logout",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "1f05eea1432255868157b32356fde0fe",
+            "name": "Get user by user name",
+            "url": "\/user\/{username}",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "username",
+                    "description": "The name that needs to be fetched. Use user1 for testing. ",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "0836896e47a65f2d96c4551356b486a0",
+            "name": "Updated user",
+            "url": "\/user\/{username}",
+            "description": "This can only be done by the logged in user.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "username",
+                    "description": "The name that needs to be fetched. Use user1 for testing. ",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "body",
+                    "description": "Pet object that needs to be added to the store",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        },
+        {
+            "id": "7597f778539af056e6c101785ced5bbe",
+            "name": "Delete user",
+            "url": "\/user\/{username}",
+            "description": "This can only be done by the logged in user.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "username",
+                    "description": "The name that needs to be fetched. Use user1 for testing. ",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "8c9d25a5f5249519aa6b970e026e2019",
+            "rawModeData": ""
+        }
+    ]
 }
