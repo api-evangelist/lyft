@@ -1,0 +1,926 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "",
+        "title": "Lyft",
+        "description": "Drive your app to success with Lyft's API",
+        "termsOfService": ""
+    },
+    "servers": [
+        "httpsapi.lyft.com\/v1"
+    ],
+    "paths": {
+        "\/cost": {
+            "get": {
+                "summary": "Cost estimates",
+                "description": "Estimate the cost of taking a Lyft between two points.\n",
+                "operationId": "GetCost",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "start_lat",
+                        "in": "query",
+                        "description": "Latitude of the starting location"
+                    },
+                    {
+                        "name": "start_lng",
+                        "in": "query",
+                        "description": "Longitude of the starting location"
+                    },
+                    {
+                        "name": "end_lat",
+                        "in": "query",
+                        "description": "Latitude of the ending location"
+                    },
+                    {
+                        "name": "end_lng",
+                        "in": "query",
+                        "description": "Longitude of the ending location"
+                    }
+                ]
+            }
+        },
+        "\/drivers": {
+            "get": {
+                "summary": "Available drivers nearby",
+                "description": "The drivers endpoint returns a list of nearby drivers' lat and lng at a given location.\n",
+                "operationId": "GetDrivers",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/eta": {
+            "get": {
+                "summary": "Pickup ETAs",
+                "description": "The ETA endpoint lets you know how quickly a Lyft driver can come get you\n",
+                "operationId": "GetETA",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/profile": {
+            "get": {
+                "summary": "The user's general info",
+                "description": "The v1 of this endpoint returns the user's ID, v2 will return more general info about the user. We require authentication for this endpoint, so we extract the user ID from the access token.\n",
+                "operationId": "GetProfile",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/rides": {
+            "get": {
+                "summary": "List rides",
+                "description": "Get a list of past & current rides for this passenger.\n",
+                "operationId": "GetRides",
+                "deprecated": 0,
+                "parameters": []
+            },
+            "post": {
+                "summary": "Request a Lyft",
+                "description": "Request a Lyft come pick you up at the given location.\n",
+                "operationId": "NewRide",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "description": "Ride request information"
+                    }
+                ]
+            }
+        },
+        "\/rides\/{id}": {
+            "get": {
+                "summary": "Get the ride detail of a given ride ID",
+                "description": "Get the status of a ride along with information about the driver, vehicle and price of a given ride ID\n",
+                "operationId": "GetRide",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the ride"
+                    }
+                ]
+            }
+        },
+        "\/rides\/{id}\/cancel": {
+            "post": {
+                "summary": "Cancel a ongoing requested ride",
+                "description": "Cancel a ongoing ride which was requested earlier by providing the ride id.\n",
+                "operationId": "CancelRide",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the ride"
+                    },
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "description": "Ride request information"
+                    }
+                ]
+            }
+        },
+        "\/rides\/{id}\/destination": {
+            "put": {
+                "summary": "Update the destination of the ride",
+                "description": "Add or update the ride's destination. Note that the ride must still be active (not droppedOff or canceled), and that destinations on Lyft Line rides can not be changed.\n",
+                "operationId": "SetRideDestination",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the ride"
+                    },
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "description": "Ride request information"
+                    }
+                ]
+            }
+        },
+        "\/rides\/{id}\/rating": {
+            "put": {
+                "summary": "Add the passenger's rating, feedback, and tip",
+                "description": "Add the passenger's 1 to 5 star rating of the ride, optional written feedback, and optional tip amount in minor units and currency. The ride must already be dropped off, and ratings must be given within 24 hours of drop off. For purposes of display, 5 is considered the default rating. When this endpoint is successfully called, payment processing will begin.\n",
+                "operationId": "SetRideRating",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the ride"
+                    },
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "description": "Ride request information"
+                    }
+                ]
+            }
+        },
+        "\/rides\/{id}\/receipt": {
+            "get": {
+                "summary": "Get the receipt of the rides.",
+                "description": "Get the receipt information of a processed ride by providing the ride id. Receipts will only be available to view once the payment has been processed. In the case of canceled ride, cancellation penalty is included if applicable.\n",
+                "operationId": "GetRideReceipt",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the ride"
+                    }
+                ]
+            }
+        },
+        "\/ridetypes": {
+            "get": {
+                "summary": "Types of rides",
+                "description": "The ride types endpoint returns information about what kinds of Lyft rides you can request at a given location.\n",
+                "operationId": "GetRideTypes",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/sandbox\/primetime": {
+            "put": {
+                "summary": "Preset Prime Time percentage",
+                "description": "Preset a Prime Time percentage in the region surrounding the specified location. This Prime Time percentage will be applied when requesting cost, or when requesting a ride in sandbox mode.\n",
+                "operationId": "SetPrimeTime",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "description": "Ride request information"
+                    }
+                ]
+            }
+        },
+        "\/sandbox\/rides\/{id}": {
+            "put": {
+                "summary": "Propagate ride through ride status",
+                "description": "Propagate a sandbox-ride through various ride status\n",
+                "operationId": "SetRideStatus",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of the ride"
+                    },
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "description": "Ride request information"
+                    }
+                ]
+            }
+        },
+        "\/sandbox\/ridetypes": {
+            "put": {
+                "summary": "Preset types of rides for sandbox",
+                "description": "The sandbox-ridetypes endpoint allows you to preset the ridetypes in the region surrounding the specified latitude and longitude to allow testing different scenarios\n",
+                "operationId": "SetRideTypes",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "description": "Ride request information"
+                    }
+                ]
+            }
+        },
+        "\/sandbox\/ridetypes\/{ride_type}": {
+            "put": {
+                "summary": "Driver availability for processing ride request",
+                "description": "Set driver availability for the provided ride_type in the city\/region surrounding the specified location\n",
+                "operationId": "SetRideTypeAvailability",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "description": "Ride request information"
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "PricingDetails": {
+                "type": "object",
+                "properties": {
+                    "base_charge": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "cancel_penalty_amount": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "cost_minimum": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "cost_per_mile": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "cost_per_minute": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "currency": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "trust_and_service": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "RideType": {
+                "type": "object",
+                "properties": {
+                    "display_name": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "seats": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "image_url": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "SandboxRideType": {
+                "type": "object",
+                "properties": {
+                    "lat": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "lng": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "ride_types": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "SandboxPrimetime": {
+                "type": "object",
+                "properties": {
+                    "lat": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "lng": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "primetime_percentage": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "SandboxDriverAvailability": {
+                "type": "object",
+                "properties": {
+                    "lat": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "lng": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "driver_availability": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "LatLng": {
+                "type": "object",
+                "properties": {
+                    "lat": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "lng": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "Tip": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "currency": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "PassengerDetail": {
+                "type": "object",
+                "properties": {
+                    "first_name": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "last_name": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "phone_number": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "DriverDetail": {
+                "type": "object",
+                "properties": {
+                    "first_name": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "phone_number": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "rating": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "image_url": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "user_id": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "VehicleDetail": {
+                "type": "object",
+                "properties": {
+                    "make": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "model": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "year": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "license_plate": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "license_plate_state": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "color": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "image_url": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "Cost": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "currency": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "CancellationRequest": {
+                "type": "object",
+                "properties": {
+                    "cancel_confirmation_token": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "LineItem": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "amount": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "currency": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "Charge": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "currency": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "payment_method": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "Eta": {
+                "type": "object",
+                "properties": {
+                    "display_name": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "eta_seconds": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "eta_seconds_max": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "is_valid_estimate": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "CostEstimate": {
+                "type": "object",
+                "properties": {
+                    "display_name": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "currency": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "estimated_cost_cents_min": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "estimated_cost_cents_max": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "estimated_distance_miles": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "estimated_duration_seconds": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "primetime_percentage": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "primetime_confirmation_token": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "cost_token": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "is_valid_estimate": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "SandboxRideUpdate": {
+                "type": "object",
+                "properties": {
+                    "ride_id": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "RideRequest": {
+                "type": "object",
+                "properties": {
+                    "ride_id": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "destination": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "origin": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "Ride": {
+                "type": "object",
+                "properties": {
+                    "ride_id": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "primetime_confirmation_token": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "cost_token": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "destination": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "origin": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "RideDetail": {
+                "type": "object",
+                "properties": {
+                    "ride_id": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "primetime_percentage": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "line_items": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "can_cancel": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "canceled_by": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "rating": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "feedback": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "route_url": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "requested_at": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "beacon_color": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "cancellation_price": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "destination": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "distance_miles": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "dropoff": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "duration_seconds": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "generated_at": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "location": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "origin": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "pickup": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "price": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "pricing_details_url": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "ride_profile": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "RideReceipt": {
+                "type": "object",
+                "properties": {
+                    "ride_id": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "line_items": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "charges": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "requested_at": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "price": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "ride_profile": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "NearbyDriver": {
+                "type": "object",
+                "properties": {
+                    "locations": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "NearbyDriversByRideType": {
+                "type": "object",
+                "properties": {
+                    "ride_type": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "drivers": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "Error": {
+                "type": "object",
+                "properties": {
+                    "error": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "error_detail": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "error_description": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "ErrorDetail": {
+                "type": "object",
+                "properties": {
+                    "field_name": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "RideRequestError": {
+                "type": "object",
+                "properties": {
+                    "error": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "error_detail": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "error_description": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "primetime_percentage": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "primetime_confirmation_token": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "token_duration": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "cost_token": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "error_uri": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "primetime_multiplier": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "RatingRequest": {
+                "type": "object",
+                "properties": {
+                    "rating": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "feedback": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "tip": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "ApiError": {
+                "type": "object",
+                "properties": {
+                    "error": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "error_description": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "error_detail": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "Profile": {
+                "type": "object",
+                "properties": {
+                    "first_name": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "has_taken_a_ride": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "last_name": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            },
+            "SandboxRideStatus": {
+                "type": "object"
+            },
+            "UserDetail": {
+                "type": "object",
+                "properties": {
+                    "first_name": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "image_url": {
+                        "description": "",
+                        "type": "put"
+                    },
+                    "rating": {
+                        "description": "",
+                        "type": "put"
+                    }
+                }
+            }
+        }
+    }
+}
