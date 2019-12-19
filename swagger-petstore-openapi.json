@@ -14,12 +14,7 @@
                         "in": "body",
                         "description": "Pet object that needs to be added to the store"
                     }
-                ],
-                "responses": {
-                    "405": {
-                        "description": "Invalid input"
-                    }
-                }
+                ]
             },
             "put": {
                 "summary": "Update an existing pet",
@@ -32,12 +27,7 @@
                         "in": "body",
                         "description": "Pet object that needs to be added to the store"
                     }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Invalid ID supplied"
-                    }
-                }
+                ]
             }
         },
         "\/pet\/findByStatus": {
@@ -52,19 +42,7 @@
                         "in": "query",
                         "description": "Status values that need to be considered for filter"
                     }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application\/xml": {
-                                "schema": {
-                                    "$href": "#\/components\/schemas\/Pet"
-                                }
-                            }
-                        }
-                    }
-                }
+                ]
             }
         },
         "\/pet\/findByTags": {
@@ -79,19 +57,7 @@
                         "in": "query",
                         "description": "Tags to filter by"
                     }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application\/xml": {
-                                "schema": {
-                                    "$href": "#\/components\/schemas\/Pet"
-                                }
-                            }
-                        }
-                    }
-                }
+                ]
             }
         },
         "\/pet\/{petId}": {
@@ -106,19 +72,7 @@
                         "in": "path",
                         "description": "ID of pet to return"
                     }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application\/xml": {
-                                "schema": {
-                                    "$href": "#\/components\/schemas\/Pet"
-                                }
-                            }
-                        }
-                    }
-                }
+                ]
             },
             "post": {
                 "summary": "Updates a pet in the store with form data",
@@ -141,12 +95,7 @@
                         "in": "formData",
                         "description": "Updated status of the pet"
                     }
-                ],
-                "responses": {
-                    "405": {
-                        "description": "Invalid input"
-                    }
-                }
+                ]
             },
             "delete": {
                 "summary": "Deletes a pet",
@@ -164,12 +113,7 @@
                         "in": "path",
                         "description": "ID of pet to return"
                     }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Invalid ID supplied"
-                    }
-                }
+                ]
             }
         },
         "\/pet\/{petId}\/uploadImage": {
@@ -194,19 +138,7 @@
                         "in": "formData",
                         "description": "file to upload"
                     }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application\/xml": {
-                                "schema": {
-                                    "$href": "#\/components\/schemas\/Pet"
-                                }
-                            }
-                        }
-                    }
-                }
+                ]
             }
         },
         "\/store\/inventory": {
@@ -215,19 +147,7 @@
                 "description": "Returns a map of status codes to quantities",
                 "operationId": "GetInventory",
                 "deprecated": 0,
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application\/xml": {
-                                "schema": {
-                                    "$href": "#\/components\/schemas\/Pet"
-                                }
-                            }
-                        }
-                    }
-                }
+                "parameters": []
             }
         },
         "\/store\/order": {
@@ -242,19 +162,7 @@
                         "in": "body",
                         "description": "Pet object that needs to be added to the store"
                     }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application\/xml": {
-                                "schema": {
-                                    "$href": "#\/components\/schemas\/Pet"
-                                }
-                            }
-                        }
-                    }
-                }
+                ]
             }
         },
         "\/store\/order\/{orderId}": {
@@ -269,19 +177,7 @@
                         "in": "path",
                         "description": "ID of pet that needs to be fetched"
                     }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application\/xml": {
-                                "schema": {
-                                    "$href": "#\/components\/schemas\/Pet"
-                                }
-                            }
-                        }
-                    }
-                }
+                ]
             },
             "delete": {
                 "summary": "Delete purchase order by ID",
@@ -294,12 +190,7 @@
                         "in": "path",
                         "description": "ID of pet that needs to be fetched"
                     }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Invalid ID supplied"
-                    }
-                }
+                ]
             }
         },
         "\/user": {
@@ -314,12 +205,7 @@
                         "in": "body",
                         "description": "Pet object that needs to be added to the store"
                     }
-                ],
-                "responses": {
-                    "default": {
-                        "description": "successful operation"
-                    }
-                }
+                ]
             }
         },
         "\/user\/createWithArray": {
@@ -334,12 +220,7 @@
                         "in": "body",
                         "description": "Pet object that needs to be added to the store"
                     }
-                ],
-                "responses": {
-                    "default": {
-                        "description": "successful operation"
-                    }
-                }
+                ]
             }
         },
         "\/user\/createWithList": {
@@ -354,12 +235,7 @@
                         "in": "body",
                         "description": "Pet object that needs to be added to the store"
                     }
-                ],
-                "responses": {
-                    "default": {
-                        "description": "successful operation"
-                    }
-                }
+                ]
             }
         },
         "\/user\/login": {
@@ -379,19 +255,7 @@
                         "in": "query",
                         "description": "The password for login in clear text"
                     }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application\/xml": {
-                                "schema": {
-                                    "$href": "#\/components\/schemas\/Pet"
-                                }
-                            }
-                        }
-                    }
-                }
+                ]
             }
         },
         "\/user\/logout": {
@@ -400,12 +264,7 @@
                 "description": "",
                 "operationId": "LogoutUser",
                 "deprecated": 0,
-                "parameters": [],
-                "responses": {
-                    "default": {
-                        "description": "successful operation"
-                    }
-                }
+                "parameters": []
             }
         },
         "\/user\/{username}": {
@@ -420,19 +279,7 @@
                         "in": "path",
                         "description": "The name that needs to be fetched. Use user1 for testing. "
                     }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application\/xml": {
-                                "schema": {
-                                    "$href": "#\/components\/schemas\/Pet"
-                                }
-                            }
-                        }
-                    }
-                }
+                ]
             },
             "put": {
                 "summary": "Updated user",
@@ -450,12 +297,7 @@
                         "in": "body",
                         "description": "Pet object that needs to be added to the store"
                     }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Invalid ID supplied"
-                    }
-                }
+                ]
             },
             "delete": {
                 "summary": "Delete user",
@@ -468,12 +310,7 @@
                         "in": "path",
                         "description": "The name that needs to be fetched. Use user1 for testing. "
                     }
-                ],
-                "responses": {
-                    "400": {
-                        "description": "Invalid ID supplied"
-                    }
-                }
+                ]
             }
         }
     },
@@ -484,151 +321,6 @@
             },
             "tags": {
                 "type": "array"
-            },
-            "Order": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "description": "",
-                        "type": "integer"
-                    },
-                    "petId": {
-                        "description": "ID of pet to return",
-                        "type": "integer"
-                    },
-                    "quantity": {
-                        "description": "",
-                        "type": "integer"
-                    },
-                    "shipDate": {
-                        "description": "",
-                        "type": "string"
-                    },
-                    "status": {
-                        "description": "Order Status",
-                        "type": "string"
-                    },
-                    "complete": {
-                        "description": "",
-                        "type": "boolean"
-                    }
-                }
-            },
-            "Category": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "description": "",
-                        "type": "integer"
-                    },
-                    "name": {
-                        "description": "Updated name of the pet",
-                        "type": "string"
-                    }
-                }
-            },
-            "User": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "description": "",
-                        "type": "integer"
-                    },
-                    "username": {
-                        "description": "The user name for login",
-                        "type": "string"
-                    },
-                    "firstName": {
-                        "description": "",
-                        "type": "string"
-                    },
-                    "lastName": {
-                        "description": "",
-                        "type": "string"
-                    },
-                    "email": {
-                        "description": "",
-                        "type": "string"
-                    },
-                    "password": {
-                        "description": "The password for login in clear text",
-                        "type": "string"
-                    },
-                    "phone": {
-                        "description": "",
-                        "type": "string"
-                    },
-                    "userStatus": {
-                        "description": "User Status",
-                        "type": "integer"
-                    }
-                }
-            },
-            "Tag": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "description": "",
-                        "type": "integer"
-                    },
-                    "name": {
-                        "description": "Updated name of the pet",
-                        "type": "string"
-                    }
-                }
-            },
-            "Pet": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "description": "",
-                        "type": "integer"
-                    },
-                    "Category": {
-                        "description": "",
-                        "type": "object"
-                    },
-                    "category": {
-                        "description": "",
-                        "type": ""
-                    },
-                    "name": {
-                        "description": "Updated name of the pet",
-                        "type": "string"
-                    },
-                    "photoUrls": {
-                        "description": "",
-                        "type": "array"
-                    },
-                    "tags": {
-                        "description": "Tags to filter by",
-                        "type": "array"
-                    },
-                    "status": {
-                        "description": "Order Status",
-                        "type": "string"
-                    }
-                }
-            },
-            "photoUrls": {
-                "type": "array"
-            },
-            "ApiResponse": {
-                "type": "object",
-                "properties": {
-                    "code": {
-                        "description": "",
-                        "type": "integer"
-                    },
-                    "type": {
-                        "description": "",
-                        "type": "string"
-                    },
-                    "message": {
-                        "description": "",
-                        "type": "string"
-                    }
-                }
             }
         }
     }
