@@ -1,5 +1,5 @@
 {
-    "id": "f15246fc9fd71a449fc26b3b4fb5a34b",
+    "id": "036e678a0106211d1e98c9ae73f81d61",
     "name": "Swagger Petstore",
     "description": null,
     "auth": null,
@@ -10,16 +10,24 @@
     "folders": [],
     "requests": [
         {
-            "id": "c305ccbcdd0229278a14f7142120b4d0",
+            "id": "c8fa83195d464569ad818d42f95e1cc9",
             "name": "Add a new pet to the store",
-            "url": "httppetstore.swagger.io\/v2\/pet",
+            "url": "\/pet",
             "description": "",
             "data": [],
             "dataMode": "raw",
             "headerData": null,
             "method": "post",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "body",
+                    "description": "Pet object that needs to be added to the store",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -29,20 +37,28 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "2f83728608ae067770f00f8e91bbfb3a",
+            "id": "220c5209d56d59ca7869f9640d877684",
             "name": "Update an existing pet",
-            "url": "httppetstore.swagger.io\/v2\/pet",
+            "url": "\/pet",
             "description": "",
             "data": [],
             "dataMode": "raw",
             "headerData": null,
             "method": "put",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "body",
+                    "description": "Pet object that needs to be added to the store",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -52,13 +68,13 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "3e99ebffe40eca2a139713987eb55547",
+            "id": "0a8e1eca76b77b800e4464bbb8b86e18",
             "name": "Finds Pets by status",
-            "url": "httppetstore.swagger.io\/v2\/pet\/findByStatus",
+            "url": "\/pet\/findByStatus",
             "description": "Multiple status values can be provided with comma separated strings",
             "data": [],
             "dataMode": "raw",
@@ -83,13 +99,13 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "74ce391e4f5217f3eb0632ddc315a922",
+            "id": "3f55ae63b1a0a61da52a39b7b60adb0d",
             "name": "Finds Pets by tags",
-            "url": "httppetstore.swagger.io\/v2\/pet\/findByTags",
+            "url": "\/pet\/findByTags",
             "description": "Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
             "data": [],
             "dataMode": "raw",
@@ -114,13 +130,13 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "53122a364a1b5c650ad3dc63bb9c7243",
+            "id": "2baa864b3266703ac5d2292ddba87a25",
             "name": "Find pet by ID",
-            "url": "httppetstore.swagger.io\/v2\/pet\/{petId}",
+            "url": "\/pet\/{petId}",
             "description": "Returns a single pet",
             "data": [],
             "dataMode": "raw",
@@ -145,13 +161,13 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "7bc60d150c3f85f6e66173b5ed81338a",
+            "id": "361a41eaeffc20af5fb5ff43f3c83639",
             "name": "Updates a pet in the store with form data",
-            "url": "httppetstore.swagger.io\/v2\/pet\/{petId}",
+            "url": "\/pet\/{petId}",
             "description": "",
             "data": [],
             "dataMode": "raw",
@@ -190,13 +206,13 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "a98770922f1a49842fd3878883796d1f",
+            "id": "f449b97052e832bf5f2bc075e78f2a4e",
             "name": "Deletes a pet",
-            "url": "httppetstore.swagger.io\/v2\/pet\/{petId}",
+            "url": "\/pet\/{petId}",
             "description": "",
             "data": [],
             "dataMode": "raw",
@@ -204,6 +220,13 @@
             "method": "delete",
             "pathVariableData": [],
             "queryParams": [
+                {
+                    "key": "api_key",
+                    "description": "Updated status of the pet",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
                 {
                     "key": "petId",
                     "description": "ID of pet to return",
@@ -221,13 +244,13 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "fb2f858dda4fcb3b836efa3b1ca8d936",
+            "id": "cd7ae279df04979720153065dd0719f2",
             "name": "uploads an image",
-            "url": "httppetstore.swagger.io\/v2\/pet\/{petId}\/uploadImage",
+            "url": "\/pet\/{petId}\/uploadImage",
             "description": "",
             "data": [],
             "dataMode": "raw",
@@ -266,13 +289,13 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "0d319af679546cb54df2a6510cdd0040",
+            "id": "5cb57077fd15dd68b22b982c4616a5f3",
             "name": "Returns pet inventories by status",
-            "url": "httppetstore.swagger.io\/v2\/store\/inventory",
+            "url": "\/store\/inventory",
             "description": "Returns a map of status codes to quantities",
             "data": [],
             "dataMode": "raw",
@@ -289,20 +312,28 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "3f12877430582e4ad40ec415a225927b",
+            "id": "e418be3726819e3216a31a5435ae8676",
             "name": "Place an order for a pet",
-            "url": "httppetstore.swagger.io\/v2\/store\/order",
+            "url": "\/store\/order",
             "description": "",
             "data": [],
             "dataMode": "raw",
             "headerData": null,
             "method": "post",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "body",
+                    "description": "Pet object that needs to be added to the store",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -312,13 +343,13 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "ae63775651989e4f0e1df05fa15e8119",
+            "id": "4d640bd325866a4477ac5c07c6489a4d",
             "name": "Find purchase order by ID",
-            "url": "httppetstore.swagger.io\/v2\/store\/order\/{orderId}",
+            "url": "\/store\/order\/{orderId}",
             "description": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions",
             "data": [],
             "dataMode": "raw",
@@ -343,13 +374,13 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "b2817e28340dbdf82f714cddde512686",
+            "id": "ca4b6818be0a93a2bd365af10f79b064",
             "name": "Delete purchase order by ID",
-            "url": "httppetstore.swagger.io\/v2\/store\/order\/{orderId}",
+            "url": "\/store\/order\/{orderId}",
             "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors",
             "data": [],
             "dataMode": "raw",
@@ -374,20 +405,28 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "5c5f4e5c04a98333763c310e55b81577",
+            "id": "b34908c7fe2f3567e925ffb5f9a6c467",
             "name": "Create user",
-            "url": "httppetstore.swagger.io\/v2\/user",
+            "url": "\/user",
             "description": "This can only be done by the logged in user.",
             "data": [],
             "dataMode": "raw",
             "headerData": null,
             "method": "post",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "body",
+                    "description": "Pet object that needs to be added to the store",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -397,20 +436,28 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "62d53de413464a52713c05933751f25e",
+            "id": "f27a1fdc304f848fc520c67e34a027ad",
             "name": "Creates list of users with given input array",
-            "url": "httppetstore.swagger.io\/v2\/user\/createWithArray",
+            "url": "\/user\/createWithArray",
             "description": "",
             "data": [],
             "dataMode": "raw",
             "headerData": null,
             "method": "post",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "body",
+                    "description": "Pet object that needs to be added to the store",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -420,20 +467,28 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "ea4dc9a7d1a1caa5939cb7aaebde5c27",
+            "id": "5bbb2d4d029522a352bc74c8007e8848",
             "name": "Creates list of users with given input array",
-            "url": "httppetstore.swagger.io\/v2\/user\/createWithList",
+            "url": "\/user\/createWithList",
             "description": "",
             "data": [],
             "dataMode": "raw",
             "headerData": null,
             "method": "post",
             "pathVariableData": [],
-            "queryParams": [],
+            "queryParams": [
+                {
+                    "key": "body",
+                    "description": "Pet object that needs to be added to the store",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
             "auth": null,
             "events": null,
             "folder": null,
@@ -443,13 +498,13 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "202eb79abb98e159d2daca38db03d788",
+            "id": "ee904e771b1e05ea5bdb44927bd377d3",
             "name": "Logs user into the system",
-            "url": "httppetstore.swagger.io\/v2\/user\/login",
+            "url": "\/user\/login",
             "description": "",
             "data": [],
             "dataMode": "raw",
@@ -481,13 +536,13 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "3bf763fc0af0191d5a0d3c29df8fcee6",
+            "id": "c045be937848587abe63d242c2eaf420",
             "name": "Logs out current logged in user session",
-            "url": "httppetstore.swagger.io\/v2\/user\/logout",
+            "url": "\/user\/logout",
             "description": "",
             "data": [],
             "dataMode": "raw",
@@ -504,13 +559,13 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "ebda504df2dfb0a2618f5da9f38ff96b",
+            "id": "ea92ad9f362446b7fc88ea93451a2121",
             "name": "Get user by user name",
-            "url": "httppetstore.swagger.io\/v2\/user\/{username}",
+            "url": "\/user\/{username}",
             "description": "",
             "data": [],
             "dataMode": "raw",
@@ -535,13 +590,13 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "a2b2df76931868b6a08607de920273d3",
+            "id": "c63f83d21f2b53318d6ac8d267a8e87e",
             "name": "Updated user",
-            "url": "httppetstore.swagger.io\/v2\/user\/{username}",
+            "url": "\/user\/{username}",
             "description": "This can only be done by the logged in user.",
             "data": [],
             "dataMode": "raw",
@@ -552,6 +607,13 @@
                 {
                     "key": "username",
                     "description": "The name that needs to be fetched. Use user1 for testing. ",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "body",
+                    "description": "Pet object that needs to be added to the store",
                     "value": "",
                     "equals": true,
                     "enabled": true
@@ -566,13 +628,13 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         },
         {
-            "id": "1bb3c31a32453adcabee0588b794e5d9",
+            "id": "0310601abc106805ce48e6c24bce2548",
             "name": "Delete user",
-            "url": "httppetstore.swagger.io\/v2\/user\/{username}",
+            "url": "\/user\/{username}",
             "description": "This can only be done by the logged in user.",
             "data": [],
             "dataMode": "raw",
@@ -597,7 +659,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "f15246fc9fd71a449fc26b3b4fb5a34b",
+            "collectionId": "036e678a0106211d1e98c9ae73f81d61",
             "rawModeData": ""
         }
     ]
