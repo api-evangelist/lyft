@@ -9,176 +9,11 @@
                 "operationId": "AddPet",
                 "deprecated": 0,
                 "parameters": []
-            },
-            "put": {
-                "summary": "Update an existing pet",
-                "description": "",
-                "operationId": "UpdatePet",
-                "deprecated": 0,
-                "parameters": []
-            }
-        },
-        "\/pet\/findByStatus": {
-            "get": {
-                "summary": "Finds Pets by status",
-                "description": "Multiple status values can be provided with comma separated strings",
-                "operationId": "FindPetsByStatus",
-                "deprecated": 0,
-                "parameters": []
-            }
-        },
-        "\/pet\/findByTags": {
-            "get": {
-                "summary": "Finds Pets by tags",
-                "description": "Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
-                "operationId": "FindPetsByTags",
-                "deprecated": 0,
-                "parameters": []
-            }
-        },
-        "\/pet\/{petId}": {
-            "get": {
-                "summary": "Find pet by ID",
-                "description": "Returns a single pet",
-                "operationId": "GetPetById",
-                "deprecated": 0,
-                "parameters": []
-            },
-            "post": {
-                "summary": "Updates a pet in the store with form data",
-                "description": "",
-                "operationId": "UpdatePetWithForm",
-                "deprecated": 0,
-                "parameters": []
-            },
-            "delete": {
-                "summary": "Deletes a pet",
-                "description": "",
-                "operationId": "DeletePet",
-                "deprecated": 0,
-                "parameters": []
-            }
-        },
-        "\/pet\/{petId}\/uploadImage": {
-            "post": {
-                "summary": "uploads an image",
-                "description": "",
-                "operationId": "UploadFile",
-                "deprecated": 0,
-                "parameters": []
-            }
-        },
-        "\/store\/inventory": {
-            "get": {
-                "summary": "Returns pet inventories by status",
-                "description": "Returns a map of status codes to quantities",
-                "operationId": "GetInventory",
-                "deprecated": 0,
-                "parameters": []
-            }
-        },
-        "\/store\/order": {
-            "post": {
-                "summary": "Place an order for a pet",
-                "description": "",
-                "operationId": "PlaceOrder",
-                "deprecated": 0,
-                "parameters": []
-            }
-        },
-        "\/store\/order\/{orderId}": {
-            "get": {
-                "summary": "Find purchase order by ID",
-                "description": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions",
-                "operationId": "GetOrderById",
-                "deprecated": 0,
-                "parameters": []
-            },
-            "delete": {
-                "summary": "Delete purchase order by ID",
-                "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors",
-                "operationId": "DeleteOrder",
-                "deprecated": 0,
-                "parameters": []
-            }
-        },
-        "\/user": {
-            "post": {
-                "summary": "Create user",
-                "description": "This can only be done by the logged in user.",
-                "operationId": "CreateUser",
-                "deprecated": 0,
-                "parameters": []
-            }
-        },
-        "\/user\/createWithArray": {
-            "post": {
-                "summary": "Creates list of users with given input array",
-                "description": "",
-                "operationId": "CreateUsersWithArrayInput",
-                "deprecated": 0,
-                "parameters": []
-            }
-        },
-        "\/user\/createWithList": {
-            "post": {
-                "summary": "Creates list of users with given input array",
-                "description": "",
-                "operationId": "CreateUsersWithListInput",
-                "deprecated": 0,
-                "parameters": []
-            }
-        },
-        "\/user\/login": {
-            "get": {
-                "summary": "Logs user into the system",
-                "description": "",
-                "operationId": "LoginUser",
-                "deprecated": 0,
-                "parameters": []
-            }
-        },
-        "\/user\/logout": {
-            "get": {
-                "summary": "Logs out current logged in user session",
-                "description": "",
-                "operationId": "LogoutUser",
-                "deprecated": 0,
-                "parameters": []
-            }
-        },
-        "\/user\/{username}": {
-            "get": {
-                "summary": "Get user by user name",
-                "description": "",
-                "operationId": "GetUserByName",
-                "deprecated": 0,
-                "parameters": []
-            },
-            "put": {
-                "summary": "Updated user",
-                "description": "This can only be done by the logged in user.",
-                "operationId": "UpdateUser",
-                "deprecated": 0,
-                "parameters": []
-            },
-            "delete": {
-                "summary": "Delete user",
-                "description": "This can only be done by the logged in user.",
-                "operationId": "DeleteUser",
-                "deprecated": 0,
-                "parameters": []
             }
         }
     },
     "components": {
         "schemas": {
-            "status": {
-                "type": "array"
-            },
-            "tags": {
-                "type": "array"
-            },
             "Order": {
                 "type": "object",
                 "properties": {
@@ -187,7 +22,7 @@
                         "type": "integer"
                     },
                     "petId": {
-                        "description": "ID of pet to return",
+                        "description": "",
                         "type": "integer"
                     },
                     "quantity": {
@@ -216,7 +51,7 @@
                         "type": "integer"
                     },
                     "name": {
-                        "description": "Updated name of the pet",
+                        "description": "",
                         "type": "string"
                     }
                 }
@@ -229,7 +64,7 @@
                         "type": "integer"
                     },
                     "username": {
-                        "description": "The user name for login",
+                        "description": "",
                         "type": "string"
                     },
                     "firstName": {
@@ -245,7 +80,7 @@
                         "type": "string"
                     },
                     "password": {
-                        "description": "The password for login in clear text",
+                        "description": "",
                         "type": "string"
                     },
                     "phone": {
@@ -266,7 +101,7 @@
                         "type": "integer"
                     },
                     "name": {
-                        "description": "Updated name of the pet",
+                        "description": "",
                         "type": "string"
                     }
                 }
@@ -287,7 +122,7 @@
                         "type": ""
                     },
                     "name": {
-                        "description": "Updated name of the pet",
+                        "description": "",
                         "type": "string"
                     },
                     "photoUrls": {
@@ -295,7 +130,7 @@
                         "type": "array"
                     },
                     "tags": {
-                        "description": "Tags to filter by",
+                        "description": "",
                         "type": "array"
                     },
                     "status": {
@@ -305,6 +140,9 @@
                 }
             },
             "photoUrls": {
+                "type": "array"
+            },
+            "tags": {
                 "type": "array"
             },
             "ApiResponse": {
