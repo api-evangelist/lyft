@@ -1,5 +1,5 @@
 {
-    "id": "7b4bef536b1a728662dbbb7a6363e3cf",
+    "id": "b0d2ebe4bd74ed60301de27b9b528ef1",
     "name": "Swagger Petstore",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "2451cc2896a6636340fc4a4a7bbd66ae",
+            "id": "eb5294552ea4777d5bbfb6c7d0158ab1",
             "name": "Add a new pet to the store",
             "url": "\/pet",
             "description": "",
@@ -37,11 +37,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "e4b750d3638e2be285246fa2dd516f29",
+            "id": "f70bba584fb45726ff28326c2050f061",
             "name": "Update an existing pet",
             "url": "\/pet",
             "description": "",
@@ -68,11 +68,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "9093eca3761bc82d709396301e715e07",
+            "id": "77fdbb0f4f106a044b5de75cfd165a21",
             "name": "Finds Pets by status",
             "url": "\/pet\/findByStatus",
             "description": "Multiple status values can be provided with comma separated strings",
@@ -99,11 +99,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "4ae04d423f34944cc34f192c280b885d",
+            "id": "101d3610e613238814a466da05fec04f",
             "name": "Finds Pets by tags",
             "url": "\/pet\/findByTags",
             "description": "Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
@@ -130,11 +130,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "594f473133b2a5db1c5f3374bd63999d",
+            "id": "a82d3c20f9a34916671a35049abcad8b",
             "name": "Find pet by ID",
             "url": "\/pet\/{petId}",
             "description": "Returns a single pet",
@@ -161,11 +161,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "9756b6636779b9d9726376f15351ec2f",
+            "id": "3adb2051d55dbc03220cefe627deb495",
             "name": "Updates a pet in the store with form data",
             "url": "\/pet\/{petId}",
             "description": "",
@@ -206,11 +206,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "afa3240b4c53bd06ff04c0c637d58652",
+            "id": "19fd8095f37c31eb224e29c22b4d7c0e",
             "name": "Deletes a pet",
             "url": "\/pet\/{petId}",
             "description": "",
@@ -244,11 +244,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "ca413929316f98470a7ccebf152d139e",
+            "id": "7ae7ea13b822d90c60af0d18da11f698",
             "name": "uploads an image",
             "url": "\/pet\/{petId}\/uploadImage",
             "description": "",
@@ -289,11 +289,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "50e7e0060369868bd9cddb9fa8592acb",
+            "id": "8b0a9fb2c4f87468a615bef9e7f24324",
             "name": "Returns pet inventories by status",
             "url": "\/store\/inventory",
             "description": "Returns a map of status codes to quantities",
@@ -312,11 +312,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "8ec4b6e45300334b3f2b095ff45fbcbf",
+            "id": "9aebc1813bcfb4c5fc2f8bf380225cec",
             "name": "Place an order for a pet",
             "url": "\/store\/order",
             "description": "",
@@ -343,11 +343,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "881357ec2050b326964fdc962b9eaac8",
+            "id": "cf5887e12c239407929d48edfc918ac6",
             "name": "Find purchase order by ID",
             "url": "\/store\/order\/{orderId}",
             "description": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions",
@@ -374,11 +374,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "a05267e11900175f3b94cc94f57b1a00",
+            "id": "eba2918230d7cf12e5bb23c415210a1e",
             "name": "Delete purchase order by ID",
             "url": "\/store\/order\/{orderId}",
             "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors",
@@ -405,11 +405,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "712f79e324c066079498f3bf1dcaf91a",
+            "id": "f2a5766c39510794a2c2aa7808a4e8f4",
             "name": "Create user",
             "url": "\/user",
             "description": "This can only be done by the logged in user.",
@@ -436,11 +436,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "2e2a8efc0fdab04af318c0119d847eb0",
+            "id": "bef73a56aba04ab88143f1fce8c0ffb9",
             "name": "Creates list of users with given input array",
             "url": "\/user\/createWithArray",
             "description": "",
@@ -467,11 +467,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "be972e54d78552ddbb04814e060e10e8",
+            "id": "0c81c7c7ba2da79cf448e0e6f23e7c4a",
             "name": "Creates list of users with given input array",
             "url": "\/user\/createWithList",
             "description": "",
@@ -498,11 +498,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "7d53a388dbac533236f575f23030ee6c",
+            "id": "c138c1b49042d56e8ab9b9123e1fe6ed",
             "name": "Logs user into the system",
             "url": "\/user\/login",
             "description": "",
@@ -536,11 +536,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "d74df6cf5f4f91dd97a9716e32d29595",
+            "id": "bca2569e5d490f7b58310a4fbd933efa",
             "name": "Logs out current logged in user session",
             "url": "\/user\/logout",
             "description": "",
@@ -559,11 +559,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "23564cbd7f4a9be8a8ae75f09a0410fe",
+            "id": "21217f8be9d09719aedda592c314ee28",
             "name": "Get user by user name",
             "url": "\/user\/{username}",
             "description": "",
@@ -590,11 +590,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "2d5960f7be172d5b5fd6575c87718039",
+            "id": "d9ccc8fe82fe06a9823a0c5837c90540",
             "name": "Updated user",
             "url": "\/user\/{username}",
             "description": "This can only be done by the logged in user.",
@@ -628,11 +628,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         },
         {
-            "id": "65195072421e0dc93c4afebb98b6a8d4",
+            "id": "22f8e5354fa2fa39f3c02181a49bb15b",
             "name": "Delete user",
             "url": "\/user\/{username}",
             "description": "This can only be done by the logged in user.",
@@ -659,7 +659,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "7b4bef536b1a728662dbbb7a6363e3cf",
+            "collectionId": "b0d2ebe4bd74ed60301de27b9b528ef1",
             "rawModeData": ""
         }
     ]
