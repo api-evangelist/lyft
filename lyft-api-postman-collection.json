@@ -1,5 +1,5 @@
 {
-    "id": "90a1bed8a2f6931e33a2d2444c280f5e",
+    "id": "582c9bc0c68ce453aeed8380eb2a85e5",
     "name": "Lyft API",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "1cf87791fc70bcaa8b6c0ec3fd032b5c",
+            "id": "07eced81663a3df4684bfdbf984b6bca",
             "name": "Cost estimates",
             "url": "httpsapi.lyft.com\/v1\/cost",
             "description": "Estimate the cost of taking a Lyft between two points.n",
@@ -58,11 +58,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "90a1bed8a2f6931e33a2d2444c280f5e",
+            "collectionId": "582c9bc0c68ce453aeed8380eb2a85e5",
             "rawModeData": ""
         },
         {
-            "id": "85ce95f197e619d95fb01101dafe82b7",
+            "id": "1bdf7efb74c769f423f00c72884d7a01",
             "name": "Available drivers nearby",
             "url": "httpsapi.lyft.com\/v1\/drivers",
             "description": "The drivers endpoint returns a list of nearby drivers lat and lng at a given location.n",
@@ -81,11 +81,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "90a1bed8a2f6931e33a2d2444c280f5e",
+            "collectionId": "582c9bc0c68ce453aeed8380eb2a85e5",
             "rawModeData": ""
         },
         {
-            "id": "b387432b493571edc437c5db19d3e4d7",
+            "id": "4825e38f9779ec6d828b828dd79c56d4",
             "name": "Pickup ETAs",
             "url": "httpsapi.lyft.com\/v1\/eta",
             "description": "The ETA endpoint lets you know how quickly a Lyft driver can come get youn",
@@ -104,11 +104,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "90a1bed8a2f6931e33a2d2444c280f5e",
+            "collectionId": "582c9bc0c68ce453aeed8380eb2a85e5",
             "rawModeData": ""
         },
         {
-            "id": "ba120c09a4e6623f1e7e57bece2e4efb",
+            "id": "0d9056e8860dd7e9097bbe14db2542a0",
             "name": "List rides",
             "url": "httpsapi.lyft.com\/v1\/rides",
             "description": "Get a list of past & current rides for this passenger.n",
@@ -127,11 +127,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "90a1bed8a2f6931e33a2d2444c280f5e",
+            "collectionId": "582c9bc0c68ce453aeed8380eb2a85e5",
             "rawModeData": ""
         },
         {
-            "id": "0a93e45f7e8f95a834780f1df3bc9cc0",
+            "id": "a8eb26dcccade0bec7f17d3fef3f7705",
             "name": "Request a Lyft",
             "url": "httpsapi.lyft.com\/v1\/rides",
             "description": "Request a Lyft come pick you up at the given location.n",
@@ -158,11 +158,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "90a1bed8a2f6931e33a2d2444c280f5e",
+            "collectionId": "582c9bc0c68ce453aeed8380eb2a85e5",
             "rawModeData": ""
         },
         {
-            "id": "7551d37092dda6ad32a5b23817d51f2a",
+            "id": "7249574fe48135b35ce9c9741856b1f2",
             "name": "Get the ride detail of a given ride ID",
             "url": "httpsapi.lyft.com\/v1\/rides\/{id}",
             "description": "Get the status of a ride along with information about the driver, vehicle and price of a given ride IDn",
@@ -189,11 +189,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "90a1bed8a2f6931e33a2d2444c280f5e",
+            "collectionId": "582c9bc0c68ce453aeed8380eb2a85e5",
             "rawModeData": ""
         },
         {
-            "id": "eec7e9575910669c9f3c59bf076cd75b",
+            "id": "f3e35b7d51696429f6ff9ddcd00cecb5",
             "name": "Cancel a ongoing requested ride",
             "url": "httpsapi.lyft.com\/v1\/rides\/{id}\/cancel",
             "description": "Cancel a ongoing ride which was requested earlier by providing the ride id.n",
@@ -227,11 +227,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "90a1bed8a2f6931e33a2d2444c280f5e",
+            "collectionId": "582c9bc0c68ce453aeed8380eb2a85e5",
             "rawModeData": ""
         },
         {
-            "id": "bf3ce3289616c3f5f0c96a394e579729",
+            "id": "0d20b67f67f366574ce781dcaec8368a",
             "name": "Update the destination of the ride",
             "url": "httpsapi.lyft.com\/v1\/rides\/{id}\/destination",
             "description": "Add or update the rides destination. Note that the ride must still be active (not droppedOff or canceled), and that destinations on Lyft Line rides can not be changed.n",
@@ -265,11 +265,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "90a1bed8a2f6931e33a2d2444c280f5e",
+            "collectionId": "582c9bc0c68ce453aeed8380eb2a85e5",
             "rawModeData": ""
         },
         {
-            "id": "f6a9fbc168e368c377ceea1e96421575",
+            "id": "26cf7e116ece3e143313e76cbe053b17",
             "name": "Add the passenger's rating, feedback, and tip",
             "url": "httpsapi.lyft.com\/v1\/rides\/{id}\/rating",
             "description": "Add the passengers 1 to 5 star rating of the ride, optional written feedback, and optional tip amount in minor units and currency. The ride must already be dropped off, and ratings must be given within 24 hours of drop off. For purposes of display, 5 is considered the default rating. When this endpoint is successfully called, payment processing will begin.n",
@@ -303,11 +303,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "90a1bed8a2f6931e33a2d2444c280f5e",
+            "collectionId": "582c9bc0c68ce453aeed8380eb2a85e5",
             "rawModeData": ""
         },
         {
-            "id": "b3325ccfdd67c91c9763d6ac15dc77e7",
+            "id": "287e5010a0ecb7f1456f60bf784cd224",
             "name": "Get the receipt of the rides.",
             "url": "httpsapi.lyft.com\/v1\/rides\/{id}\/receipt",
             "description": "Get the receipt information of a processed ride by providing the ride id. Receipts will only be available to view once the payment has been processed. In the case of canceled ride, cancellation penalty is included if applicable.n",
@@ -334,11 +334,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "90a1bed8a2f6931e33a2d2444c280f5e",
+            "collectionId": "582c9bc0c68ce453aeed8380eb2a85e5",
             "rawModeData": ""
         },
         {
-            "id": "eb810eb7baa84db42121b55137b63eaa",
+            "id": "112482f442c7358e0d3279cb6db81167",
             "name": "Types of rides",
             "url": "httpsapi.lyft.com\/v1\/ridetypes",
             "description": "The ride types endpoint returns information about what kinds of Lyft rides you can request at a given location.n",
@@ -357,11 +357,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "90a1bed8a2f6931e33a2d2444c280f5e",
+            "collectionId": "582c9bc0c68ce453aeed8380eb2a85e5",
             "rawModeData": ""
         },
         {
-            "id": "80ca8bf1774f1c7cd5468a6e5cd57dad",
+            "id": "65f198f75fc553f0ca84bca23ead3829",
             "name": "Preset Prime Time percentage",
             "url": "httpsapi.lyft.com\/v1\/sandbox\/primetime",
             "description": "Preset a Prime Time percentage in the region surrounding the specified location. This Prime Time percentage will be applied when requesting cost, or when requesting a ride in sandbox mode.n",
@@ -388,11 +388,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "90a1bed8a2f6931e33a2d2444c280f5e",
+            "collectionId": "582c9bc0c68ce453aeed8380eb2a85e5",
             "rawModeData": ""
         },
         {
-            "id": "64f29ffa75a5e9ffc82dfcd4806de489",
+            "id": "35d275226a636f9422f559da18b7049a",
             "name": "Propagate ride through states",
             "url": "httpsapi.lyft.com\/v1\/sandbox\/rides\/{id}",
             "description": "Propagate a sandbox-ride through various statesn",
@@ -426,11 +426,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "90a1bed8a2f6931e33a2d2444c280f5e",
+            "collectionId": "582c9bc0c68ce453aeed8380eb2a85e5",
             "rawModeData": ""
         },
         {
-            "id": "a550e00571c8f5b7ec888cf3eb5d65d8",
+            "id": "f2ebf9d88f5b7a34ded01e7c1bcb29ba",
             "name": "Preset types of rides for sandbox",
             "url": "httpsapi.lyft.com\/v1\/sandbox\/ridetypes",
             "description": "The sandbox-ridetypes endpoint allows you to preset the ridetypes in the region surrounding the specified latitude and longitude to allow testing different scenariosn",
@@ -457,11 +457,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "90a1bed8a2f6931e33a2d2444c280f5e",
+            "collectionId": "582c9bc0c68ce453aeed8380eb2a85e5",
             "rawModeData": ""
         },
         {
-            "id": "1f59c1fda9ed80bc0fa31aef8879547f",
+            "id": "2ca56351fe0ba97d8b1d771b6c0fdf4a",
             "name": "Driver availability for processing ride request",
             "url": "httpsapi.lyft.com\/v1\/sandbox\/ridetypes\/{ride_type}",
             "description": "Set driver availability for the provided ride_type in the city\/region surrounding the specified locationn",
@@ -488,7 +488,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "90a1bed8a2f6931e33a2d2444c280f5e",
+            "collectionId": "582c9bc0c68ce453aeed8380eb2a85e5",
             "rawModeData": ""
         }
     ]
