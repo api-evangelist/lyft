@@ -1,14 +1,6 @@
 {
     "openapi": "3.0.0",
-    "info": {
-        "version": "1.0.0",
-        "title": "Swagger Petstore",
-        "description": "This is a sample server Petstore server.  You can find out more about Swagger at [http:\/\/swagger.io](http:\/\/swagger.io) or on [irc.freenode.net, #swagger](http:\/\/swagger.io\/irc\/).  For this sample, you can use the api key `special-key` to test the authorization filters.",
-        "termsOfService": "http:\/\/swagger.io\/terms\/"
-    },
-    "servers": [
-        "httppetstore.swagger.io\/v2"
-    ],
+    "servers": [],
     "paths": {
         "\/pet": {
             "post": {
@@ -16,7 +8,13 @@
                 "description": "",
                 "operationId": "AddPet",
                 "deprecated": 0,
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Pet object that needs to be added to the store"
+                    }
+                ],
                 "responses": {
                     "405": {
                         "description": "Invalid input"
@@ -28,7 +26,13 @@
                 "description": "",
                 "operationId": "UpdatePet",
                 "deprecated": 0,
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Pet object that needs to be added to the store"
+                    }
+                ],
                 "responses": {
                     "400": {
                         "description": "Invalid ID supplied"
@@ -151,6 +155,11 @@
                 "deprecated": 0,
                 "parameters": [
                     {
+                        "name": "api_key",
+                        "in": "header",
+                        "description": "Updated status of the pet"
+                    },
+                    {
                         "name": "petId",
                         "in": "path",
                         "description": "ID of pet to return"
@@ -227,7 +236,13 @@
                 "description": "",
                 "operationId": "PlaceOrder",
                 "deprecated": 0,
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Pet object that needs to be added to the store"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -293,7 +308,13 @@
                 "description": "This can only be done by the logged in user.",
                 "operationId": "CreateUser",
                 "deprecated": 0,
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Pet object that needs to be added to the store"
+                    }
+                ],
                 "responses": {
                     "default": {
                         "description": "successful operation"
@@ -307,7 +328,13 @@
                 "description": "",
                 "operationId": "CreateUsersWithArrayInput",
                 "deprecated": 0,
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Pet object that needs to be added to the store"
+                    }
+                ],
                 "responses": {
                     "default": {
                         "description": "successful operation"
@@ -321,7 +348,13 @@
                 "description": "",
                 "operationId": "CreateUsersWithListInput",
                 "deprecated": 0,
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Pet object that needs to be added to the store"
+                    }
+                ],
                 "responses": {
                     "default": {
                         "description": "successful operation"
@@ -411,6 +444,11 @@
                         "name": "username",
                         "in": "path",
                         "description": "The name that needs to be fetched. Use user1 for testing. "
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Pet object that needs to be added to the store"
                     }
                 ],
                 "responses": {
