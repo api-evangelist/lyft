@@ -1,5 +1,5 @@
 {
-    "id": "8520848b4da1c8f4d6312ab83848957c",
+    "id": "78e187e0da63a1f15a0e51cef036f7a7",
     "name": "Swagger Petstore",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "6fa1677a70c7d1eab0feed04045eba20",
+            "id": "f9608714ad4ddc079b536a8bcc94398a",
             "name": "Add a new pet to the store",
             "url": "\/pet",
             "description": "",
@@ -29,7 +29,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8520848b4da1c8f4d6312ab83848957c",
+            "collectionId": "78e187e0da63a1f15a0e51cef036f7a7",
             "rawModeData": ""
         }
     ]
