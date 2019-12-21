@@ -55,7 +55,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation"
+                        "description": "successful operation",
+                        "content": {
+                            "application\/xml": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/Pet"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -75,7 +82,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation"
+                        "description": "successful operation",
+                        "content": {
+                            "application\/xml": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/Pet"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -95,7 +109,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation"
+                        "description": "successful operation",
+                        "content": {
+                            "application\/xml": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/Pet"
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -176,7 +197,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation"
+                        "description": "successful operation",
+                        "content": {
+                            "application\/xml": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/Pet"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -190,7 +218,14 @@
                 "parameters": [],
                 "responses": {
                     "200": {
-                        "description": "successful operation"
+                        "description": "successful operation",
+                        "content": {
+                            "application\/xml": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/Pet"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -210,7 +245,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation"
+                        "description": "successful operation",
+                        "content": {
+                            "application\/xml": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/Pet"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -230,7 +272,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation"
+                        "description": "successful operation",
+                        "content": {
+                            "application\/xml": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/Pet"
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -333,7 +382,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation"
+                        "description": "successful operation",
+                        "content": {
+                            "application\/xml": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/Pet"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -367,7 +423,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation"
+                        "description": "successful operation",
+                        "content": {
+                            "application\/xml": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/Pet"
+                                }
+                            }
+                        }
                     }
                 }
             },
