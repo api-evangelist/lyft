@@ -415,6 +415,10 @@
                         "description": "",
                         "type": "integer"
                     },
+                    "Category": {
+                        "description": "",
+                        "type": "object"
+                    },
                     "category": {
                         "description": "",
                         "type": ""
