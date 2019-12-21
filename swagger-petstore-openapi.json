@@ -15,7 +15,96 @@
     "components": {
         "schemas": {
             "Order": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "petId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "quantity": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "shipDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "status": {
+                        "description": "Order Status",
+                        "type": "string"
+                    },
+                    "complete": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Category": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "username": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "firstName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "password": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "phone": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "userStatus": {
+                        "description": "User Status",
+                        "type": "integer"
+                    }
+                }
+            },
+            "Tag": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
             }
         }
     }
