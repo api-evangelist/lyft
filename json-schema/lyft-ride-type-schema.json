@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lyft.com/schemas/lyft/ride-type.json",
+  "title": "Lyft Ride Type",
+  "description": "A Lyft ride type representing an available category of ride at a given location, including pricing details and passenger capacity.",
+  "type": "object",
+  "required": ["ride_type", "display_name"],
+  "properties": {
+    "ride_type": {
+      "type": "string",
+      "description": "Identifier for the ride type.",
+      "enum": ["lyft", "lyft_line", "lyft_plus", "lyft_premier", "lyft_lux", "lyft_luxsuv"]
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Human-readable name for the ride type."
+    },
+    "seats": {
+      "type": "integer",
+      "description": "Maximum number of passenger seats available for this ride type.",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to an image representing the ride type."
+    },
+    "pricing_details": {
+      "$ref": "#/$defs/PricingDetails",
+      "description": "Pricing breakdown for this ride type."
+    }
+  },
+  "$defs": {
+    "PricingDetails": {
+      "type": "object",
+      "description": "Pricing breakdown for a ride type. All monetary amounts are in the smallest denomination of the currency (e.g., cents for USD).",
+      "properties": {
+        "base_charge": {
+          "type": "integer",
+          "description": "Base fare amount in the smallest currency denomination.",
+          "minimum": 0
+        },
+        "cost_per_mile": {
+          "type": "integer",
+          "description": "Per-mile charge in the smallest currency denomination.",
+          "minimum": 0
+        },
+        "cost_per_minute": {
+          "type": "integer",
+          "description": "Per-minute charge in the smallest currency denomination.",
+          "minimum": 0
+        },
+        "cost_minimum": {
+          "type": "integer",
+          "description": "Minimum fare amount in the smallest currency denomination.",
+          "minimum": 0
+        },
+        "trust_and_service": {
+          "type": "integer",
+          "description": "Trust and service fee in the smallest currency denomination.",
+          "minimum": 0
+        },
+        "cancel_penalty_amount": {
+          "type": "integer",
+          "description": "Cancellation penalty amount in the smallest currency denomination.",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "description": "ISO 4217 currency code.",
+          "pattern": "^[A-Z]{3}$"
+        }
+      }
+    }
+  }
+}

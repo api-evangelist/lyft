@@ -1,0 +1,991 @@
+openapi: 3.1.0
+info:
+  title: Lyft Ride-Sharing API
+  description: >-
+    The Lyft Ride-Sharing API provides developers with programmatic access to
+    Lyft's rideshare platform. It includes endpoints for retrieving cost
+    estimates between locations, estimating pickup ETAs, listing available ride
+    types in a given area, and checking nearby driver availability. The API
+    uses OAuth 2.0 for user-authenticated requests and client tokens for
+    public endpoints. Developers can use it to integrate ride-hailing
+    functionality directly into their applications, enabling users to request,
+    track, and manage Lyft rides.
+  version: '1.0'
+  contact:
+    name: Lyft Developer Support
+    url: https://www.lyft.com/developers
+  termsOfService: https://www.lyft.com/terms
+externalDocs:
+  description: Lyft API Documentation
+  url: https://developer.lyft.com/docs
+servers:
+  - url: https://api.lyft.com/v1
+    description: Production Server
+tags:
+  - name: Ride Types
+    description: >-
+      Endpoints for retrieving information about available Lyft ride types at a
+      given location, including pricing details and seat capacity.
+  - name: ETA
+    description: >-
+      Endpoints for estimating the time for the nearest driver to reach a
+      specified pickup location.
+  - name: Cost Estimates
+    description: >-
+      Endpoints for estimating the cost, distance, and duration of a ride
+      between two locations.
+  - name: Drivers
+    description: >-
+      Endpoints for checking the availability and proximity of nearby Lyft
+      drivers.
+  - name: Rides
+    description: >-
+      Endpoints for requesting, tracking, canceling, and managing Lyft rides
+      on behalf of an authenticated user.
+  - name: Profile
+    description: >-
+      Endpoints for retrieving profile information for the authenticated Lyft
+      user.
+security:
+  - bearerAuth: []
+paths:
+  /ridetypes:
+    get:
+      operationId: listRideTypes
+      summary: List ride types
+      description: >-
+        Returns information about what kinds of Lyft rides are available at a
+        given location. The response includes ride type identifiers, display
+        names, pricing details, image URLs, and passenger seat capacity.
+      tags:
+        - Ride Types
+      parameters:
+        - $ref: '#/components/parameters/lat'
+        - $ref: '#/components/parameters/lng'
+        - name: ride_type
+          in: query
+          description: >-
+            A specific ride type to filter by. If provided, only the specified
+            ride type is returned.
+          required: false
+          schema:
+            $ref: '#/components/schemas/RideTypeEnum'
+      responses:
+        '200':
+          description: Successful response with available ride types
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ride_types:
+                    type: array
+                    description: >-
+                      List of available ride types at the specified location.
+                    items:
+                      $ref: '#/components/schemas/RideType'
+        '400':
+          description: Bad request - invalid or missing parameters
+        '401':
+          description: Unauthorized - invalid or missing access token
+  /eta:
+    get:
+      operationId: listETAs
+      summary: List pickup ETAs
+      description: >-
+        Returns the estimated time in seconds for the nearest driver to reach
+        the specified pickup location. ETAs can be filtered by ride type and
+        optionally account for a destination location to improve accuracy.
+      tags:
+        - ETA
+      parameters:
+        - $ref: '#/components/parameters/lat'
+        - $ref: '#/components/parameters/lng'
+        - name: destination_lat
+          in: query
+          description: >-
+            Latitude of the destination location for improved ETA accuracy.
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: destination_lng
+          in: query
+          description: >-
+            Longitude of the destination location for improved ETA accuracy.
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: ride_type
+          in: query
+          description: >-
+            A specific ride type to filter ETA results by.
+          required: false
+          schema:
+            $ref: '#/components/schemas/RideTypeEnum'
+      responses:
+        '200':
+          description: Successful response with ETA estimates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  eta_estimates:
+                    type: array
+                    description: >-
+                      List of ETA estimates for each available ride type.
+                    items:
+                      $ref: '#/components/schemas/ETAEstimate'
+        '400':
+          description: Bad request - invalid or missing parameters
+        '401':
+          description: Unauthorized - invalid or missing access token
+  /cost:
+    get:
+      operationId: listCostEstimates
+      summary: List cost estimates
+      description: >-
+        Returns the estimated cost, distance, and duration of a ride between
+        a start and end location. Cost estimates are returned for all available
+        ride types unless a specific ride type filter is applied. Amounts are
+        returned in the smallest denomination of the applicable currency.
+      tags:
+        - Cost Estimates
+      parameters:
+        - name: start_lat
+          in: query
+          description: >-
+            Latitude of the starting location.
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: start_lng
+          in: query
+          description: >-
+            Longitude of the starting location.
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: end_lat
+          in: query
+          description: >-
+            Latitude of the destination location.
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: end_lng
+          in: query
+          description: >-
+            Longitude of the destination location.
+          required: true
+          schema:
+            type: number
+            format: double
+        - name: ride_type
+          in: query
+          description: >-
+            A specific ride type to filter cost estimates by.
+          required: false
+          schema:
+            $ref: '#/components/schemas/RideTypeEnum'
+      responses:
+        '200':
+          description: Successful response with cost estimates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cost_estimates:
+                    type: array
+                    description: >-
+                      List of cost estimates for each available ride type.
+                    items:
+                      $ref: '#/components/schemas/CostEstimate'
+        '400':
+          description: Bad request - invalid or missing parameters
+        '401':
+          description: Unauthorized - invalid or missing access token
+  /drivers:
+    get:
+      operationId: listNearbyDrivers
+      summary: List nearby drivers
+      description: >-
+        Returns the positions of nearby drivers for each ride type at the
+        specified location. This endpoint is useful for displaying driver
+        availability on a map.
+      tags:
+        - Drivers
+      parameters:
+        - $ref: '#/components/parameters/lat'
+        - $ref: '#/components/parameters/lng'
+      responses:
+        '200':
+          description: Successful response with nearby driver locations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nearby_drivers:
+                    type: array
+                    description: >-
+                      List of nearby driver groups organized by ride type.
+                    items:
+                      $ref: '#/components/schemas/NearbyDriversByRideType'
+        '400':
+          description: Bad request - invalid or missing parameters
+        '401':
+          description: Unauthorized - invalid or missing access token
+  /profile:
+    get:
+      operationId: getProfile
+      summary: Get user profile
+      description: >-
+        Returns the authenticated user's profile information including their
+        first name, last name, and whether the profile has been verified.
+      tags:
+        - Profile
+      parameters: []
+      responses:
+        '200':
+          description: Successful response with user profile information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+        '401':
+          description: Unauthorized - invalid or missing access token
+  /rides:
+    get:
+      operationId: listRides
+      summary: List rides
+      description: >-
+        Returns a list of past and current rides for the authenticated user.
+        Results can be filtered by start and end time.
+      tags:
+        - Rides
+      parameters:
+        - name: start_time
+          in: query
+          description: >-
+            Restrict results to rides starting after this point in time. The
+            value should be in ISO 8601 format.
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: end_time
+          in: query
+          description: >-
+            Restrict results to rides starting before this point in time. The
+            value should be in ISO 8601 format.
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: limit
+          in: query
+          description: >-
+            Maximum number of rides to return. Default is 10.
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 10
+      responses:
+        '200':
+          description: Successful response with ride history
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ride_history:
+                    type: array
+                    description: >-
+                      List of ride details for the authenticated user.
+                    items:
+                      $ref: '#/components/schemas/RideDetail'
+        '400':
+          description: Bad request - invalid or missing parameters
+        '401':
+          description: Unauthorized - invalid or missing access token
+    post:
+      operationId: createRide
+      summary: Request a ride
+      description: >-
+        Requests a new Lyft ride on behalf of the authenticated user. The
+        request must include a ride type and origin location. A destination
+        may optionally be specified at the time of request.
+      tags:
+        - Rides
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRideRequest'
+      responses:
+        '200':
+          description: Ride requested successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RideDetail'
+        '400':
+          description: Bad request - invalid parameters
+        '401':
+          description: Unauthorized - invalid or missing access token
+        '404':
+          description: No drivers available
+  /rides/{id}:
+    get:
+      operationId: getRide
+      summary: Get ride detail
+      description: >-
+        Returns the details of a specific ride identified by its ride ID,
+        including status, origin, destination, driver information, and vehicle
+        details.
+      tags:
+        - Rides
+      parameters:
+        - $ref: '#/components/parameters/rideId'
+      responses:
+        '200':
+          description: Successful response with ride details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RideDetail'
+        '401':
+          description: Unauthorized - invalid or missing access token
+        '404':
+          description: Ride not found
+  /rides/{id}/cancel:
+    post:
+      operationId: cancelRide
+      summary: Cancel a ride
+      description: >-
+        Cancels an ongoing or requested ride. If the ride has already been
+        matched with a driver, a cancellation fee may apply depending on how
+        long the driver has been en route.
+      tags:
+        - Rides
+      parameters:
+        - $ref: '#/components/parameters/rideId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cancel_confirmation_token:
+                  type: string
+                  description: >-
+                    A token required to confirm the cancellation when a
+                    cancellation fee applies.
+      responses:
+        '204':
+          description: Ride canceled successfully
+        '400':
+          description: Bad request - ride cannot be canceled
+        '401':
+          description: Unauthorized - invalid or missing access token
+        '404':
+          description: Ride not found
+  /rides/{id}/destination:
+    put:
+      operationId: updateRideDestination
+      summary: Update ride destination
+      description: >-
+        Updates the destination of an active ride. This can be used to change
+        or set the drop-off location while a ride is in progress.
+      tags:
+        - Rides
+      parameters:
+        - $ref: '#/components/parameters/rideId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - lat
+                - lng
+              properties:
+                lat:
+                  type: number
+                  format: double
+                  description: >-
+                    Latitude of the new destination location.
+                lng:
+                  type: number
+                  format: double
+                  description: >-
+                    Longitude of the new destination location.
+                address:
+                  type: string
+                  description: >-
+                    Human-readable address of the new destination.
+      responses:
+        '200':
+          description: Destination updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '400':
+          description: Bad request - invalid parameters
+        '401':
+          description: Unauthorized - invalid or missing access token
+        '404':
+          description: Ride not found
+  /rides/{id}/rating:
+    put:
+      operationId: rateRide
+      summary: Rate a ride
+      description: >-
+        Submits the passenger's rating for a completed ride. The rating
+        includes a star score and optionally a tip amount and text feedback.
+      tags:
+        - Rides
+      parameters:
+        - $ref: '#/components/parameters/rideId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RideRatingRequest'
+      responses:
+        '200':
+          description: Rating submitted successfully
+        '400':
+          description: Bad request - invalid parameters
+        '401':
+          description: Unauthorized - invalid or missing access token
+        '404':
+          description: Ride not found
+  /rides/{id}/receipt:
+    get:
+      operationId: getRideReceipt
+      summary: Get ride receipt
+      description: >-
+        Returns the receipt for a completed ride, including fare breakdown,
+        charges, credits applied, and total cost.
+      tags:
+        - Rides
+      parameters:
+        - $ref: '#/components/parameters/rideId'
+      responses:
+        '200':
+          description: Successful response with ride receipt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RideReceipt'
+        '401':
+          description: Unauthorized - invalid or missing access token
+        '404':
+          description: Ride not found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        OAuth 2.0 access token. Use the 2-legged client credentials flow for
+        public endpoints (ETA, cost, ride types) or the 3-legged authorization
+        code flow for user-specific endpoints (rides, profile).
+    clientToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Client token for accessing public endpoints without user
+        authorization. Passed as a Bearer token in the Authorization header.
+  parameters:
+    lat:
+      name: lat
+      in: query
+      description: >-
+        Latitude of the location.
+      required: true
+      schema:
+        type: number
+        format: double
+    lng:
+      name: lng
+      in: query
+      description: >-
+        Longitude of the location.
+      required: true
+      schema:
+        type: number
+        format: double
+    rideId:
+      name: id
+      in: path
+      description: >-
+        The unique identifier of the ride.
+      required: true
+      schema:
+        type: string
+  schemas:
+    RideTypeEnum:
+      type: string
+      description: >-
+        Identifier for the type of Lyft ride.
+      enum:
+        - lyft
+        - lyft_line
+        - lyft_plus
+        - lyft_premier
+        - lyft_lux
+        - lyft_luxsuv
+    RideType:
+      type: object
+      description: >-
+        Details about an available ride type at a given location, including
+        its name, pricing, and capacity.
+      properties:
+        ride_type:
+          $ref: '#/components/schemas/RideTypeEnum'
+        display_name:
+          type: string
+          description: >-
+            Human-readable name for the ride type.
+        seats:
+          type: integer
+          description: >-
+            Maximum number of passenger seats available for this ride type.
+        image_url:
+          type: string
+          format: uri
+          description: >-
+            URL to an image representing the ride type.
+        pricing_details:
+          $ref: '#/components/schemas/PricingDetails'
+    PricingDetails:
+      type: object
+      description: >-
+        Pricing breakdown for a ride type, including base charge, per-mile and
+        per-minute rates, minimum cost, and cancellation penalty. All monetary
+        amounts are in the smallest denomination of the currency (e.g., cents
+        for USD).
+      properties:
+        base_charge:
+          type: integer
+          description: >-
+            Base fare amount in the smallest currency denomination.
+        cost_per_mile:
+          type: integer
+          description: >-
+            Per-mile charge in the smallest currency denomination.
+        cost_per_minute:
+          type: integer
+          description: >-
+            Per-minute charge in the smallest currency denomination.
+        cost_minimum:
+          type: integer
+          description: >-
+            Minimum fare amount in the smallest currency denomination.
+        trust_and_service:
+          type: integer
+          description: >-
+            Trust and service fee in the smallest currency denomination.
+        cancel_penalty_amount:
+          type: integer
+          description: >-
+            Cancellation penalty amount in the smallest currency denomination.
+        currency:
+          type: string
+          description: >-
+            ISO 4217 currency code.
+          pattern: '^[A-Z]{3}$'
+    ETAEstimate:
+      type: object
+      description: >-
+        Estimated time of arrival for the nearest driver of a given ride type.
+      properties:
+        ride_type:
+          $ref: '#/components/schemas/RideTypeEnum'
+        display_name:
+          type: string
+          description: >-
+            Human-readable name for the ride type.
+        eta_seconds:
+          type: integer
+          description: >-
+            Estimated time of arrival in seconds for the nearest driver.
+        is_valid_estimate:
+          type: boolean
+          description: >-
+            Whether the estimate is considered valid based on current driver
+            availability.
+    CostEstimate:
+      type: object
+      description: >-
+        Estimated cost, distance, and duration for a ride between two
+        locations for a specific ride type.
+      properties:
+        ride_type:
+          $ref: '#/components/schemas/RideTypeEnum'
+        display_name:
+          type: string
+          description: >-
+            Human-readable name for the ride type.
+        currency:
+          type: string
+          description: >-
+            ISO 4217 currency code.
+          pattern: '^[A-Z]{3}$'
+        estimated_cost_cents_min:
+          type: integer
+          description: >-
+            Lower bound of the estimated cost in cents.
+        estimated_cost_cents_max:
+          type: integer
+          description: >-
+            Upper bound of the estimated cost in cents.
+        estimated_distance_miles:
+          type: number
+          format: double
+          description: >-
+            Estimated distance of the ride in miles.
+        estimated_duration_seconds:
+          type: integer
+          description: >-
+            Estimated duration of the ride in seconds.
+        primetime_percentage:
+          type: string
+          description: >-
+            Current Prime Time percentage applied to the cost estimate.
+            Formatted as a percentage string such as 25%.
+        primetime_confirmation_token:
+          type: string
+          description: >-
+            A token that must be included when requesting a ride during
+            Prime Time pricing.
+    NearbyDriversByRideType:
+      type: object
+      description: >-
+        Collection of nearby driver positions for a specific ride type.
+      properties:
+        ride_type:
+          $ref: '#/components/schemas/RideTypeEnum'
+        drivers:
+          type: array
+          description: >-
+            List of nearby drivers with their locations.
+          items:
+            $ref: '#/components/schemas/DriverLocation'
+    DriverLocation:
+      type: object
+      description: >-
+        Geographic location of a nearby driver.
+      properties:
+        locations:
+          type: array
+          description: >-
+            Recent location waypoints for the driver.
+          items:
+            type: object
+            properties:
+              lat:
+                type: number
+                format: double
+                description: >-
+                  Latitude of the driver's position.
+              lng:
+                type: number
+                format: double
+                description: >-
+                  Longitude of the driver's position.
+    Profile:
+      type: object
+      description: >-
+        Profile information for the authenticated Lyft user.
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier for the user.
+        first_name:
+          type: string
+          description: >-
+            The user's first name.
+        last_name:
+          type: string
+          description: >-
+            The user's last name.
+        has_taken_a_ride:
+          type: boolean
+          description: >-
+            Whether the user has completed at least one Lyft ride.
+    Location:
+      type: object
+      description: >-
+        A geographic location with optional address information.
+      properties:
+        lat:
+          type: number
+          format: double
+          description: >-
+            Latitude of the location.
+        lng:
+          type: number
+          format: double
+          description: >-
+            Longitude of the location.
+        address:
+          type: string
+          description: >-
+            Human-readable address of the location.
+    CreateRideRequest:
+      type: object
+      description: >-
+        Request body for creating a new Lyft ride.
+      required:
+        - ride_type
+        - origin
+      properties:
+        ride_type:
+          $ref: '#/components/schemas/RideTypeEnum'
+        origin:
+          $ref: '#/components/schemas/Location'
+        destination:
+          $ref: '#/components/schemas/Location'
+        primetime_confirmation_token:
+          type: string
+          description: >-
+            A token confirming the user has accepted Prime Time pricing.
+            Required when Prime Time is in effect.
+    RideDetail:
+      type: object
+      description: >-
+        Detailed information about a Lyft ride including its status, route,
+        driver, and vehicle information.
+      properties:
+        ride_id:
+          type: string
+          description: >-
+            Unique identifier for the ride.
+        ride_type:
+          $ref: '#/components/schemas/RideTypeEnum'
+        status:
+          type: string
+          description: >-
+            Current status of the ride.
+          enum:
+            - pending
+            - accepted
+            - arrived
+            - pickedUp
+            - droppedOff
+            - canceled
+            - unknown
+        origin:
+          $ref: '#/components/schemas/Location'
+        destination:
+          $ref: '#/components/schemas/Location'
+        pickup:
+          $ref: '#/components/schemas/Location'
+        dropoff:
+          $ref: '#/components/schemas/Location'
+        driver:
+          $ref: '#/components/schemas/Driver'
+        vehicle:
+          $ref: '#/components/schemas/Vehicle'
+        requested_at:
+          type: string
+          format: date-time
+          description: >-
+            Timestamp when the ride was requested.
+        generated_at:
+          type: string
+          format: date-time
+          description: >-
+            Timestamp when this ride detail object was generated.
+        price:
+          $ref: '#/components/schemas/Price'
+    Driver:
+      type: object
+      description: >-
+        Information about the driver assigned to a ride.
+      properties:
+        first_name:
+          type: string
+          description: >-
+            The driver's first name.
+        phone_number:
+          type: string
+          description: >-
+            The driver's contact phone number.
+        rating:
+          type: string
+          description: >-
+            The driver's average rating.
+        image_url:
+          type: string
+          format: uri
+          description: >-
+            URL to the driver's profile photo.
+    Vehicle:
+      type: object
+      description: >-
+        Information about the vehicle assigned to a ride.
+      properties:
+        make:
+          type: string
+          description: >-
+            Vehicle manufacturer name.
+        model:
+          type: string
+          description: >-
+            Vehicle model name.
+        year:
+          type: integer
+          description: >-
+            Vehicle model year.
+        license_plate:
+          type: string
+          description: >-
+            Vehicle license plate number.
+        license_plate_state:
+          type: string
+          description: >-
+            State where the vehicle is registered.
+        color:
+          type: string
+          description: >-
+            Color of the vehicle.
+        image_url:
+          type: string
+          format: uri
+          description: >-
+            URL to an image of the vehicle.
+    Price:
+      type: object
+      description: >-
+        Price information for a ride, including the total amount and currency.
+      properties:
+        amount:
+          type: integer
+          description: >-
+            Total price in the smallest denomination of the currency.
+        currency:
+          type: string
+          description: >-
+            ISO 4217 currency code.
+          pattern: '^[A-Z]{3}$'
+        description:
+          type: string
+          description: >-
+            Human-readable description of the price.
+    RideRatingRequest:
+      type: object
+      description: >-
+        Request body for rating a completed ride.
+      required:
+        - rating
+      properties:
+        rating:
+          type: integer
+          description: >-
+            Star rating for the ride, from 1 to 5.
+          minimum: 1
+          maximum: 5
+        tip:
+          type: object
+          description: >-
+            Optional tip for the driver.
+          properties:
+            amount:
+              type: integer
+              description: >-
+                Tip amount in the smallest denomination of the currency.
+            currency:
+              type: string
+              description: >-
+                ISO 4217 currency code for the tip.
+              pattern: '^[A-Z]{3}$'
+        feedback:
+          type: string
+          description: >-
+            Optional text feedback about the ride experience.
+    RideReceipt:
+      type: object
+      description: >-
+        Receipt for a completed ride, including fare breakdown and total
+        charges.
+      properties:
+        ride_id:
+          type: string
+          description: >-
+            Unique identifier for the ride.
+        price:
+          $ref: '#/components/schemas/Price'
+        line_items:
+          type: array
+          description: >-
+            Itemized list of charges that make up the total fare.
+          items:
+            $ref: '#/components/schemas/LineItem'
+        charges:
+          type: array
+          description: >-
+            List of payment charges applied to this ride.
+          items:
+            $ref: '#/components/schemas/Charge'
+        requested_at:
+          type: string
+          format: date-time
+          description: >-
+            Timestamp when the ride was requested.
+    LineItem:
+      type: object
+      description: >-
+        A single line item on a ride receipt representing a specific charge
+        or credit.
+      properties:
+        type:
+          type: string
+          description: >-
+            Type of the line item such as base fare, distance, time, or fees.
+        amount:
+          type: integer
+          description: >-
+            Amount of the line item in the smallest currency denomination.
+        currency:
+          type: string
+          description: >-
+            ISO 4217 currency code.
+          pattern: '^[A-Z]{3}$'
+    Charge:
+      type: object
+      description: >-
+        A payment charge applied to a ride.
+      properties:
+        amount:
+          type: integer
+          description: >-
+            Amount charged in the smallest currency denomination.
+        currency:
+          type: string
+          description: >-
+            ISO 4217 currency code.
+          pattern: '^[A-Z]{3}$'
+        payment_method:
+          type: string
+          description: >-
+            Description of the payment method used for this charge.

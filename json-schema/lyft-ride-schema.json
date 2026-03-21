@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lyft.com/schemas/lyft/ride.json",
+  "title": "Lyft Ride",
+  "description": "A Lyft ride representing a transportation request from an origin to a destination, including status, driver, vehicle, and pricing information.",
+  "type": "object",
+  "required": ["ride_id", "ride_type", "status", "origin"],
+  "properties": {
+    "ride_id": {
+      "type": "string",
+      "description": "Unique identifier for the ride."
+    },
+    "ride_type": {
+      "type": "string",
+      "description": "Identifier for the type of Lyft ride.",
+      "enum": ["lyft", "lyft_line", "lyft_plus", "lyft_premier", "lyft_lux", "lyft_luxsuv"]
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the ride.",
+      "enum": ["pending", "accepted", "arrived", "pickedUp", "droppedOff", "canceled", "unknown"]
+    },
+    "origin": {
+      "$ref": "#/$defs/Location",
+      "description": "Pickup location for the ride."
+    },
+    "destination": {
+      "$ref": "#/$defs/Location",
+      "description": "Drop-off location for the ride."
+    },
+    "pickup": {
+      "$ref": "#/$defs/Location",
+      "description": "Actual pickup location recorded by the driver."
+    },
+    "dropoff": {
+      "$ref": "#/$defs/Location",
+      "description": "Actual drop-off location recorded by the driver."
+    },
+    "driver": {
+      "$ref": "#/$defs/Driver",
+      "description": "Information about the driver assigned to this ride."
+    },
+    "vehicle": {
+      "$ref": "#/$defs/Vehicle",
+      "description": "Information about the vehicle assigned to this ride."
+    },
+    "passenger": {
+      "$ref": "#/$defs/Passenger",
+      "description": "Contact information for the ride passenger, used in concierge rides."
+    },
+    "requested_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the ride was requested."
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the ride was completed."
+    },
+    "canceled_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the ride was canceled, if applicable."
+    },
+    "scheduled_pickup_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scheduled pickup time for rides booked in advance."
+    },
+    "price": {
+      "$ref": "#/$defs/Price",
+      "description": "Price information for the ride."
+    },
+    "primetime_percentage": {
+      "type": "string",
+      "description": "Prime Time pricing percentage applied to this ride."
+    }
+  },
+  "$defs": {
+    "Location": {
+      "type": "object",
+      "description": "A geographic location with coordinates and optional address information.",
+      "required": ["lat", "lng"],
+      "properties": {
+        "lat": {
+          "type": "number",
+          "description": "Latitude of the location.",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "lng": {
+          "type": "number",
+          "description": "Longitude of the location.",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "address": {
+          "type": "string",
+          "description": "Street address of the location."
+        },
+        "city": {
+          "type": "string",
+          "description": "City name."
+        },
+        "state": {
+          "type": "string",
+          "description": "State or province code."
+        },
+        "zip": {
+          "type": "string",
+          "description": "Postal code."
+        }
+      }
+    },
+    "Driver": {
+      "type": "object",
+      "description": "Information about a Lyft driver.",
+      "properties": {
+        "first_name": {
+          "type": "string",
+          "description": "The driver's first name."
+        },
+        "phone_number": {
+          "type": "string",
+          "description": "The driver's contact phone number."
+        },
+        "rating": {
+          "type": "string",
+          "description": "The driver's average rating."
+        },
+        "image_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the driver's profile photo."
+        }
+      }
+    },
+    "Vehicle": {
+      "type": "object",
+      "description": "Information about a vehicle used for a Lyft ride.",
+      "properties": {
+        "make": {
+          "type": "string",
+          "description": "Vehicle manufacturer name."
+        },
+        "model": {
+          "type": "string",
+          "description": "Vehicle model name."
+        },
+        "year": {
+          "type": "integer",
+          "description": "Vehicle model year.",
+          "minimum": 1900,
+          "maximum": 2100
+        },
+        "license_plate": {
+          "type": "string",
+          "description": "Vehicle license plate number."
+        },
+        "license_plate_state": {
+          "type": "string",
+          "description": "State where the vehicle is registered.",
+          "minLength": 2,
+          "maxLength": 2
+        },
+        "color": {
+          "type": "string",
+          "description": "Color of the vehicle."
+        },
+        "image_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to an image of the vehicle."
+        }
+      }
+    },
+    "Passenger": {
+      "type": "object",
+      "description": "Contact information for a ride passenger.",
+      "required": ["first_name", "phone_number"],
+      "properties": {
+        "first_name": {
+          "type": "string",
+          "description": "First name of the passenger."
+        },
+        "last_name": {
+          "type": "string",
+          "description": "Last name of the passenger."
+        },
+        "phone_number": {
+          "type": "string",
+          "description": "Phone number where the passenger can be reached."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Email address for the passenger."
+        }
+      }
+    },
+    "Price": {
+      "type": "object",
+      "description": "Price information for a ride.",
+      "properties": {
+        "amount": {
+          "type": "integer",
+          "description": "Total price in the smallest denomination of the currency.",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "description": "ISO 4217 currency code.",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of the price."
+        }
+      }
+    }
+  }
+}

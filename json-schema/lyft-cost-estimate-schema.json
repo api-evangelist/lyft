@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lyft.com/schemas/lyft/cost-estimate.json",
+  "title": "Lyft Cost Estimate",
+  "description": "An estimated cost, distance, and duration for a Lyft ride between two locations for a specific ride type.",
+  "type": "object",
+  "required": ["ride_type", "estimated_cost_cents_min", "estimated_cost_cents_max"],
+  "properties": {
+    "ride_type": {
+      "type": "string",
+      "description": "Identifier for the type of Lyft ride.",
+      "enum": ["lyft", "lyft_line", "lyft_plus", "lyft_premier", "lyft_lux", "lyft_luxsuv"]
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Human-readable name for the ride type."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 currency code.",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "estimated_cost_cents_min": {
+      "type": "integer",
+      "description": "Lower bound of the estimated cost in cents.",
+      "minimum": 0
+    },
+    "estimated_cost_cents_max": {
+      "type": "integer",
+      "description": "Upper bound of the estimated cost in cents.",
+      "minimum": 0
+    },
+    "estimated_distance_miles": {
+      "type": "number",
+      "description": "Estimated distance of the ride in miles.",
+      "minimum": 0
+    },
+    "estimated_duration_seconds": {
+      "type": "integer",
+      "description": "Estimated duration of the ride in seconds.",
+      "minimum": 0
+    },
+    "primetime_percentage": {
+      "type": "string",
+      "description": "Current Prime Time percentage applied to the cost estimate, formatted as a percentage string such as 25%."
+    },
+    "primetime_confirmation_token": {
+      "type": "string",
+      "description": "A token that must be included when requesting a ride during Prime Time pricing."
+    }
+  }
+}

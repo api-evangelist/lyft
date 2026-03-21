@@ -1,0 +1,154 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "lyft": "https://api.lyft.com/v1/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Ride": {
+      "@id": "lyft:Ride",
+      "@context": {
+        "rideId": "lyft:ride_id",
+        "rideType": "lyft:ride_type",
+        "status": "lyft:status",
+        "origin": "lyft:origin",
+        "destination": "lyft:destination",
+        "pickup": "lyft:pickup",
+        "dropoff": "lyft:dropoff",
+        "driver": "lyft:driver",
+        "vehicle": "lyft:vehicle",
+        "passenger": "lyft:passenger",
+        "requestedAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "completedAt": {
+          "@id": "lyft:completedAt",
+          "@type": "xsd:dateTime"
+        },
+        "canceledAt": {
+          "@id": "lyft:canceledAt",
+          "@type": "xsd:dateTime"
+        },
+        "scheduledPickupTime": {
+          "@id": "lyft:scheduledPickupTime",
+          "@type": "xsd:dateTime"
+        },
+        "price": "schema:price"
+      }
+    },
+
+    "RideType": {
+      "@id": "lyft:RideType",
+      "@context": {
+        "rideType": "lyft:ride_type",
+        "displayName": "schema:name",
+        "seats": "schema:seatingCapacity",
+        "imageUrl": {
+          "@id": "schema:image",
+          "@type": "@id"
+        },
+        "pricingDetails": "lyft:pricingDetails"
+      }
+    },
+
+    "Location": {
+      "@id": "schema:Place",
+      "@context": {
+        "lat": "schema:latitude",
+        "lng": "schema:longitude",
+        "address": "schema:streetAddress",
+        "city": "schema:addressLocality",
+        "state": "schema:addressRegion",
+        "zip": "schema:postalCode"
+      }
+    },
+
+    "Driver": {
+      "@id": "lyft:Driver",
+      "@context": {
+        "firstName": "schema:givenName",
+        "phoneNumber": "schema:telephone",
+        "rating": "schema:ratingValue",
+        "imageUrl": {
+          "@id": "schema:image",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "Vehicle": {
+      "@id": "schema:Vehicle",
+      "@context": {
+        "make": "schema:manufacturer",
+        "model": "schema:model",
+        "year": {
+          "@id": "schema:vehicleModelDate",
+          "@type": "xsd:integer"
+        },
+        "licensePlate": "lyft:licensePlate",
+        "licensePlateState": "lyft:licensePlateState",
+        "color": "schema:color",
+        "imageUrl": {
+          "@id": "schema:image",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "Passenger": {
+      "@id": "lyft:Passenger",
+      "@context": {
+        "firstName": "schema:givenName",
+        "lastName": "schema:familyName",
+        "phoneNumber": "schema:telephone",
+        "email": "schema:email"
+      }
+    },
+
+    "CostEstimate": {
+      "@id": "lyft:CostEstimate",
+      "@context": {
+        "rideType": "lyft:ride_type",
+        "displayName": "schema:name",
+        "currency": "schema:priceCurrency",
+        "estimatedCostCentsMin": "schema:minPrice",
+        "estimatedCostCentsMax": "schema:maxPrice",
+        "estimatedDistanceMiles": "schema:distance",
+        "estimatedDurationSeconds": "schema:duration",
+        "primetimePercentage": "lyft:primetimePercentage"
+      }
+    },
+
+    "Profile": {
+      "@id": "lyft:Profile",
+      "@context": {
+        "id": "schema:identifier",
+        "firstName": "schema:givenName",
+        "lastName": "schema:familyName",
+        "hasTakenARide": "lyft:hasTakenARide"
+      }
+    },
+
+    "Receipt": {
+      "@id": "lyft:Receipt",
+      "@context": {
+        "rideId": "lyft:ride_id",
+        "price": "schema:price",
+        "lineItems": {
+          "@id": "lyft:lineItems",
+          "@container": "@set"
+        },
+        "charges": {
+          "@id": "lyft:charges",
+          "@container": "@set"
+        },
+        "requestedAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    }
+  }
+}
