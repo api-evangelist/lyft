@@ -27,16 +27,12 @@ tags:
     description: >-
       Endpoints for creating, scheduling, tracking, and managing rides on
       behalf of passengers who may not have a Lyft account.
-  - name: Concierge Programs
-    description: >-
-      Endpoints for managing ride programs, budgets, and organizational
-      settings for concierge transportation.
-  - name: Ride Types
-    description: >-
-      Endpoints for retrieving available ride types for concierge bookings.
   - name: Cost Estimates
     description: >-
       Endpoints for estimating ride costs for concierge bookings.
+  - name: Ride Types
+    description: >-
+      Endpoints for retrieving available ride types for concierge bookings.
 security:
   - bearerAuth: []
 paths:

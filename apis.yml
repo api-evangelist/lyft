@@ -1,17 +1,15 @@
 aid: lyft
-url: 
-  https://raw.githubusercontent.com/api-evangelist/lyft/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/lyft/refs/heads/main/apis.yml
 apis:
   - aid: lyft:ride-sharing-api
     name: Lyft Ride-Sharing API
     tags:
+      - Drivers
+      - Estimates
+      - Rides
       - Rideshare
       - Transportation
-      - Rides
-      - Estimates
-      - Drivers
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.lyft.com
     humanURL: https://developer.lyft.com/docs
     properties:
@@ -28,13 +26,12 @@ apis:
   - aid: lyft:concierge-api
     name: Lyft Concierge API
     tags:
+      - Concierge
+      - Enterprise
+      - Healthcare
       - Rideshare
       - Transportation
-      - Concierge
-      - Healthcare
-      - Enterprise
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.lyft.com
     humanURL: https://www.lyft.com/developers/products/concierge-api
     properties:

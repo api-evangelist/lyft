@@ -22,14 +22,6 @@ servers:
   - url: https://api.lyft.com/v1
     description: Production Server
 tags:
-  - name: Ride Types
-    description: >-
-      Endpoints for retrieving information about available Lyft ride types at a
-      given location, including pricing details and seat capacity.
-  - name: ETA
-    description: >-
-      Endpoints for estimating the time for the nearest driver to reach a
-      specified pickup location.
   - name: Cost Estimates
     description: >-
       Endpoints for estimating the cost, distance, and duration of a ride
@@ -38,14 +30,22 @@ tags:
     description: >-
       Endpoints for checking the availability and proximity of nearby Lyft
       drivers.
-  - name: Rides
+  - name: ETA
     description: >-
-      Endpoints for requesting, tracking, canceling, and managing Lyft rides
-      on behalf of an authenticated user.
+      Endpoints for estimating the time for the nearest driver to reach a
+      specified pickup location.
   - name: Profile
     description: >-
       Endpoints for retrieving profile information for the authenticated Lyft
       user.
+  - name: Ride Types
+    description: >-
+      Endpoints for retrieving information about available Lyft ride types at a
+      given location, including pricing details and seat capacity.
+  - name: Rides
+    description: >-
+      Endpoints for requesting, tracking, canceling, and managing Lyft rides
+      on behalf of an authenticated user.
 security:
   - bearerAuth: []
 paths:
