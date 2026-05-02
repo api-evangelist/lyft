@@ -56,7 +56,7 @@ common:
     url: json-schema/lyft-ride-type-schema.json
   - type: JSONSchema
     url: json-schema/lyft-cost-estimate-schema.json
-modified: '2026-03-20'
+modified: '2026-04-28'
 description: >-
   Lyft is a transportation network company that develops, markets, and operates a
   mobile app offering ride-hailing, vehicles for hire, motorized scooters, bicycle-sharing,
