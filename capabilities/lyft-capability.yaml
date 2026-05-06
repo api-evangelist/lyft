@@ -1,0 +1,370 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lyft Concierge API
+  description: The Lyft Concierge API allows organizations to request rides on behalf of their customers, patients, or employees
+    without requiring those individuals to have a Lyft account. It is designed for enterprise use cases such as healthcare
+    patient transportation, corporate employee transit, and customer service scenarios. The API enables organizations to build
+    customized transportation workflows, schedule rides in advance, track ride status in real time, and manage ride programs
+    at scale. It provides a way to embed Lyft's driver network directly into business operations and third-party applications.
+  tags:
+  - Lyft
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: lyft
+    baseUri: https://api.lyft.com/v1
+    description: Lyft Concierge API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{LYFT_TOKEN}}'
+    resources:
+    - name: concierge-rides
+      path: /concierge/rides
+      operations:
+      - name: listconciergerides
+        method: GET
+        description: List concierge rides
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter rides by their current status.
+        - name: start_time
+          in: query
+          type: string
+          description: Return rides scheduled or requested after this time. ISO 8601 format.
+        - name: end_time
+          in: query
+          type: string
+          description: Return rides scheduled or requested before this time. ISO 8601 format.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of rides to return per page.
+        - name: offset
+          in: query
+          type: integer
+          description: Number of rides to skip for pagination.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createconciergeride
+        method: POST
+        description: Create a concierge ride
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: concierge-rides-id
+      path: /concierge/rides/{id}
+      operations:
+      - name: getconciergeride
+        method: GET
+        description: Get concierge ride detail
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: concierge-rides-id-cancel
+      path: /concierge/rides/{id}/cancel
+      operations:
+      - name: cancelconciergeride
+        method: POST
+        description: Cancel a concierge ride
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: concierge-rides-id-status
+      path: /concierge/rides/{id}/status
+      operations:
+      - name: getconciergeridestatus
+        method: GET
+        description: Get concierge ride status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: concierge-ridetypes
+      path: /concierge/ridetypes
+      operations:
+      - name: listconciergeridetypes
+        method: GET
+        description: List available concierge ride types
+        inputParameters:
+        - name: lat
+          in: query
+          type: number
+          required: true
+          description: Latitude of the pickup location.
+        - name: lng
+          in: query
+          type: number
+          required: true
+          description: Longitude of the pickup location.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: concierge-cost
+      path: /concierge/cost
+      operations:
+      - name: listconciergecostestimates
+        method: GET
+        description: List concierge cost estimates
+        inputParameters:
+        - name: start_lat
+          in: query
+          type: number
+          required: true
+          description: Latitude of the pickup location.
+        - name: start_lng
+          in: query
+          type: number
+          required: true
+          description: Longitude of the pickup location.
+        - name: end_lat
+          in: query
+          type: number
+          required: true
+          description: Latitude of the destination location.
+        - name: end_lng
+          in: query
+          type: number
+          required: true
+          description: Longitude of the destination location.
+        - name: ride_type
+          in: query
+          type: string
+          description: Filter cost estimates by a specific ride type.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: lyft-rest
+    description: REST adapter for Lyft Concierge API.
+    resources:
+    - path: /concierge/rides
+      name: listconciergerides
+      operations:
+      - method: GET
+        name: listconciergerides
+        description: List concierge rides
+        call: lyft.listconciergerides
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /concierge/rides
+      name: createconciergeride
+      operations:
+      - method: POST
+        name: createconciergeride
+        description: Create a concierge ride
+        call: lyft.createconciergeride
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /concierge/rides/{id}
+      name: getconciergeride
+      operations:
+      - method: GET
+        name: getconciergeride
+        description: Get concierge ride detail
+        call: lyft.getconciergeride
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /concierge/rides/{id}/cancel
+      name: cancelconciergeride
+      operations:
+      - method: POST
+        name: cancelconciergeride
+        description: Cancel a concierge ride
+        call: lyft.cancelconciergeride
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /concierge/rides/{id}/status
+      name: getconciergeridestatus
+      operations:
+      - method: GET
+        name: getconciergeridestatus
+        description: Get concierge ride status
+        call: lyft.getconciergeridestatus
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /concierge/ridetypes
+      name: listconciergeridetypes
+      operations:
+      - method: GET
+        name: listconciergeridetypes
+        description: List available concierge ride types
+        call: lyft.listconciergeridetypes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /concierge/cost
+      name: listconciergecostestimates
+      operations:
+      - method: GET
+        name: listconciergecostestimates
+        description: List concierge cost estimates
+        call: lyft.listconciergecostestimates
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: lyft-mcp
+    transport: http
+    description: MCP adapter for Lyft Concierge API for AI agent use.
+    tools:
+    - name: listconciergerides
+      description: List concierge rides
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lyft.listconciergerides
+      with:
+        status: tools.status
+        start_time: tools.start_time
+        end_time: tools.end_time
+        limit: tools.limit
+        offset: tools.offset
+      inputParameters:
+      - name: status
+        type: string
+        description: Filter rides by their current status.
+      - name: start_time
+        type: string
+        description: Return rides scheduled or requested after this time. ISO 8601 format.
+      - name: end_time
+        type: string
+        description: Return rides scheduled or requested before this time. ISO 8601 format.
+      - name: limit
+        type: integer
+        description: Maximum number of rides to return per page.
+      - name: offset
+        type: integer
+        description: Number of rides to skip for pagination.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createconciergeride
+      description: Create a concierge ride
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lyft.createconciergeride
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getconciergeride
+      description: Get concierge ride detail
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lyft.getconciergeride
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cancelconciergeride
+      description: Cancel a concierge ride
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: lyft.cancelconciergeride
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getconciergeridestatus
+      description: Get concierge ride status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lyft.getconciergeridestatus
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listconciergeridetypes
+      description: List available concierge ride types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lyft.listconciergeridetypes
+      with:
+        lat: tools.lat
+        lng: tools.lng
+      inputParameters:
+      - name: lat
+        type: number
+        description: Latitude of the pickup location.
+        required: true
+      - name: lng
+        type: number
+        description: Longitude of the pickup location.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listconciergecostestimates
+      description: List concierge cost estimates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lyft.listconciergecostestimates
+      with:
+        start_lat: tools.start_lat
+        start_lng: tools.start_lng
+        end_lat: tools.end_lat
+        end_lng: tools.end_lng
+        ride_type: tools.ride_type
+      inputParameters:
+      - name: start_lat
+        type: number
+        description: Latitude of the pickup location.
+        required: true
+      - name: start_lng
+        type: number
+        description: Longitude of the pickup location.
+        required: true
+      - name: end_lat
+        type: number
+        description: Latitude of the destination location.
+        required: true
+      - name: end_lng
+        type: number
+        description: Longitude of the destination location.
+        required: true
+      - name: ride_type
+        type: string
+        description: Filter cost estimates by a specific ride type.
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    LYFT_TOKEN: LYFT_TOKEN
