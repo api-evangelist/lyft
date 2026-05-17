@@ -48,7 +48,7 @@ apis:
       schedule rides in advance, track ride status in real time, and manage ride programs
       at scale.
 common:
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/lyft-context.jsonld
   - type: JSONSchema
     url: json-schema/lyft-ride-schema.json
