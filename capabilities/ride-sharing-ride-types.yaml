@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lyft Ride-Sharing API — Ride Types
+  description: 'Lyft Ride-Sharing API — Ride Types. 1 operations. Lead operation: List ride types. Self-contained Naftiko
+    capability covering one Lyft business surface.'
+  tags:
+  - Lyft
+  - Ride Types
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LYFT_API_KEY: LYFT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ride-sharing-ride-types
+    baseUri: https://api.lyft.com/v1
+    description: Lyft Ride-Sharing API — Ride Types business capability. Self-contained, no shared references.
+    resources:
+    - name: ridetypes
+      path: /ridetypes
+      operations:
+      - name: listridetypes
+        method: GET
+        description: List ride types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ride_type
+          in: query
+          type: string
+          description: A specific ride type to filter by. If provided, only the specified ride type is returned.
+    authentication:
+      type: bearer
+      token: '{{env.LYFT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ride-sharing-ride-types-rest
+    port: 8080
+    description: REST adapter for Lyft Ride-Sharing API — Ride Types. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/ridetypes
+      name: ridetypes
+      description: REST surface for ridetypes.
+      operations:
+      - method: GET
+        name: listridetypes
+        description: List ride types
+        call: ride-sharing-ride-types.listridetypes
+        with:
+          ride_type: rest.ride_type
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ride-sharing-ride-types-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lyft Ride-Sharing API — Ride Types. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-ride-types
+      description: List ride types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ride-sharing-ride-types.listridetypes
+      with:
+        ride_type: tools.ride_type
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,91 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lyft Ride-Sharing API — ETA
+  description: 'Lyft Ride-Sharing API — ETA. 1 operations. Lead operation: List pickup ETAs. Self-contained Naftiko capability
+    covering one Lyft business surface.'
+  tags:
+  - Lyft
+  - ETA
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LYFT_API_KEY: LYFT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ride-sharing-eta
+    baseUri: https://api.lyft.com/v1
+    description: Lyft Ride-Sharing API — ETA business capability. Self-contained, no shared references.
+    resources:
+    - name: eta
+      path: /eta
+      operations:
+      - name: listetas
+        method: GET
+        description: List pickup ETAs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: destination_lat
+          in: query
+          type: number
+          description: Latitude of the destination location for improved ETA accuracy.
+        - name: destination_lng
+          in: query
+          type: number
+          description: Longitude of the destination location for improved ETA accuracy.
+        - name: ride_type
+          in: query
+          type: string
+          description: A specific ride type to filter ETA results by.
+    authentication:
+      type: bearer
+      token: '{{env.LYFT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ride-sharing-eta-rest
+    port: 8080
+    description: REST adapter for Lyft Ride-Sharing API — ETA. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/eta
+      name: eta
+      description: REST surface for eta.
+      operations:
+      - method: GET
+        name: listetas
+        description: List pickup ETAs
+        call: ride-sharing-eta.listetas
+        with:
+          destination_lat: rest.destination_lat
+          destination_lng: rest.destination_lng
+          ride_type: rest.ride_type
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ride-sharing-eta-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lyft Ride-Sharing API — ETA. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-pickup-etas
+      description: List pickup ETAs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ride-sharing-eta.listetas
+      with:
+        destination_lat: tools.destination_lat
+        destination_lng: tools.destination_lng
+        ride_type: tools.ride_type
+      outputParameters:
+      - type: object
+        mapping: $.

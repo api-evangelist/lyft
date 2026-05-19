@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lyft Ride-Sharing API — Drivers
+  description: 'Lyft Ride-Sharing API — Drivers. 1 operations. Lead operation: List nearby drivers. Self-contained Naftiko
+    capability covering one Lyft business surface.'
+  tags:
+  - Lyft
+  - Drivers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LYFT_API_KEY: LYFT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ride-sharing-drivers
+    baseUri: https://api.lyft.com/v1
+    description: Lyft Ride-Sharing API — Drivers business capability. Self-contained, no shared references.
+    resources:
+    - name: drivers
+      path: /drivers
+      operations:
+      - name: listnearbydrivers
+        method: GET
+        description: List nearby drivers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.LYFT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ride-sharing-drivers-rest
+    port: 8080
+    description: REST adapter for Lyft Ride-Sharing API — Drivers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/drivers
+      name: drivers
+      description: REST surface for drivers.
+      operations:
+      - method: GET
+        name: listnearbydrivers
+        description: List nearby drivers
+        call: ride-sharing-drivers.listnearbydrivers
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ride-sharing-drivers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lyft Ride-Sharing API — Drivers. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-nearby-drivers
+      description: List nearby drivers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ride-sharing-drivers.listnearbydrivers
+      outputParameters:
+      - type: object
+        mapping: $.

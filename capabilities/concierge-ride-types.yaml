@@ -1,0 +1,87 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lyft Concierge API — Ride Types
+  description: 'Lyft Concierge API — Ride Types. 1 operations. Lead operation: List available concierge ride types. Self-contained
+    Naftiko capability covering one Lyft business surface.'
+  tags:
+  - Lyft
+  - Ride Types
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LYFT_API_KEY: LYFT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: concierge-ride-types
+    baseUri: https://api.lyft.com/v1
+    description: Lyft Concierge API — Ride Types business capability. Self-contained, no shared references.
+    resources:
+    - name: concierge-ridetypes
+      path: /concierge/ridetypes
+      operations:
+      - name: listconciergeridetypes
+        method: GET
+        description: List available concierge ride types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: lat
+          in: query
+          type: number
+          description: Latitude of the pickup location.
+          required: true
+        - name: lng
+          in: query
+          type: number
+          description: Longitude of the pickup location.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.LYFT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: concierge-ride-types-rest
+    port: 8080
+    description: REST adapter for Lyft Concierge API — Ride Types. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/concierge/ridetypes
+      name: concierge-ridetypes
+      description: REST surface for concierge-ridetypes.
+      operations:
+      - method: GET
+        name: listconciergeridetypes
+        description: List available concierge ride types
+        call: concierge-ride-types.listconciergeridetypes
+        with:
+          lat: rest.lat
+          lng: rest.lng
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: concierge-ride-types-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lyft Concierge API — Ride Types. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-available-concierge-ride-types
+      description: List available concierge ride types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: concierge-ride-types.listconciergeridetypes
+      with:
+        lat: tools.lat
+        lng: tools.lng
+      outputParameters:
+      - type: object
+        mapping: $.

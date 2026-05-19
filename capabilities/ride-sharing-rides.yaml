@@ -1,0 +1,317 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lyft Ride-Sharing API — Rides
+  description: 'Lyft Ride-Sharing API — Rides. 7 operations. Lead operation: List rides. Self-contained Naftiko capability
+    covering one Lyft business surface.'
+  tags:
+  - Lyft
+  - Rides
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LYFT_API_KEY: LYFT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ride-sharing-rides
+    baseUri: https://api.lyft.com/v1
+    description: Lyft Ride-Sharing API — Rides business capability. Self-contained, no shared references.
+    resources:
+    - name: rides
+      path: /rides
+      operations:
+      - name: listrides
+        method: GET
+        description: List rides
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: start_time
+          in: query
+          type: string
+          description: Restrict results to rides starting after this point in time. The value should be in ISO 8601 format.
+          required: true
+        - name: end_time
+          in: query
+          type: string
+          description: Restrict results to rides starting before this point in time. The value should be in ISO 8601 format.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of rides to return. Default is 10.
+      - name: createride
+        method: POST
+        description: Request a ride
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: rides-id
+      path: /rides/{id}
+      operations:
+      - name: getride
+        method: GET
+        description: Get ride detail
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: rides-id-cancel
+      path: /rides/{id}/cancel
+      operations:
+      - name: cancelride
+        method: POST
+        description: Cancel a ride
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: rides-id-destination
+      path: /rides/{id}/destination
+      operations:
+      - name: updateridedestination
+        method: PUT
+        description: Update ride destination
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: rides-id-rating
+      path: /rides/{id}/rating
+      operations:
+      - name: rateride
+        method: PUT
+        description: Rate a ride
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: rides-id-receipt
+      path: /rides/{id}/receipt
+      operations:
+      - name: getridereceipt
+        method: GET
+        description: Get ride receipt
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.LYFT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ride-sharing-rides-rest
+    port: 8080
+    description: REST adapter for Lyft Ride-Sharing API — Rides. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/rides
+      name: rides
+      description: REST surface for rides.
+      operations:
+      - method: GET
+        name: listrides
+        description: List rides
+        call: ride-sharing-rides.listrides
+        with:
+          start_time: rest.start_time
+          end_time: rest.end_time
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createride
+        description: Request a ride
+        call: ride-sharing-rides.createride
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rides/{id}
+      name: rides-id
+      description: REST surface for rides-id.
+      operations:
+      - method: GET
+        name: getride
+        description: Get ride detail
+        call: ride-sharing-rides.getride
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rides/{id}/cancel
+      name: rides-id-cancel
+      description: REST surface for rides-id-cancel.
+      operations:
+      - method: POST
+        name: cancelride
+        description: Cancel a ride
+        call: ride-sharing-rides.cancelride
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rides/{id}/destination
+      name: rides-id-destination
+      description: REST surface for rides-id-destination.
+      operations:
+      - method: PUT
+        name: updateridedestination
+        description: Update ride destination
+        call: ride-sharing-rides.updateridedestination
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rides/{id}/rating
+      name: rides-id-rating
+      description: REST surface for rides-id-rating.
+      operations:
+      - method: PUT
+        name: rateride
+        description: Rate a ride
+        call: ride-sharing-rides.rateride
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rides/{id}/receipt
+      name: rides-id-receipt
+      description: REST surface for rides-id-receipt.
+      operations:
+      - method: GET
+        name: getridereceipt
+        description: Get ride receipt
+        call: ride-sharing-rides.getridereceipt
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ride-sharing-rides-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lyft Ride-Sharing API — Rides. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-rides
+      description: List rides
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ride-sharing-rides.listrides
+      with:
+        start_time: tools.start_time
+        end_time: tools.end_time
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: request-ride
+      description: Request a ride
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ride-sharing-rides.createride
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-ride-detail
+      description: Get ride detail
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ride-sharing-rides.getride
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cancel-ride
+      description: Cancel a ride
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ride-sharing-rides.cancelride
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-ride-destination
+      description: Update ride destination
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: ride-sharing-rides.updateridedestination
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: rate-ride
+      description: Rate a ride
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: ride-sharing-rides.rateride
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-ride-receipt
+      description: Get ride receipt
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ride-sharing-rides.getridereceipt
+      outputParameters:
+      - type: object
+        mapping: $.
