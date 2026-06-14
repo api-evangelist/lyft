@@ -1,0 +1,749 @@
+"""
+Lyft Ride-Sharing Platform GraphQL Schema
+Conceptual schema derived from the Lyft REST API, developer documentation,
+and client library model types. Covers rides, drivers, vehicles, pricing,
+payments, promos, and platform features.
+"""
+
+# ─────────────────────────────────────────────
+# Scalars
+# ─────────────────────────────────────────────
+
+scalar DateTime
+scalar Float
+scalar URL
+
+# ─────────────────────────────────────────────
+# Enums
+# ─────────────────────────────────────────────
+
+enum RideTypeId {
+  LYFT
+  LYFT_XL
+  LYFT_SHARED
+  LYFT_LUX
+  LYFT_LUX_BLACK
+  LYFT_LUX_BLACK_XL
+  LYFT_FLEXIBLE
+  LYFT_PINK
+}
+
+enum RideStatusCode {
+  PENDING
+  ACCEPTED
+  ARRIVED
+  PICKEDUP
+  DROPPEDOFF
+  CANCELED
+  UNKNOWN
+}
+
+enum PaymentMethodType {
+  CREDIT_CARD
+  PAYPAL
+  APPLE_PAY
+  LYFT_CREDIT
+}
+
+enum VehicleColorName {
+  BLACK
+  WHITE
+  SILVER
+  GRAY
+  BLUE
+  RED
+  GREEN
+  YELLOW
+  ORANGE
+  GOLD
+  BROWN
+  UNKNOWN
+}
+
+enum CancelReason {
+  PASSENGER
+  DRIVER
+  NO_DRIVERS_AVAILABLE
+  RIDETYPE_UNAVAILABLE
+}
+
+enum AuthScope {
+  PUBLIC
+  RIDES_READ
+  RIDES_REQUEST
+  OFFLINE
+  PROFILE
+  RATING
+}
+
+enum WebhookEventType {
+  RIDE_STATUS_CHANGED
+  RIDE_REQUESTED
+  RIDE_COMPLETED
+  DRIVER_ARRIVED
+  PASSENGER_PICKEDUP
+  RIDE_CANCELED
+}
+
+# ─────────────────────────────────────────────
+# Location & Geography Types
+# ─────────────────────────────────────────────
+
+"""Latitude/longitude coordinate pair."""
+type LatLng {
+  lat: Float!
+  lng: Float!
+}
+
+"""A human-readable address associated with a geographic point."""
+type Address {
+  street: String
+  city: String
+  state: String
+  postalCode: String
+  country: String
+  formattedAddress: String
+}
+
+"""A named location with coordinates and optional address details."""
+type Location {
+  lat: Float!
+  lng: Float!
+  address: String
+  name: String
+}
+
+"""The ride origin (pickup location)."""
+type Origin {
+  lat: Float!
+  lng: Float!
+  address: String
+}
+
+"""The ride destination (dropoff location)."""
+type Destination {
+  lat: Float!
+  lng: Float!
+  address: String
+}
+
+# ─────────────────────────────────────────────
+# Ride Type & Pricing Types
+# ─────────────────────────────────────────────
+
+"""A specific Lyft product/service tier available for booking."""
+type RideType {
+  rideTypeId: RideTypeId!
+  displayName: String!
+  imageUrl: URL
+  seatsAvailable: Int
+  pricing: RideTypePricing
+  availableDriverCount: Int
+}
+
+"""Lyft standard (lowest cost tier)."""
+type Lyft {
+  rideTypeId: RideTypeId!
+  displayName: String!
+  pricing: RideTypePricing
+  seatsAvailable: Int
+}
+
+"""Lyft XL — larger vehicle for groups up to 6."""
+type LyftXL {
+  rideTypeId: RideTypeId!
+  displayName: String!
+  pricing: RideTypePricing
+  seatsAvailable: Int
+}
+
+"""Lyft Shared — a shared ride with other passengers."""
+type LyftShared {
+  rideTypeId: RideTypeId!
+  displayName: String!
+  pricing: RideTypePricing
+}
+
+"""Standard mid-tier ride."""
+type Standard {
+  rideTypeId: RideTypeId!
+  displayName: String!
+  pricing: RideTypePricing
+}
+
+"""Lux — premium vehicle with high-rated drivers."""
+type Lux {
+  rideTypeId: RideTypeId!
+  displayName: String!
+  pricing: RideTypePricing
+}
+
+"""Lux Black — black car professional service."""
+type LuxBlack {
+  rideTypeId: RideTypeId!
+  displayName: String!
+  pricing: RideTypePricing
+}
+
+"""Lux Black XL — black car SUV professional service."""
+type LuxBlackXL {
+  rideTypeId: RideTypeId!
+  displayName: String!
+  pricing: RideTypePricing
+}
+
+"""Lyft Flexible — scheduled or demand-responsive service."""
+type LyftFlexible {
+  rideTypeId: RideTypeId!
+  displayName: String!
+  pricing: RideTypePricing
+}
+
+"""Lyft Pink — subscription-based discounted rides."""
+type LyftPink {
+  rideTypeId: RideTypeId!
+  displayName: String!
+  monthlyFee: Int
+  currencyCode: String
+  discountPercent: Float
+}
+
+"""Pricing structure for a given ride type."""
+type RideTypePricing {
+  rideTypeId: RideTypeId!
+  baseFare: Int!
+  costPerMile: Int!
+  costPerMinute: Int!
+  currencyCode: String!
+  cancelPenaltyAmount: Int
+  trustAndServiceFee: Int
+  minimumFare: Int
+  priceQuote: PriceQuote
+}
+
+"""A quoted price range for a specific origin-destination pair."""
+type PriceQuote {
+  estimatedCostCentsMin: Int!
+  estimatedCostCentsMax: Int!
+  estimatedDurationSeconds: Int
+  estimatedDistanceMiles: Float
+  currencyCode: String!
+}
+
+"""A cost estimate for a ride between two points."""
+type CostEstimate {
+  rideTypeId: RideTypeId!
+  displayName: String!
+  estimatedCostCentsMin: Int!
+  estimatedCostCentsMax: Int!
+  estimatedDurationSeconds: Int
+  estimatedDistanceMiles: Float
+  currencyCode: String!
+  isPricePersonalized: Boolean
+}
+
+"""Estimated driver time-to-arrival at pickup."""
+type DriverETA {
+  rideTypeId: RideTypeId!
+  displayName: String!
+  etaSeconds: Int!
+  isValidEstimate: Boolean!
+}
+
+"""Surge pricing multiplier applied to a zone or ride type."""
+type Surge {
+  rideTypeId: RideTypeId!
+  surgeMultiplier: Float!
+  surgeConfirmationId: String
+  surgeConfirmationUrl: URL
+}
+
+# ─────────────────────────────────────────────
+# Driver & Vehicle Types
+# ─────────────────────────────────────────────
+
+"""A Lyft driver."""
+type Driver {
+  firstName: String!
+  imageUrl: URL
+  rating: Float
+  phoneNumber: String
+  vehicle: Vehicle
+  location: LatLng
+}
+
+"""Driver rating details."""
+type DriverRating {
+  driverId: String!
+  rating: Float!
+  ratingCount: Int
+}
+
+"""A vehicle associated with a driver."""
+type Vehicle {
+  make: String!
+  model: String!
+  year: Int!
+  color: VehicleColor!
+  licensePlate: String!
+  licensePlateState: String
+  imageUrl: URL
+}
+
+"""Vehicle color representation."""
+type VehicleColor {
+  name: VehicleColorName!
+  hexCode: String
+}
+
+# ─────────────────────────────────────────────
+# Ride Types
+# ─────────────────────────────────────────────
+
+"""A requested or completed Lyft ride."""
+type Ride {
+  rideId: String!
+  status: RideStatusCode!
+  rideType: RideTypeId!
+  origin: Location!
+  destination: Location
+  driver: Driver
+  vehicle: Vehicle
+  passenger: Passenger
+  generatedAt: DateTime!
+  requestedAt: DateTime
+  acceptedAt: DateTime
+  pickedUpAt: DateTime
+  droppedOffAt: DateTime
+  canceledAt: DateTime
+  cancelReason: CancelReason
+  route: RideRoute
+  priceQuote: PriceQuote
+  totalCharged: Int
+  currencyCode: String
+  rating: Rating
+  feedback: String
+}
+
+"""Current active ride for a user."""
+type ActiveRide {
+  rideId: String!
+  status: RideStatusCode!
+  rideType: RideTypeId!
+  origin: Location!
+  destination: Location
+  driver: Driver
+  vehicle: Vehicle
+  pickup: DriverETA
+  route: RideRoute
+}
+
+"""A ride requested but not yet matched."""
+type RideRequest {
+  rideId: String!
+  status: RideStatusCode!
+  rideType: RideTypeId!
+  origin: Location!
+  destination: Location
+  requestedAt: DateTime!
+  surgeConfirmationId: String
+}
+
+"""Status update for a ride."""
+type RideStatus {
+  rideId: String!
+  status: RideStatusCode!
+  statusAt: DateTime!
+  statusReason: String
+}
+
+"""Historical record of a completed or canceled ride."""
+type RideHistory {
+  rideId: String!
+  rideType: RideTypeId!
+  origin: Location!
+  destination: Location
+  requestedAt: DateTime!
+  completedAt: DateTime
+  canceledAt: DateTime
+  cancelReason: CancelReason
+  totalCharged: Int
+  currencyCode: String
+  rating: Rating
+}
+
+"""A ride scheduled for a future time."""
+type ScheduledRide {
+  rideId: String!
+  rideType: RideTypeId!
+  origin: Location!
+  destination: Location
+  scheduledAt: DateTime!
+  status: RideStatusCode!
+  passenger: Passenger
+}
+
+"""Polyline and waypoints describing a ride's path."""
+type RideRoute {
+  shape: [LatLng!]
+  distanceMiles: Float
+  durationSeconds: Int
+  waypoints: [Location!]
+}
+
+# ─────────────────────────────────────────────
+# User & Passenger Types
+# ─────────────────────────────────────────────
+
+"""A Lyft user profile."""
+type UserProfile {
+  id: String!
+  firstName: String!
+  lastName: String
+  email: String
+  phoneNumber: String
+  imageUrl: URL
+  hasActiveDriveSchedule: Boolean
+}
+
+"""A passenger in a ride."""
+type Passenger {
+  firstName: String!
+  imageUrl: URL
+  rating: Float
+}
+
+"""User profile for a business/enterprise account."""
+type BusinessProfile {
+  businessId: String!
+  companyName: String!
+  adminEmail: String
+  billingAccount: BusinessBilling
+}
+
+"""Generic profile union wrapper."""
+type Profile {
+  userId: String!
+  userProfile: UserProfile
+  businessProfile: BusinessProfile
+}
+
+# ─────────────────────────────────────────────
+# Business / Enterprise Types
+# ─────────────────────────────────────────────
+
+"""A ride associated with a business account."""
+type BusinessRide {
+  rideId: String!
+  businessId: String!
+  rideType: RideTypeId!
+  origin: Location!
+  destination: Location
+  passenger: Passenger
+  totalCharged: Int
+  currencyCode: String
+  requestedAt: DateTime
+  completedAt: DateTime
+}
+
+"""Billing details for a business account."""
+type BusinessBilling {
+  billingId: String!
+  companyName: String
+  billingEmail: String
+  monthlyBudget: Int
+  currencyCode: String
+  paymentMethod: Payment
+}
+
+# ─────────────────────────────────────────────
+# Payment Types
+# ─────────────────────────────────────────────
+
+"""A payment method on file."""
+type Payment {
+  paymentMethodId: String!
+  type: PaymentMethodType!
+  displayName: String
+  isDefault: Boolean!
+}
+
+"""A credit card payment method."""
+type CreditCard {
+  paymentMethodId: String!
+  last4: String!
+  brand: String!
+  expiryMonth: Int!
+  expiryYear: Int!
+  isDefault: Boolean!
+}
+
+"""A PayPal account payment method."""
+type PayPalAccount {
+  paymentMethodId: String!
+  email: String!
+  isDefault: Boolean!
+}
+
+"""An Apple Pay payment method."""
+type ApplePay {
+  paymentMethodId: String!
+  displayName: String!
+  isDefault: Boolean!
+}
+
+# ─────────────────────────────────────────────
+# Ratings & Reviews
+# ─────────────────────────────────────────────
+
+"""A star rating for a ride or driver."""
+type Rating {
+  rating: Int!
+  maxRating: Int!
+  ratedAt: DateTime
+}
+
+"""Textual review left after a ride."""
+type Review {
+  rideId: String!
+  reviewText: String!
+  rating: Int!
+  createdAt: DateTime!
+}
+
+# ─────────────────────────────────────────────
+# Promo & Referral Types
+# ─────────────────────────────────────────────
+
+"""A promotional discount or credit."""
+type Promo {
+  promoId: String!
+  displayName: String
+  discountAmount: Int
+  discountPercent: Float
+  currencyCode: String
+  expiresAt: DateTime
+  isApplied: Boolean
+}
+
+"""A promotional code that can be applied to a ride."""
+type PromoCode {
+  code: String!
+  description: String
+  discountAmount: Int
+  currencyCode: String
+  expiresAt: DateTime
+  maxUses: Int
+}
+
+"""A referral code shared by a Lyft user."""
+type ReferralCode {
+  code: String!
+  referrerId: String!
+  creditAmount: Int
+  currencyCode: String
+  expiresAt: DateTime
+}
+
+"""Status of a user's referral program participation."""
+type ReferralStatus {
+  referralCode: ReferralCode
+  totalReferrals: Int!
+  pendingCredits: Int!
+  earnedCredits: Int!
+  currencyCode: String!
+}
+
+# ─────────────────────────────────────────────
+# Subscription Types
+# ─────────────────────────────────────────────
+
+"""A Lyft subscription plan (e.g. Lyft Pink)."""
+type Subscription {
+  subscriptionId: String!
+  planName: String!
+  monthlyFeeCents: Int!
+  currencyCode: String!
+  status: String!
+  renewsAt: DateTime
+  canceledAt: DateTime
+  benefits: [String!]
+}
+
+# ─────────────────────────────────────────────
+# Service Zone & Heat Map Types
+# ─────────────────────────────────────────────
+
+"""A geographic service zone where Lyft operates."""
+type ServiceZone {
+  zoneId: String!
+  name: String
+  polygon: [LatLng!]!
+  availableRideTypes: [RideTypeId!]
+  isActive: Boolean!
+}
+
+"""An aggregated heat map of ride demand."""
+type HeatMap {
+  generatedAt: DateTime!
+  cells: [HeatCell!]!
+}
+
+"""A single cell in a demand heat map."""
+type HeatCell {
+  lat: Float!
+  lng: Float!
+  demandScore: Float!
+  surgeMultiplier: Float
+}
+
+# ─────────────────────────────────────────────
+# Webhook & Event Types
+# ─────────────────────────────────────────────
+
+"""A registered webhook endpoint for ride events."""
+type Webhook {
+  webhookId: String!
+  url: URL!
+  events: [WebhookEventType!]!
+  isActive: Boolean!
+  createdAt: DateTime!
+}
+
+"""An event payload delivered to a webhook endpoint."""
+type WebhookEvent {
+  eventId: String!
+  eventType: WebhookEventType!
+  occurredAt: DateTime!
+  rideId: String
+  rideStatus: RideStatusCode
+  passengerId: String
+  driverId: String
+}
+
+# ─────────────────────────────────────────────
+# Auth Types
+# ─────────────────────────────────────────────
+
+"""An OAuth 2.0 access token granting API access."""
+type AccessToken {
+  accessToken: String!
+  tokenType: String!
+  expiresIn: Int!
+  scopes: [AuthScope!]!
+  refreshToken: String
+}
+
+"""An OAuth 2.0 authorization code returned from the consent flow."""
+type AuthorizationCode {
+  code: String!
+  state: String
+  redirectUri: URL
+}
+
+"""An OAuth scope granting specific permissions."""
+type Scope {
+  scopeId: AuthScope!
+  description: String!
+  isPublic: Boolean!
+}
+
+# ─────────────────────────────────────────────
+# Root Operations
+# ─────────────────────────────────────────────
+
+type Query {
+  """List available ride types at a given location."""
+  rideTypes(lat: Float!, lng: Float!, rideTypeId: RideTypeId): [RideType!]!
+
+  """Get cost estimates for a trip."""
+  costEstimates(
+    startLat: Float!
+    startLng: Float!
+    endLat: Float!
+    endLng: Float!
+    rideTypeId: RideTypeId
+  ): [CostEstimate!]!
+
+  """Get ETAs for available drivers near a location."""
+  driverETAs(lat: Float!, lng: Float!, rideTypeId: RideTypeId): [DriverETA!]!
+
+  """Get the current authenticated user's profile."""
+  userProfile: UserProfile
+
+  """Get a single ride by ID."""
+  ride(rideId: String!): Ride
+
+  """Get the current active ride for the authenticated user."""
+  activeRide: ActiveRide
+
+  """List past rides for the authenticated user."""
+  rideHistory(limit: Int, offset: Int): [RideHistory!]!
+
+  """Get all payment methods on file."""
+  paymentMethods: [Payment!]!
+
+  """Get current promo details for the authenticated user."""
+  promoDetails: [Promo!]!
+
+  """Get the user's referral status and code."""
+  referralStatus: ReferralStatus
+
+  """Get service zones active in a region."""
+  serviceZones(lat: Float!, lng: Float!, radius: Float): [ServiceZone!]!
+
+  """Get registered webhooks for a developer account."""
+  webhooks: [Webhook!]!
+
+  """Get current subscription for the authenticated user."""
+  subscription: Subscription
+}
+
+type Mutation {
+  """Request a new ride."""
+  requestRide(
+    rideTypeId: RideTypeId!
+    originLat: Float!
+    originLng: Float!
+    destinationLat: Float!
+    destinationLng: Float!
+    surgeConfirmationId: String
+  ): RideRequest!
+
+  """Cancel an active ride."""
+  cancelRide(rideId: String!): RideStatus!
+
+  """Rate a completed ride."""
+  rateRide(rideId: String!, rating: Int!, feedback: String): Rating!
+
+  """Apply a promo code to the user's account."""
+  applyPromoCode(code: String!): PromoCode!
+
+  """Add a credit card payment method."""
+  addCreditCard(
+    cardToken: String!
+    isDefault: Boolean
+  ): CreditCard!
+
+  """Set a default payment method."""
+  setDefaultPaymentMethod(paymentMethodId: String!): Payment!
+
+  """Register a new webhook endpoint."""
+  registerWebhook(
+    url: URL!
+    events: [WebhookEventType!]!
+  ): Webhook!
+
+  """Delete a webhook endpoint."""
+  deleteWebhook(webhookId: String!): Boolean!
+
+  """Schedule a future ride."""
+  scheduleRide(
+    rideTypeId: RideTypeId!
+    originLat: Float!
+    originLng: Float!
+    destinationLat: Float!
+    destinationLng: Float!
+    scheduledAt: DateTime!
+  ): ScheduledRide!
+}
