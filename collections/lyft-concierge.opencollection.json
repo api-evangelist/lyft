@@ -1,0 +1,227 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lyft Concierge API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Concierge Rides",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List concierge rides",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/concierge/rides",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter rides by their current status."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Return rides scheduled or requested after this time. ISO 8601 format."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "Return rides scheduled or requested before this time. ISO 8601 format."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of rides to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of rides to skip for pagination."
+              }
+            ]
+          },
+          "docs": "Returns a list of rides created through the concierge program. Results can be filtered by status, time range, and passenger information. Supports pagination for large result sets."
+        },
+        {
+          "info": {
+            "name": "Create a concierge ride",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lyft.com/v1/concierge/rides",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ride on behalf of a passenger. The passenger does not need to have a Lyft account. Rides can be dispatched immediately or scheduled for a future pickup time. The request must include the passenger's contact information, pickup location, and destination."
+        },
+        {
+          "info": {
+            "name": "Get concierge ride detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/concierge/rides/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the concierge ride."
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific concierge ride, including current status, passenger information, driver and vehicle details, and route information."
+        },
+        {
+          "info": {
+            "name": "Cancel a concierge ride",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lyft.com/v1/concierge/rides/:id/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the concierge ride."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels a concierge ride that has been requested or scheduled. Rides that have already been completed cannot be canceled. Cancellation fees may apply depending on the ride's current status and how long a driver has been assigned."
+        },
+        {
+          "info": {
+            "name": "Get concierge ride status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/concierge/rides/:id/status",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the concierge ride."
+              }
+            ]
+          },
+          "docs": "Returns the current status and real-time tracking information for a concierge ride, including driver location when a driver is assigned."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ride Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List available concierge ride types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/concierge/ridetypes",
+            "params": [
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the pickup location."
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the pickup location."
+              }
+            ]
+          },
+          "docs": "Returns the ride types available for concierge bookings at the specified location. Availability may differ from consumer ride types based on the organization's concierge program configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cost Estimates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List concierge cost estimates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/concierge/cost",
+            "params": [
+              {
+                "name": "start_lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the pickup location."
+              },
+              {
+                "name": "start_lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the pickup location."
+              },
+              {
+                "name": "end_lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the destination location."
+              },
+              {
+                "name": "end_lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the destination location."
+              },
+              {
+                "name": "ride_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter cost estimates by a specific ride type."
+              }
+            ]
+          },
+          "docs": "Returns estimated costs for concierge rides between two locations. Cost estimates reflect the organization's concierge pricing, which may differ from consumer pricing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1699 @@
+{
+  "item": [
+    {
+      "id": "0406d0a5-6476-473c-bbd6-09c77375eb96",
+      "name": "Concierge Rides",
+      "description": {
+        "content": "Endpoints for creating, scheduling, tracking, and managing rides on behalf of passengers who may not have a Lyft account.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f5a2c6ac-c3a3-485c-b846-bf9e5557ff97",
+          "name": "List concierge rides",
+          "request": {
+            "name": "List concierge rides",
+            "description": {
+              "content": "Returns a list of rides created through the concierge program. Results can be filtered by status, time range, and passenger information. Supports pagination for large result sets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "concierge",
+                "rides"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter rides by their current status."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<dateTime>",
+                  "description": "Return rides scheduled or requested after this time. ISO 8601 format."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<dateTime>",
+                  "description": "Return rides scheduled or requested before this time. ISO 8601 format."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of rides to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of rides to skip for pagination."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3197b672-e4bb-4321-949d-e0cc6072095d",
+              "name": "Successful response with concierge ride list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "canceled"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rides\": [\n    {\n      \"ride_id\": \"string\",\n      \"ride_type\": \"string\",\n      \"status\": \"canceled\",\n      \"passenger\": {\n        \"first_name\": \"string\",\n        \"phone_number\": \"string\",\n        \"last_name\": \"string\",\n        \"email\": \"7xodm8W@bHIFUwOigiVzSmiKqEFyArqfRkHme.cciq\"\n      },\n      \"origin\": {\n        \"lat\": 1.4459576327585655,\n        \"lng\": 2725.457528549553,\n        \"address\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zip\": \"string\"\n      },\n      \"destination\": {\n        \"lat\": 2314.3837496085152,\n        \"lng\": 2866.673089946967,\n        \"address\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zip\": \"string\"\n      },\n      \"driver\": {\n        \"first_name\": \"string\",\n        \"phone_number\": \"string\",\n        \"rating\": \"string\",\n        \"image_url\": \"http://OCPcxqCXFcjv.kbcltDfkh9sT69i6AgVp8eX3DquOmk4RbVp0NvWixrSxQ\"\n      },\n      \"vehicle\": {\n        \"make\": \"string\",\n        \"model\": \"string\",\n        \"year\": 7262,\n        \"license_plate\": \"string\",\n        \"color\": \"string\"\n      },\n      \"scheduled_pickup_time\": \"1987-12-18T00:11:32.702Z\",\n      \"requested_at\": \"2008-03-08T07:18:19.048Z\",\n      \"completed_at\": \"2010-11-23T15:32:54.586Z\",\n      \"canceled_at\": \"1990-06-07T07:18:51.024Z\",\n      \"price\": {\n        \"amount\": 38,\n        \"currency\": \"OCJ\",\n        \"description\": \"string\"\n      },\n      \"notes\": \"string\",\n      \"cost_center\": \"string\"\n    },\n    {\n      \"ride_id\": \"string\",\n      \"ride_type\": \"string\",\n      \"status\": \"pending\",\n      \"passenger\": {\n        \"first_name\": \"string\",\n        \"phone_number\": \"string\",\n        \"last_name\": \"string\",\n        \"email\": \"gShGe5A@DRsfcdXgLCsH.oxj\"\n      },\n      \"origin\": {\n        \"lat\": 267.8436036877296,\n        \"lng\": 6030.528789454712,\n        \"address\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zip\": \"string\"\n      },\n      \"destination\": {\n        \"lat\": 2247.550451530973,\n        \"lng\": 5552.419011927491,\n        \"address\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zip\": \"string\"\n      },\n      \"driver\": {\n        \"first_name\": \"string\",\n        \"phone_number\": \"string\",\n        \"rating\": \"string\",\n        \"image_url\": \"https://Z.wxiomBMINqV-.0QkZQsIXaLnETgEOXoTdnPja0EYvwd7eHR1mAu5p-oaV31dLoq1UmG\"\n      },\n      \"vehicle\": {\n        \"make\": \"string\",\n        \"model\": \"string\",\n        \"year\": 3740,\n        \"license_plate\": \"string\",\n        \"color\": \"string\"\n      },\n      \"scheduled_pickup_time\": \"1989-09-27T06:12:48.890Z\",\n      \"requested_at\": \"1972-10-01T23:40:51.943Z\",\n      \"completed_at\": \"2008-05-03T07:23:41.897Z\",\n      \"canceled_at\": \"1971-12-30T16:25:54.811Z\",\n      \"price\": {\n        \"amount\": 6544,\n        \"currency\": \"TWO\",\n        \"description\": \"string\"\n      },\n      \"notes\": \"string\",\n      \"cost_center\": \"string\"\n    }\n  ],\n  \"total\": 8428\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "635f1bb7-5546-4a39-bd6e-e1c9aa9d4357",
+              "name": "Bad request - invalid filter parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "canceled"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "91030e08-2bce-4ca2-ace2-c2f76ec01dfd",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "canceled"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48210340-46ad-440f-952b-706cacbcd57a",
+          "name": "Create a concierge ride",
+          "request": {
+            "name": "Create a concierge ride",
+            "description": {
+              "content": "Creates a new ride on behalf of a passenger. The passenger does not need to have a Lyft account. Rides can be dispatched immediately or scheduled for a future pickup time. The request must include the passenger's contact information, pickup location, and destination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "concierge",
+                "rides"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ride_type\": \"<string>\",\n  \"passenger\": {\n    \"first_name\": \"<string>\",\n    \"phone_number\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<email>\"\n  },\n  \"origin\": {\n    \"lat\": \"<double>\",\n    \"lng\": \"<double>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"destination\": {\n    \"lat\": \"<double>\",\n    \"lng\": \"<double>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"scheduled_pickup_time\": \"<dateTime>\",\n  \"notes\": \"<string>\",\n  \"cost_center\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a3db271-f34c-49cb-b067-a11051f4e237",
+              "name": "Concierge ride created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ride_type\": \"<string>\",\n  \"passenger\": {\n    \"first_name\": \"string\",\n    \"phone_number\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"NVg6@OCeoYgzxDbTxOCG.gbv\"\n  },\n  \"origin\": {\n    \"lat\": 4192.4582029980165,\n    \"lng\": 8709.880568753948,\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\"\n  },\n  \"destination\": {\n    \"lat\": 573.5151960056617,\n    \"lng\": 5320.148526448776,\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\"\n  },\n  \"scheduled_pickup_time\": \"<dateTime>\",\n  \"notes\": \"<string>\",\n  \"cost_center\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ride_id\": \"string\",\n  \"ride_type\": \"string\",\n  \"status\": \"arriving\",\n  \"passenger\": {\n    \"first_name\": \"string\",\n    \"phone_number\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"2auvAHYfcY3E@xqmpr.eq\"\n  },\n  \"origin\": {\n    \"lat\": 3146.5721723993743,\n    \"lng\": 4947.797703070794,\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\"\n  },\n  \"destination\": {\n    \"lat\": 2572.621087148641,\n    \"lng\": 2211.823576137475,\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\"\n  },\n  \"driver\": {\n    \"first_name\": \"string\",\n    \"phone_number\": \"string\",\n    \"rating\": \"string\",\n    \"image_url\": \"https://TJIltlXQOxLrSihONxZhKdEyiydOpEF.njqgw5M,v59+m7xP0QuQQtnlx+,P,mo+dpDcQMCvZJgyIh4X\"\n  },\n  \"vehicle\": {\n    \"make\": \"string\",\n    \"model\": \"string\",\n    \"year\": 7734,\n    \"license_plate\": \"string\",\n    \"color\": \"string\"\n  },\n  \"scheduled_pickup_time\": \"1956-10-10T05:47:47.413Z\",\n  \"requested_at\": \"1968-09-09T21:51:39.367Z\",\n  \"completed_at\": \"1951-06-06T02:23:18.269Z\",\n  \"canceled_at\": \"2002-10-31T15:29:48.352Z\",\n  \"price\": {\n    \"amount\": 4399,\n    \"currency\": \"UNQ\",\n    \"description\": \"string\"\n  },\n  \"notes\": \"string\",\n  \"cost_center\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6aa697bb-704d-49bc-b525-a0b27ff2b16a",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ride_type\": \"<string>\",\n  \"passenger\": {\n    \"first_name\": \"string\",\n    \"phone_number\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"NVg6@OCeoYgzxDbTxOCG.gbv\"\n  },\n  \"origin\": {\n    \"lat\": 4192.4582029980165,\n    \"lng\": 8709.880568753948,\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\"\n  },\n  \"destination\": {\n    \"lat\": 573.5151960056617,\n    \"lng\": 5320.148526448776,\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\"\n  },\n  \"scheduled_pickup_time\": \"<dateTime>\",\n  \"notes\": \"<string>\",\n  \"cost_center\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aa2e47b4-ba35-4ee9-80e1-55ecff33cc7a",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ride_type\": \"<string>\",\n  \"passenger\": {\n    \"first_name\": \"string\",\n    \"phone_number\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"NVg6@OCeoYgzxDbTxOCG.gbv\"\n  },\n  \"origin\": {\n    \"lat\": 4192.4582029980165,\n    \"lng\": 8709.880568753948,\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\"\n  },\n  \"destination\": {\n    \"lat\": 573.5151960056617,\n    \"lng\": 5320.148526448776,\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\"\n  },\n  \"scheduled_pickup_time\": \"<dateTime>\",\n  \"notes\": \"<string>\",\n  \"cost_center\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1c6a6a7c-b28a-4f2e-a1e3-f784362ac779",
+              "name": "Unprocessable entity - validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ride_type\": \"<string>\",\n  \"passenger\": {\n    \"first_name\": \"string\",\n    \"phone_number\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"NVg6@OCeoYgzxDbTxOCG.gbv\"\n  },\n  \"origin\": {\n    \"lat\": 4192.4582029980165,\n    \"lng\": 8709.880568753948,\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\"\n  },\n  \"destination\": {\n    \"lat\": 573.5151960056617,\n    \"lng\": 5320.148526448776,\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\"\n  },\n  \"scheduled_pickup_time\": \"<dateTime>\",\n  \"notes\": \"<string>\",\n  \"cost_center\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "781196a7-e038-4875-827c-0219ae04f1d0",
+          "name": "Get concierge ride detail",
+          "request": {
+            "name": "Get concierge ride detail",
+            "description": {
+              "content": "Returns the details of a specific concierge ride, including current status, passenger information, driver and vehicle details, and route information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "concierge",
+                "rides",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the concierge ride."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56680b4f-4e1e-46d6-af05-5df89d0465a4",
+              "name": "Successful response with ride details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the concierge ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ride_id\": \"string\",\n  \"ride_type\": \"string\",\n  \"status\": \"arriving\",\n  \"passenger\": {\n    \"first_name\": \"string\",\n    \"phone_number\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"2auvAHYfcY3E@xqmpr.eq\"\n  },\n  \"origin\": {\n    \"lat\": 3146.5721723993743,\n    \"lng\": 4947.797703070794,\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\"\n  },\n  \"destination\": {\n    \"lat\": 2572.621087148641,\n    \"lng\": 2211.823576137475,\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\"\n  },\n  \"driver\": {\n    \"first_name\": \"string\",\n    \"phone_number\": \"string\",\n    \"rating\": \"string\",\n    \"image_url\": \"https://TJIltlXQOxLrSihONxZhKdEyiydOpEF.njqgw5M,v59+m7xP0QuQQtnlx+,P,mo+dpDcQMCvZJgyIh4X\"\n  },\n  \"vehicle\": {\n    \"make\": \"string\",\n    \"model\": \"string\",\n    \"year\": 7734,\n    \"license_plate\": \"string\",\n    \"color\": \"string\"\n  },\n  \"scheduled_pickup_time\": \"1956-10-10T05:47:47.413Z\",\n  \"requested_at\": \"1968-09-09T21:51:39.367Z\",\n  \"completed_at\": \"1951-06-06T02:23:18.269Z\",\n  \"canceled_at\": \"2002-10-31T15:29:48.352Z\",\n  \"price\": {\n    \"amount\": 4399,\n    \"currency\": \"UNQ\",\n    \"description\": \"string\"\n  },\n  \"notes\": \"string\",\n  \"cost_center\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "891d3099-26c3-4527-a098-a7a77f862dda",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the concierge ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "251b6a1e-04c1-49c1-a0f2-2acb05741a13",
+              "name": "Ride not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the concierge ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94963b0e-61fd-4b92-ba32-fa1c869652ba",
+          "name": "Cancel a concierge ride",
+          "request": {
+            "name": "Cancel a concierge ride",
+            "description": {
+              "content": "Cancels a concierge ride that has been requested or scheduled. Rides that have already been completed cannot be canceled. Cancellation fees may apply depending on the ride's current status and how long a driver has been assigned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "concierge",
+                "rides",
+                ":id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the concierge ride."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cancel_confirmation_token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3bb8cd3b-6eed-469a-829e-04d3967099db",
+              "name": "Ride canceled successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the concierge ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cancel_confirmation_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d66696ee-b6b7-485f-8f35-b2722cfb3973",
+              "name": "Bad request - ride cannot be canceled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the concierge ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cancel_confirmation_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a6359a2f-2603-4b0f-aefc-ad58b3224f88",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the concierge ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cancel_confirmation_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "11896d1e-d7bc-4861-9218-c564084ccb1c",
+              "name": "Ride not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the concierge ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cancel_confirmation_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "102c08cf-ee04-4a0f-988b-3f906def39c8",
+          "name": "Get concierge ride status",
+          "request": {
+            "name": "Get concierge ride status",
+            "description": {
+              "content": "Returns the current status and real-time tracking information for a concierge ride, including driver location when a driver is assigned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "concierge",
+                "rides",
+                ":id",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the concierge ride."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ba4b102-2d05-4cb5-afa0-e7cfdf9971f8",
+              "name": "Successful response with ride status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides",
+                    ":id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the concierge ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ride_id\": \"string\",\n  \"status\": \"arriving\",\n  \"driver_location\": {\n    \"lat\": 4513.291248496597,\n    \"lng\": 7853.971370445551\n  },\n  \"eta_seconds\": 5516,\n  \"updated_at\": \"1960-11-01T08:59:56.793Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f6fd334-a7a3-433b-9f73-26997c1ac874",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides",
+                    ":id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the concierge ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2cc74923-c998-4b45-ad64-caf23b3eb3c1",
+              "name": "Ride not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "rides",
+                    ":id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the concierge ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "56a4059b-924b-446d-a71b-3b0a17d57b94",
+      "name": "Cost Estimates",
+      "description": {
+        "content": "Endpoints for estimating ride costs for concierge bookings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "38bd60b7-9427-40bd-bb79-1166280c4f18",
+          "name": "List concierge cost estimates",
+          "request": {
+            "name": "List concierge cost estimates",
+            "description": {
+              "content": "Returns estimated costs for concierge rides between two locations. Cost estimates reflect the organization's concierge pricing, which may differ from consumer pricing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "concierge",
+                "cost"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_lat",
+                  "value": "<double>",
+                  "description": "(Required) Latitude of the pickup location."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_lng",
+                  "value": "<double>",
+                  "description": "(Required) Longitude of the pickup location."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_lat",
+                  "value": "<double>",
+                  "description": "(Required) Latitude of the destination location."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_lng",
+                  "value": "<double>",
+                  "description": "(Required) Longitude of the destination location."
+                },
+                {
+                  "disabled": false,
+                  "key": "ride_type",
+                  "value": "<string>",
+                  "description": "Filter cost estimates by a specific ride type."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "129531f3-4b60-4d2f-b195-c364d191ce5e",
+              "name": "Successful response with cost estimates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "start_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ride_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cost_estimates\": [\n    {\n      \"ride_type\": \"string\",\n      \"display_name\": \"string\",\n      \"currency\": \"GXV\",\n      \"estimated_cost_cents_min\": 8859,\n      \"estimated_cost_cents_max\": 9002,\n      \"estimated_distance_miles\": 3771.347849586809,\n      \"estimated_duration_seconds\": 558\n    },\n    {\n      \"ride_type\": \"string\",\n      \"display_name\": \"string\",\n      \"currency\": \"OQL\",\n      \"estimated_cost_cents_min\": 5215,\n      \"estimated_cost_cents_max\": 4994,\n      \"estimated_distance_miles\": 2053.633589102083,\n      \"estimated_duration_seconds\": 820\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03656085-0a14-4de6-a5b9-139b366c295a",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "start_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ride_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bcd4230a-244c-4ed5-bd35-8219ab8477a8",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "start_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ride_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "716ef2e1-8d83-486b-9c72-6c242f6974bd",
+      "name": "Ride Types",
+      "description": {
+        "content": "Endpoints for retrieving available ride types for concierge bookings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a8a112bc-8121-49a0-b084-bbb273ac64ae",
+          "name": "List available concierge ride types",
+          "request": {
+            "name": "List available concierge ride types",
+            "description": {
+              "content": "Returns the ride types available for concierge bookings at the specified location. Availability may differ from consumer ride types based on the organization's concierge program configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "concierge",
+                "ridetypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<double>",
+                  "description": "(Required) Latitude of the pickup location."
+                },
+                {
+                  "disabled": false,
+                  "key": "lng",
+                  "value": "<double>",
+                  "description": "(Required) Longitude of the pickup location."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e9128a82-1cb5-48b5-98fe-42accb5ce524",
+              "name": "Successful response with available ride types",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "ridetypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ride_types\": [\n    {\n      \"ride_type\": \"string\",\n      \"display_name\": \"string\",\n      \"seats\": 4487,\n      \"image_url\": \"http://DNsJunlkjOAtmwDUvrgc.pthCyL5fG8wHH3mYl6-GiMwMQ+xZATLa+wyA-ePQ1GBtPP2ZNdGYRH\"\n    },\n    {\n      \"ride_type\": \"string\",\n      \"display_name\": \"string\",\n      \"seats\": 188,\n      \"image_url\": \"https://pgqnQzqkB.jfslHX8iSilJ5ktHa7FmFxoRltLOlIPf+03S\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff4a2aee-d263-4347-b742-b5c0b202d759",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "ridetypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f214d007-a83d-44dc-aa8d-865a50cdb4d8",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "ridetypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lyft.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "416dd2f6-9ef8-42ae-9c50-4fb58166f297",
+    "name": "Lyft Concierge API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lyft Concierge API allows organizations to request rides on behalf of their customers, patients, or employees without requiring those individuals to have a Lyft account. It is designed for enterprise use cases such as healthcare patient transportation, corporate employee transit, and customer service scenarios. The API enables organizations to build customized transportation workflows, schedule rides in advance, track ride status in real time, and manage ride programs at scale. It provides a way to embed Lyft's driver network directly into business operations and third-party applications.\n\nContact Support:\n Name: Lyft Business Support",
+      "type": "text/plain"
+    }
+  }
+}

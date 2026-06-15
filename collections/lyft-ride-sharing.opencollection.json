@@ -1,0 +1,370 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lyft Ride-Sharing API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ride Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List ride types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/ridetypes",
+            "params": [
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the location."
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the location."
+              },
+              {
+                "name": "ride_type",
+                "value": "",
+                "type": "query",
+                "description": "A specific ride type to filter by. If provided, only the specified ride type is returned."
+              }
+            ]
+          },
+          "docs": "Returns information about what kinds of Lyft rides are available at a given location. The response includes ride type identifiers, display names, pricing details, image URLs, and passenger seat capacity."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ETA",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List pickup ETAs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/eta",
+            "params": [
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the location."
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the location."
+              },
+              {
+                "name": "destination_lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the destination location for improved ETA accuracy."
+              },
+              {
+                "name": "destination_lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the destination location for improved ETA accuracy."
+              },
+              {
+                "name": "ride_type",
+                "value": "",
+                "type": "query",
+                "description": "A specific ride type to filter ETA results by."
+              }
+            ]
+          },
+          "docs": "Returns the estimated time in seconds for the nearest driver to reach the specified pickup location. ETAs can be filtered by ride type and optionally account for a destination location to improve accuracy."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cost Estimates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List cost estimates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/cost",
+            "params": [
+              {
+                "name": "start_lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the starting location."
+              },
+              {
+                "name": "start_lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the starting location."
+              },
+              {
+                "name": "end_lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the destination location."
+              },
+              {
+                "name": "end_lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the destination location."
+              },
+              {
+                "name": "ride_type",
+                "value": "",
+                "type": "query",
+                "description": "A specific ride type to filter cost estimates by."
+              }
+            ]
+          },
+          "docs": "Returns the estimated cost, distance, and duration of a ride between a start and end location. Cost estimates are returned for all available ride types unless a specific ride type filter is applied. Amounts are returned in the smallest denomination of the applicable currency."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Drivers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List nearby drivers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/drivers",
+            "params": [
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the location."
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the location."
+              }
+            ]
+          },
+          "docs": "Returns the positions of nearby drivers for each ride type at the specified location. This endpoint is useful for displaying driver availability on a map."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Profile",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get user profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/profile"
+          },
+          "docs": "Returns the authenticated user's profile information including their first name, last name, and whether the profile has been verified."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rides",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List rides",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/rides",
+            "params": [
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to rides starting after this point in time. The value should be in ISO 8601 format."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to rides starting before this point in time. The value should be in ISO 8601 format."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of rides to return. Default is 10."
+              }
+            ]
+          },
+          "docs": "Returns a list of past and current rides for the authenticated user. Results can be filtered by start and end time."
+        },
+        {
+          "info": {
+            "name": "Request a ride",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lyft.com/v1/rides",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Requests a new Lyft ride on behalf of the authenticated user. The request must include a ride type and origin location. A destination may optionally be specified at the time of request."
+        },
+        {
+          "info": {
+            "name": "Get ride detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/rides/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ride."
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific ride identified by its ride ID, including status, origin, destination, driver information, and vehicle details."
+        },
+        {
+          "info": {
+            "name": "Cancel a ride",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lyft.com/v1/rides/:id/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ride."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels an ongoing or requested ride. If the ride has already been matched with a driver, a cancellation fee may apply depending on how long the driver has been en route."
+        },
+        {
+          "info": {
+            "name": "Update ride destination",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lyft.com/v1/rides/:id/destination",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ride."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the destination of an active ride. This can be used to change or set the drop-off location while a ride is in progress."
+        },
+        {
+          "info": {
+            "name": "Rate a ride",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lyft.com/v1/rides/:id/rating",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ride."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits the passenger's rating for a completed ride. The rating includes a star score and optionally a tip amount and text feedback."
+        },
+        {
+          "info": {
+            "name": "Get ride receipt",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/rides/:id/receipt",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ride."
+              }
+            ]
+          },
+          "docs": "Returns the receipt for a completed ride, including fare breakdown, charges, credits applied, and total cost."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
