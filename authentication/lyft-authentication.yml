@@ -1,0 +1,26 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/lyft-concierge-openapi.yml, openapi/lyft-ride-sharing-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: OAuth 2.0 access token obtained through the client credentials flow for the organization's
+    concierge API client.
+  sources:
+  - openapi/lyft-concierge-openapi.yml
+  - openapi/lyft-ride-sharing-openapi.yml
+- name: clientToken
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Client token for accessing public endpoints without user authorization. Passed
+    as a Bearer token in the Authorization header.
+  sources:
+  - openapi/lyft-ride-sharing-openapi.yml

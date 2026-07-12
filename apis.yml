@@ -48,6 +48,10 @@ apis:
     rides in advance, track ride status in real time, and manage ride programs at
     scale.
 common:
+- type: DomainSecurity
+  url: security/lyft-domain-security.yml
+- type: Authentication
+  url: authentication/lyft-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/lyft
 - type: LinkedIn
@@ -60,6 +64,8 @@ common:
   url: json-schema/lyft-ride-type-schema.json
 - type: JSONSchema
   url: json-schema/lyft-cost-estimate-schema.json
+- url: https://www.lyft.com/blog
+  type: Blog
 modified: '2026-05-19'
 description: Lyft is a transportation network company that develops, markets, and
   operates a mobile app offering ride-hailing, vehicles for hire, motorized scooters,
