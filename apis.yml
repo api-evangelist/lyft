@@ -48,6 +48,8 @@ apis:
     rides in advance, track ride status in real time, and manage ride programs at
     scale.
 common:
+- type: AgenticAccess
+  url: agentic-access/lyft-agentic-access.yml
 - type: DomainSecurity
   url: security/lyft-domain-security.yml
 - type: Authentication
