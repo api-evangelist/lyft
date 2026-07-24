@@ -1,0 +1,117 @@
+openapi: 3.1.0
+info:
+  title: Lyft Concierge Concierge Rides ETA API
+  description: The Lyft Concierge API allows organizations to request rides on behalf of their customers, patients, or employees without requiring those individuals to have a Lyft account. It is designed for enterprise use cases such as healthcare patient transportation, corporate employee transit, and customer service scenarios. The API enables organizations to build customized transportation workflows, schedule rides in advance, track ride status in real time, and manage ride programs at scale. It provides a way to embed Lyft's driver network directly into business operations and third-party applications.
+  version: '1.0'
+  contact:
+    name: Lyft Business Support
+    url: https://www.lyft.com/developers
+  termsOfService: https://www.lyft.com/terms
+servers:
+- url: https://api.lyft.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: ETA
+  description: Endpoints for estimating the time for the nearest driver to reach a specified pickup location.
+paths:
+  /eta:
+    get:
+      operationId: listETAs
+      summary: List pickup ETAs
+      description: Returns the estimated time in seconds for the nearest driver to reach the specified pickup location. ETAs can be filtered by ride type and optionally account for a destination location to improve accuracy.
+      tags:
+      - ETA
+      parameters:
+      - $ref: '#/components/parameters/lat'
+      - $ref: '#/components/parameters/lng'
+      - name: destination_lat
+        in: query
+        description: Latitude of the destination location for improved ETA accuracy.
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: destination_lng
+        in: query
+        description: Longitude of the destination location for improved ETA accuracy.
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: ride_type
+        in: query
+        description: A specific ride type to filter ETA results by.
+        required: false
+        schema:
+          $ref: '#/components/schemas/RideTypeEnum'
+      responses:
+        '200':
+          description: Successful response with ETA estimates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  eta_estimates:
+                    type: array
+                    description: List of ETA estimates for each available ride type.
+                    items:
+                      $ref: '#/components/schemas/ETAEstimate'
+        '400':
+          description: Bad request - invalid or missing parameters
+        '401':
+          description: Unauthorized - invalid or missing access token
+components:
+  schemas:
+    ETAEstimate:
+      type: object
+      description: Estimated time of arrival for the nearest driver of a given ride type.
+      properties:
+        ride_type:
+          $ref: '#/components/schemas/RideTypeEnum'
+        display_name:
+          type: string
+          description: Human-readable name for the ride type.
+        eta_seconds:
+          type: integer
+          description: Estimated time of arrival in seconds for the nearest driver.
+        is_valid_estimate:
+          type: boolean
+          description: Whether the estimate is considered valid based on current driver availability.
+    RideTypeEnum:
+      type: string
+      description: Identifier for the type of Lyft ride.
+      enum:
+      - lyft
+      - lyft_line
+      - lyft_plus
+      - lyft_premier
+      - lyft_lux
+      - lyft_luxsuv
+  parameters:
+    lng:
+      name: lng
+      in: query
+      description: Longitude of the location.
+      required: true
+      schema:
+        type: number
+        format: double
+    lat:
+      name: lat
+      in: query
+      description: Latitude of the location.
+      required: true
+      schema:
+        type: number
+        format: double
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 access token obtained through the client credentials flow for the organization's concierge API client.
+externalDocs:
+  description: Lyft Concierge API Documentation
+  url: https://www.lyft.com/developers/products/concierge-api

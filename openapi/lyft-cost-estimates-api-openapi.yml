@@ -1,0 +1,215 @@
+openapi: 3.1.0
+info:
+  title: Lyft Concierge Concierge Rides Cost Estimates API
+  description: The Lyft Concierge API allows organizations to request rides on behalf of their customers, patients, or employees without requiring those individuals to have a Lyft account. It is designed for enterprise use cases such as healthcare patient transportation, corporate employee transit, and customer service scenarios. The API enables organizations to build customized transportation workflows, schedule rides in advance, track ride status in real time, and manage ride programs at scale. It provides a way to embed Lyft's driver network directly into business operations and third-party applications.
+  version: '1.0'
+  contact:
+    name: Lyft Business Support
+    url: https://www.lyft.com/developers
+  termsOfService: https://www.lyft.com/terms
+servers:
+- url: https://api.lyft.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Cost Estimates
+  description: Endpoints for estimating ride costs for concierge bookings.
+paths:
+  /concierge/cost:
+    get:
+      operationId: listConciergeCostEstimates
+      summary: List concierge cost estimates
+      description: Returns estimated costs for concierge rides between two locations. Cost estimates reflect the organization's concierge pricing, which may differ from consumer pricing.
+      tags:
+      - Cost Estimates
+      parameters:
+      - name: start_lat
+        in: query
+        description: Latitude of the pickup location.
+        required: true
+        schema:
+          type: number
+          format: double
+      - name: start_lng
+        in: query
+        description: Longitude of the pickup location.
+        required: true
+        schema:
+          type: number
+          format: double
+      - name: end_lat
+        in: query
+        description: Latitude of the destination location.
+        required: true
+        schema:
+          type: number
+          format: double
+      - name: end_lng
+        in: query
+        description: Longitude of the destination location.
+        required: true
+        schema:
+          type: number
+          format: double
+      - name: ride_type
+        in: query
+        description: Filter cost estimates by a specific ride type.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with cost estimates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cost_estimates:
+                    type: array
+                    description: List of cost estimates for available ride types.
+                    items:
+                      $ref: '#/components/schemas/ConciergeCostEstimate'
+        '400':
+          description: Bad request - invalid parameters
+        '401':
+          description: Unauthorized - invalid or missing access token
+  /cost:
+    get:
+      operationId: listCostEstimates
+      summary: List cost estimates
+      description: Returns the estimated cost, distance, and duration of a ride between a start and end location. Cost estimates are returned for all available ride types unless a specific ride type filter is applied. Amounts are returned in the smallest denomination of the applicable currency.
+      tags:
+      - Cost Estimates
+      parameters:
+      - name: start_lat
+        in: query
+        description: Latitude of the starting location.
+        required: true
+        schema:
+          type: number
+          format: double
+      - name: start_lng
+        in: query
+        description: Longitude of the starting location.
+        required: true
+        schema:
+          type: number
+          format: double
+      - name: end_lat
+        in: query
+        description: Latitude of the destination location.
+        required: true
+        schema:
+          type: number
+          format: double
+      - name: end_lng
+        in: query
+        description: Longitude of the destination location.
+        required: true
+        schema:
+          type: number
+          format: double
+      - name: ride_type
+        in: query
+        description: A specific ride type to filter cost estimates by.
+        required: false
+        schema:
+          $ref: '#/components/schemas/RideTypeEnum'
+      responses:
+        '200':
+          description: Successful response with cost estimates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cost_estimates:
+                    type: array
+                    description: List of cost estimates for each available ride type.
+                    items:
+                      $ref: '#/components/schemas/CostEstimate'
+        '400':
+          description: Bad request - invalid or missing parameters
+        '401':
+          description: Unauthorized - invalid or missing access token
+components:
+  schemas:
+    RideTypeEnum:
+      type: string
+      description: Identifier for the type of Lyft ride.
+      enum:
+      - lyft
+      - lyft_line
+      - lyft_plus
+      - lyft_premier
+      - lyft_lux
+      - lyft_luxsuv
+    CostEstimate:
+      type: object
+      description: Estimated cost, distance, and duration for a ride between two locations for a specific ride type.
+      properties:
+        ride_type:
+          $ref: '#/components/schemas/RideTypeEnum'
+        display_name:
+          type: string
+          description: Human-readable name for the ride type.
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+          pattern: ^[A-Z]{3}$
+        estimated_cost_cents_min:
+          type: integer
+          description: Lower bound of the estimated cost in cents.
+        estimated_cost_cents_max:
+          type: integer
+          description: Upper bound of the estimated cost in cents.
+        estimated_distance_miles:
+          type: number
+          format: double
+          description: Estimated distance of the ride in miles.
+        estimated_duration_seconds:
+          type: integer
+          description: Estimated duration of the ride in seconds.
+        primetime_percentage:
+          type: string
+          description: Current Prime Time percentage applied to the cost estimate. Formatted as a percentage string such as 25%.
+        primetime_confirmation_token:
+          type: string
+          description: A token that must be included when requesting a ride during Prime Time pricing.
+    ConciergeCostEstimate:
+      type: object
+      description: Estimated cost for a concierge ride between two locations.
+      properties:
+        ride_type:
+          type: string
+          description: Identifier for the ride type.
+        display_name:
+          type: string
+          description: Human-readable name for the ride type.
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+          pattern: ^[A-Z]{3}$
+        estimated_cost_cents_min:
+          type: integer
+          description: Lower bound of the estimated cost in cents.
+        estimated_cost_cents_max:
+          type: integer
+          description: Upper bound of the estimated cost in cents.
+        estimated_distance_miles:
+          type: number
+          format: double
+          description: Estimated ride distance in miles.
+        estimated_duration_seconds:
+          type: integer
+          description: Estimated ride duration in seconds.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 access token obtained through the client credentials flow for the organization's concierge API client.
+externalDocs:
+  description: Lyft Concierge API Documentation
+  url: https://www.lyft.com/developers/products/concierge-api

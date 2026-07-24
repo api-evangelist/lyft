@@ -1,0 +1,61 @@
+openapi: 3.1.0
+info:
+  title: Lyft Concierge Concierge Rides Profile API
+  description: The Lyft Concierge API allows organizations to request rides on behalf of their customers, patients, or employees without requiring those individuals to have a Lyft account. It is designed for enterprise use cases such as healthcare patient transportation, corporate employee transit, and customer service scenarios. The API enables organizations to build customized transportation workflows, schedule rides in advance, track ride status in real time, and manage ride programs at scale. It provides a way to embed Lyft's driver network directly into business operations and third-party applications.
+  version: '1.0'
+  contact:
+    name: Lyft Business Support
+    url: https://www.lyft.com/developers
+  termsOfService: https://www.lyft.com/terms
+servers:
+- url: https://api.lyft.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Profile
+  description: Endpoints for retrieving profile information for the authenticated Lyft user.
+paths:
+  /profile:
+    get:
+      operationId: getProfile
+      summary: Get user profile
+      description: Returns the authenticated user's profile information including their first name, last name, and whether the profile has been verified.
+      tags:
+      - Profile
+      parameters: []
+      responses:
+        '200':
+          description: Successful response with user profile information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+        '401':
+          description: Unauthorized - invalid or missing access token
+components:
+  schemas:
+    Profile:
+      type: object
+      description: Profile information for the authenticated Lyft user.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the user.
+        first_name:
+          type: string
+          description: The user's first name.
+        last_name:
+          type: string
+          description: The user's last name.
+        has_taken_a_ride:
+          type: boolean
+          description: Whether the user has completed at least one Lyft ride.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 access token obtained through the client credentials flow for the organization's concierge API client.
+externalDocs:
+  description: Lyft Concierge API Documentation
+  url: https://www.lyft.com/developers/products/concierge-api

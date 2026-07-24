@@ -1,0 +1,111 @@
+openapi: 3.1.0
+info:
+  title: Lyft Concierge Concierge Rides Drivers API
+  description: The Lyft Concierge API allows organizations to request rides on behalf of their customers, patients, or employees without requiring those individuals to have a Lyft account. It is designed for enterprise use cases such as healthcare patient transportation, corporate employee transit, and customer service scenarios. The API enables organizations to build customized transportation workflows, schedule rides in advance, track ride status in real time, and manage ride programs at scale. It provides a way to embed Lyft's driver network directly into business operations and third-party applications.
+  version: '1.0'
+  contact:
+    name: Lyft Business Support
+    url: https://www.lyft.com/developers
+  termsOfService: https://www.lyft.com/terms
+servers:
+- url: https://api.lyft.com/v1
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Drivers
+  description: Endpoints for checking the availability and proximity of nearby Lyft drivers.
+paths:
+  /drivers:
+    get:
+      operationId: listNearbyDrivers
+      summary: List nearby drivers
+      description: Returns the positions of nearby drivers for each ride type at the specified location. This endpoint is useful for displaying driver availability on a map.
+      tags:
+      - Drivers
+      parameters:
+      - $ref: '#/components/parameters/lat'
+      - $ref: '#/components/parameters/lng'
+      responses:
+        '200':
+          description: Successful response with nearby driver locations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nearby_drivers:
+                    type: array
+                    description: List of nearby driver groups organized by ride type.
+                    items:
+                      $ref: '#/components/schemas/NearbyDriversByRideType'
+        '400':
+          description: Bad request - invalid or missing parameters
+        '401':
+          description: Unauthorized - invalid or missing access token
+components:
+  schemas:
+    DriverLocation:
+      type: object
+      description: Geographic location of a nearby driver.
+      properties:
+        locations:
+          type: array
+          description: Recent location waypoints for the driver.
+          items:
+            type: object
+            properties:
+              lat:
+                type: number
+                format: double
+                description: Latitude of the driver's position.
+              lng:
+                type: number
+                format: double
+                description: Longitude of the driver's position.
+    RideTypeEnum:
+      type: string
+      description: Identifier for the type of Lyft ride.
+      enum:
+      - lyft
+      - lyft_line
+      - lyft_plus
+      - lyft_premier
+      - lyft_lux
+      - lyft_luxsuv
+    NearbyDriversByRideType:
+      type: object
+      description: Collection of nearby driver positions for a specific ride type.
+      properties:
+        ride_type:
+          $ref: '#/components/schemas/RideTypeEnum'
+        drivers:
+          type: array
+          description: List of nearby drivers with their locations.
+          items:
+            $ref: '#/components/schemas/DriverLocation'
+  parameters:
+    lng:
+      name: lng
+      in: query
+      description: Longitude of the location.
+      required: true
+      schema:
+        type: number
+        format: double
+    lat:
+      name: lat
+      in: query
+      description: Latitude of the location.
+      required: true
+      schema:
+        type: number
+        format: double
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 access token obtained through the client credentials flow for the organization's concierge API client.
+externalDocs:
+  description: Lyft Concierge API Documentation
+  url: https://www.lyft.com/developers/products/concierge-api
