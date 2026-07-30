@@ -1,52 +1,137 @@
 aid: lyft
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/lyft.png
 url: https://raw.githubusercontent.com/api-evangelist/lyft/refs/heads/main/apis.yml
 apis:
-- aid: lyft:ride-sharing-api
-  name: Lyft Ride-Sharing API
+- aid: lyft:lyft-concierge-rides-api
+  name: lyft Concierge Rides API
+  description: >-
+    Endpoints for creating, scheduling, tracking, and managing rides on behalf of passengers who may not
+    have a Lyft account.
+  humanURL: https://developer.lyft.com/docs
+  baseURL: https://api.lyft.com
+  tags:
+  - Concierge Rides
+  properties:
+  - type: OpenAPI
+    url: openapi/lyft-concierge-rides-api-openapi.yml
+  - type: Documentation
+    url: https://developer.lyft.com/docs
+  - type: GraphQL
+    url: graphql/lyft-graphql.md
+  - type: Documentation
+    url: https://www.lyft.com/developers/products/concierge-api
+- aid: lyft:lyft-cost-estimates-api
+  name: lyft Cost Estimates API
+  description: Endpoints for estimating ride costs for concierge bookings.
+  humanURL: https://developer.lyft.com/docs
+  baseURL: https://api.lyft.com
+  tags:
+  - Cost Estimates
+  properties:
+  - type: OpenAPI
+    url: openapi/lyft-cost-estimates-api-openapi.yml
+  - type: Documentation
+    url: https://developer.lyft.com/docs
+  - type: GraphQL
+    url: graphql/lyft-graphql.md
+  - type: Documentation
+    url: https://www.lyft.com/developers/products/concierge-api
+- aid: lyft:lyft-drivers-api
+  name: lyft Drivers API
+  description: Endpoints for checking the availability and proximity of nearby Lyft drivers.
+  humanURL: https://developer.lyft.com/docs
+  baseURL: https://api.lyft.com
   tags:
   - Drivers
-  - Estimates
-  - Rides
-  - Rideshare
-  - Transportation
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.lyft.com
+  properties:
+  - type: OpenAPI
+    url: openapi/lyft-drivers-api-openapi.yml
+  - type: Documentation
+    url: https://developer.lyft.com/docs
+  - type: GraphQL
+    url: graphql/lyft-graphql.md
+  - type: Documentation
+    url: https://www.lyft.com/developers/products/concierge-api
+- aid: lyft:lyft-eta-api
+  name: lyft ETA API
+  description: >-
+    Endpoints for estimating the time for the nearest driver to reach a specified pickup location.
   humanURL: https://developer.lyft.com/docs
-  properties:
-  - url: https://developer.lyft.com/docs
-    type: Documentation
-  - url: openapi/lyft-ride-sharing-openapi.yml
-    type: OpenAPI
-  - url: graphql/lyft-graphql.md
-    type: GraphQL
-  description: The Lyft Ride-Sharing API provides developers with programmatic access
-    to Lyft's rideshare platform. It includes endpoints for retrieving cost estimates
-    between locations, estimating pickup ETAs, listing available ride types in a given
-    area, and checking nearby driver availability. The API uses OAuth 2.0 for user-authenticated
-    requests and client tokens for public endpoints.
-- aid: lyft:concierge-api
-  name: Lyft Concierge API
-  tags:
-  - Concierge
-  - Enterprise
-  - Healthcare
-  - Rideshare
-  - Transportation
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.lyft.com
-  humanURL: https://www.lyft.com/developers/products/concierge-api
+  tags:
+  - ETA
   properties:
-  - url: https://www.lyft.com/developers/products/concierge-api
-    type: Documentation
-  - url: openapi/lyft-concierge-openapi.yml
-    type: OpenAPI
-  description: The Lyft Concierge API allows organizations to request rides on behalf
-    of their customers, patients, or employees without requiring those individuals
-    to have a Lyft account. It is designed for enterprise use cases such as healthcare
-    patient transportation, corporate employee transit, and customer service scenarios.
-    The API enables organizations to build customized transportation workflows, schedule
-    rides in advance, track ride status in real time, and manage ride programs at
-    scale.
+  - type: OpenAPI
+    url: openapi/lyft-eta-api-openapi.yml
+  - type: Documentation
+    url: https://developer.lyft.com/docs
+  - type: GraphQL
+    url: graphql/lyft-graphql.md
+  - type: Documentation
+    url: https://www.lyft.com/developers/products/concierge-api
+- aid: lyft:lyft-profile-api
+  name: lyft Profile API
+  description: Endpoints for retrieving profile information for the authenticated Lyft user.
+  humanURL: https://developer.lyft.com/docs
+  baseURL: https://api.lyft.com
+  tags:
+  - Profile
+  properties:
+  - type: OpenAPI
+    url: openapi/lyft-profile-api-openapi.yml
+  - type: Documentation
+    url: https://developer.lyft.com/docs
+  - type: GraphQL
+    url: graphql/lyft-graphql.md
+  - type: Documentation
+    url: https://www.lyft.com/developers/products/concierge-api
+- aid: lyft:lyft-ride-types-api
+  name: lyft Ride Types API
+  description: Endpoints for retrieving available ride types for concierge bookings.
+  humanURL: https://developer.lyft.com/docs
+  baseURL: https://api.lyft.com
+  tags:
+  - Ride Types
+  properties:
+  - type: OpenAPI
+    url: openapi/lyft-ride-types-api-openapi.yml
+  - type: Documentation
+    url: https://developer.lyft.com/docs
+  - type: GraphQL
+    url: graphql/lyft-graphql.md
+  - type: Documentation
+    url: https://www.lyft.com/developers/products/concierge-api
+- aid: lyft:lyft-rides-api
+  name: lyft Rides API
+  description: >-
+    Endpoints for requesting, tracking, canceling, and managing Lyft rides on behalf of an authenticated
+    user.
+  humanURL: https://developer.lyft.com/docs
+  baseURL: https://api.lyft.com
+  tags:
+  - Rides
+  properties:
+  - type: OpenAPI
+    url: openapi/lyft-rides-api-openapi.yml
+  - type: Documentation
+    url: https://developer.lyft.com/docs
+  - type: GraphQL
+    url: graphql/lyft-graphql.md
+  - type: Documentation
+    url: https://www.lyft.com/developers/products/concierge-api
 common:
 - type: AgenticAccess
   url: agentic-access/lyft-agentic-access.yml
