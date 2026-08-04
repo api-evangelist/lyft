@@ -1,0 +1,26 @@
+{
+  "provider": "lyft",
+  "sources": [
+    "lyft-concierge-rides-api-openapi.yml",
+    "lyft-cost-estimates-api-openapi.yml",
+    "lyft-drivers-api-openapi.yml",
+    "lyft-eta-api-openapi.yml",
+    "lyft-profile-api-openapi.yml",
+    "lyft-ride-types-api-openapi.yml",
+    "lyft-rides-api-openapi.yml"
+  ],
+  "outputs": [
+    "lyft-concierge-rides-api-openapi.yml",
+    "lyft-cost-estimates-api-openapi.yml",
+    "lyft-drivers-api-openapi.yml",
+    "lyft-eta-api-openapi.yml",
+    "lyft-profile-api-openapi.yml",
+    "lyft-ride-types-api-openapi.yml",
+    "lyft-rides-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
