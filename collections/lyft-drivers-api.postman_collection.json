@@ -1,0 +1,237 @@
+{
+  "item": [
+    {
+      "id": "304422b5-b741-4ea6-8f8a-c6a99ea6e943",
+      "name": "Drivers",
+      "description": {
+        "content": "Endpoints for checking the availability and proximity of nearby Lyft drivers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e66dd580-24b0-480e-be08-8908cc7f7860",
+          "name": "List nearby drivers",
+          "request": {
+            "name": "List nearby drivers",
+            "description": {
+              "content": "Returns the positions of nearby drivers for each ride type at the specified location. This endpoint is useful for displaying driver availability on a map.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "drivers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<double>",
+                  "description": "(Required) Latitude of the location."
+                },
+                {
+                  "disabled": false,
+                  "key": "lng",
+                  "value": "<double>",
+                  "description": "(Required) Longitude of the location."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d885ea1-66a4-48ff-92ae-4906219f637a",
+              "name": "Successful response with nearby driver locations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nearby_drivers\": [\n    {\n      \"ride_type\": \"lyft_luxsuv\",\n      \"drivers\": [\n        {\n          \"locations\": [\n            {\n              \"lat\": 9201.173464235942,\n              \"lng\": 786.1598021068883\n            },\n            {\n              \"lat\": 2120.2708826564153,\n              \"lng\": 622.4397749643184\n            }\n          ]\n        },\n        {\n          \"locations\": [\n            {\n              \"lat\": 2376.962348164815,\n              \"lng\": 1000.378798601228\n            },\n            {\n              \"lat\": 2006.9313705248549,\n              \"lng\": 7640.047856861702\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"ride_type\": \"lyft_luxsuv\",\n      \"drivers\": [\n        {\n          \"locations\": [\n            {\n              \"lat\": 7562.730141440379,\n              \"lng\": 4282.3208177963015\n            },\n            {\n              \"lat\": 6062.684051905004,\n              \"lng\": 5707.9177007605085\n            }\n          ]\n        },\n        {\n          \"locations\": [\n            {\n              \"lat\": 7724.579203170617,\n              \"lng\": 4926.177297068582\n            },\n            {\n              \"lat\": 8065.584675995422,\n              \"lng\": 677.4016437726915\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "931f96f8-00db-4c98-8a0c-3fe730203c2a",
+              "name": "Bad request - invalid or missing parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cbf7ca0c-e1a1-4a61-8229-4e99c9a55eeb",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lyft.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d1f6593a-6001-495a-9f98-1d09c4eafb29",
+    "name": "Lyft Concierge Concierge Rides Drivers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lyft Concierge API allows organizations to request rides on behalf of their customers, patients, or employees without requiring those individuals to have a Lyft account. It is designed for enterprise use cases such as healthcare patient transportation, corporate employee transit, and customer service scenarios. The API enables organizations to build customized transportation workflows, schedule rides in advance, track ride status in real time, and manage ride programs at scale. It provides a way to embed Lyft's driver network directly into business operations and third-party applications.\n\nContact Support:\n Name: Lyft Business Support",
+      "type": "text/plain"
+    }
+  }
+}

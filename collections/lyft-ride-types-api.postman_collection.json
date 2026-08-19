@@ -1,0 +1,455 @@
+{
+  "item": [
+    {
+      "id": "d2b93508-2e82-4a80-a25c-4589ca1857cc",
+      "name": "Ride Types",
+      "description": {
+        "content": "Endpoints for retrieving available ride types for concierge bookings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f919ade2-e9b5-4080-aadf-4851a71de0b6",
+          "name": "List available concierge ride types",
+          "request": {
+            "name": "List available concierge ride types",
+            "description": {
+              "content": "Returns the ride types available for concierge bookings at the specified location. Availability may differ from consumer ride types based on the organization's concierge program configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "concierge",
+                "ridetypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<double>",
+                  "description": "(Required) Latitude of the pickup location."
+                },
+                {
+                  "disabled": false,
+                  "key": "lng",
+                  "value": "<double>",
+                  "description": "(Required) Longitude of the pickup location."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d87c5441-1fb1-44b9-83af-d97a9ab72ef5",
+              "name": "Successful response with available ride types",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "ridetypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ride_types\": [\n    {\n      \"ride_type\": \"string\",\n      \"display_name\": \"string\",\n      \"seats\": 6973,\n      \"image_url\": \"https://XSMZphPSqxtllfsI.ojqbLR1rJVqEOXZ3S0vHKqmcHfl9OTRfUjZy+qcEopFb,iWkNy9V-BIf\"\n    },\n    {\n      \"ride_type\": \"string\",\n      \"display_name\": \"string\",\n      \"seats\": 2150,\n      \"image_url\": \"http://oFIREPdwYEvGALpiP.bvcE6wNEBJLxSQ9JNeLtIdTigJo4Cngpde7h5MI1y6b0mI2FlxOwsOtu7152R\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77992e83-c1d3-4b05-b40e-8543291434c5",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "ridetypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bd9987b7-232d-4964-8354-84ad08c1e520",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "ridetypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "020cdc81-5f62-4ce1-90a8-7c670dfe681e",
+          "name": "List ride types",
+          "request": {
+            "name": "List ride types",
+            "description": {
+              "content": "Returns information about what kinds of Lyft rides are available at a given location. The response includes ride type identifiers, display names, pricing details, image URLs, and passenger seat capacity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ridetypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<double>",
+                  "description": "(Required) Latitude of the location."
+                },
+                {
+                  "disabled": false,
+                  "key": "lng",
+                  "value": "<double>",
+                  "description": "(Required) Longitude of the location."
+                },
+                {
+                  "disabled": false,
+                  "key": "ride_type",
+                  "value": "<string>",
+                  "description": "A specific ride type to filter by. If provided, only the specified ride type is returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5097885-164e-4de3-bb5d-0f08efe6caf3",
+              "name": "Successful response with available ride types",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ridetypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ride_type",
+                      "value": "lyft_line"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ride_types\": [\n    {\n      \"ride_type\": \"lyft\",\n      \"display_name\": \"string\",\n      \"seats\": 9705,\n      \"image_url\": \"https://hHfcfCZQBEhjHZJQprgejxViACapYdG.iqkUGGqRUj4YBg-H3lypJKQJredFbkMpOnINwKldzeTRGRe\",\n      \"pricing_details\": {\n        \"base_charge\": 2767,\n        \"cost_per_mile\": 1086,\n        \"cost_per_minute\": 9371,\n        \"cost_minimum\": 8529,\n        \"trust_and_service\": 1789,\n        \"cancel_penalty_amount\": 1958,\n        \"currency\": \"OFR\"\n      }\n    },\n    {\n      \"ride_type\": \"lyft_premier\",\n      \"display_name\": \"string\",\n      \"seats\": 1067,\n      \"image_url\": \"http://QwMzLTTptEydGVdjOLIEanNTt.rwgOKBHVFomnlmcDtqMyQjeAt8SzdeDu98ifPrU5XIdR3s.,\",\n      \"pricing_details\": {\n        \"base_charge\": 4292,\n        \"cost_per_mile\": 9701,\n        \"cost_per_minute\": 9844,\n        \"cost_minimum\": 387,\n        \"trust_and_service\": 5894,\n        \"cancel_penalty_amount\": 9028,\n        \"currency\": \"WXN\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79fb6d3d-5667-47be-9e59-b9512f99a6d5",
+              "name": "Bad request - invalid or missing parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ridetypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ride_type",
+                      "value": "lyft_line"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "678eff36-8a1e-419e-be2c-baf094a96243",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ridetypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ride_type",
+                      "value": "lyft_line"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lyft.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "61d071fe-4581-4a3c-b3b8-83a175d53b02",
+    "name": "Lyft Concierge Concierge Rides Ride Types API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lyft Concierge API allows organizations to request rides on behalf of their customers, patients, or employees without requiring those individuals to have a Lyft account. It is designed for enterprise use cases such as healthcare patient transportation, corporate employee transit, and customer service scenarios. The API enables organizations to build customized transportation workflows, schedule rides in advance, track ride status in real time, and manage ride programs at scale. It provides a way to embed Lyft's driver network directly into business operations and third-party applications.\n\nContact Support:\n Name: Lyft Business Support",
+      "type": "text/plain"
+    }
+  }
+}

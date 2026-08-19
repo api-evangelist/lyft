@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lyft Concierge Concierge Rides Ride Types API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ride Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List available concierge ride types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/concierge/ridetypes",
+            "params": [
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the pickup location."
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the pickup location."
+              }
+            ]
+          },
+          "docs": "Returns the ride types available for concierge bookings at the specified location. Availability may differ from consumer ride types based on the organization's concierge program configuration."
+        },
+        {
+          "info": {
+            "name": "List ride types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/ridetypes",
+            "params": [
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the location."
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the location."
+              },
+              {
+                "name": "ride_type",
+                "value": "",
+                "type": "query",
+                "description": "A specific ride type to filter by. If provided, only the specified ride type is returned."
+              }
+            ]
+          },
+          "docs": "Returns information about what kinds of Lyft rides are available at a given location. The response includes ride type identifiers, display names, pricing details, image URLs, and passenger seat capacity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

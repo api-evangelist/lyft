@@ -1,0 +1,1737 @@
+{
+  "item": [
+    {
+      "id": "fe42a548-35de-4f7b-a9f8-e6893557f30d",
+      "name": "Rides",
+      "description": {
+        "content": "Endpoints for requesting, tracking, canceling, and managing Lyft rides on behalf of an authenticated user.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "68d8f47e-338a-4a7c-9084-021a4a2ddb15",
+          "name": "List rides",
+          "request": {
+            "name": "List rides",
+            "description": {
+              "content": "Returns a list of past and current rides for the authenticated user. Results can be filtered by start and end time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rides"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<dateTime>",
+                  "description": "(Required) Restrict results to rides starting after this point in time. The value should be in ISO 8601 format."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<dateTime>",
+                  "description": "Restrict results to rides starting before this point in time. The value should be in ISO 8601 format."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of rides to return. Default is 10."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af13615c-3d87-4027-9ce8-4a4fcd803d8c",
+              "name": "Successful response with ride history",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ride_history\": [\n    {\n      \"ride_id\": \"string\",\n      \"ride_type\": \"lyft_plus\",\n      \"status\": \"droppedOff\",\n      \"origin\": {\n        \"lat\": 7607.2627943882,\n        \"lng\": 4627.34682994953,\n        \"address\": \"string\"\n      },\n      \"destination\": {\n        \"lat\": 747.4789489006572,\n        \"lng\": 6536.5995797432815,\n        \"address\": \"string\"\n      },\n      \"pickup\": {\n        \"lat\": 2904.6630515929305,\n        \"lng\": 8950.754037126428,\n        \"address\": \"string\"\n      },\n      \"dropoff\": {\n        \"lat\": 6458.8325990473495,\n        \"lng\": 1384.7750502974231,\n        \"address\": \"string\"\n      },\n      \"driver\": {\n        \"first_name\": \"string\",\n        \"phone_number\": \"string\",\n        \"rating\": \"string\",\n        \"image_url\": \"https://Q.irjk3xUd1CzJeg\"\n      },\n      \"vehicle\": {\n        \"make\": \"string\",\n        \"model\": \"string\",\n        \"year\": 4972,\n        \"license_plate\": \"string\",\n        \"license_plate_state\": \"string\",\n        \"color\": \"string\",\n        \"image_url\": \"http://DOAgPSfWJWbrkpjXqkZyTW.szfuMNc-JC65oNeTl8gNaLwt,Us8RC5KrsCR-JP+qfRw0Qho7d0pD5\"\n      },\n      \"requested_at\": \"1998-11-04T20:40:37.179Z\",\n      \"generated_at\": \"1989-01-08T20:22:01.685Z\",\n      \"price\": {\n        \"amount\": 1707,\n        \"currency\": \"OFU\",\n        \"description\": \"string\"\n      }\n    },\n    {\n      \"ride_id\": \"string\",\n      \"ride_type\": \"lyft_lux\",\n      \"status\": \"unknown\",\n      \"origin\": {\n        \"lat\": 9158.7236016367,\n        \"lng\": 1658.022287378329,\n        \"address\": \"string\"\n      },\n      \"destination\": {\n        \"lat\": 2328.53566782684,\n        \"lng\": 3238.731948964151,\n        \"address\": \"string\"\n      },\n      \"pickup\": {\n        \"lat\": 6973.362044074044,\n        \"lng\": 7125.1926694051235,\n        \"address\": \"string\"\n      },\n      \"dropoff\": {\n        \"lat\": 9541.320275632414,\n        \"lng\": 8430.188872690536,\n        \"address\": \"string\"\n      },\n      \"driver\": {\n        \"first_name\": \"string\",\n        \"phone_number\": \"string\",\n        \"rating\": \"string\",\n        \"image_url\": \"http://ABpWnqEckvDMW.nxhK0i2Ai96tapsq3V5BFbRmHA426vOaqbWLmeEuYzl5CV\"\n      },\n      \"vehicle\": {\n        \"make\": \"string\",\n        \"model\": \"string\",\n        \"year\": 2642,\n        \"license_plate\": \"string\",\n        \"license_plate_state\": \"string\",\n        \"color\": \"string\",\n        \"image_url\": \"http://CNldHjwMGKesGCigOXXYmoIxai.urgh\"\n      },\n      \"requested_at\": \"1960-09-15T00:42:45.846Z\",\n      \"generated_at\": \"1950-02-21T08:42:45.325Z\",\n      \"price\": {\n        \"amount\": 8564,\n        \"currency\": \"ILH\",\n        \"description\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3d50efb-f5d4-4f8e-b669-e7a1bc79f7d1",
+              "name": "Bad request - invalid or missing parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ce5aebe-b17f-41da-b21a-1371d10d308d",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30965c4c-7d95-4bf0-9954-8196d7efa8ae",
+          "name": "Request a ride",
+          "request": {
+            "name": "Request a ride",
+            "description": {
+              "content": "Requests a new Lyft ride on behalf of the authenticated user. The request must include a ride type and origin location. A destination may optionally be specified at the time of request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rides"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ride_type\": \"<string>\",\n  \"origin\": {\n    \"lat\": \"<double>\",\n    \"lng\": \"<double>\",\n    \"address\": \"<string>\"\n  },\n  \"destination\": {\n    \"lat\": \"<double>\",\n    \"lng\": \"<double>\",\n    \"address\": \"<string>\"\n  },\n  \"primetime_confirmation_token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "533fc24c-752f-4efb-a361-575028fe717a",
+              "name": "Ride requested successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ride_type\": \"lyft_line\",\n  \"origin\": {\n    \"lat\": 4322.810247338086,\n    \"lng\": 5789.204797518493,\n    \"address\": \"string\"\n  },\n  \"destination\": {\n    \"lat\": 4911.473647248626,\n    \"lng\": 9441.221818033622,\n    \"address\": \"string\"\n  },\n  \"primetime_confirmation_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ride_id\": \"string\",\n  \"ride_type\": \"lyft_premier\",\n  \"status\": \"accepted\",\n  \"origin\": {\n    \"lat\": 9015.904764393303,\n    \"lng\": 9394.243818896675,\n    \"address\": \"string\"\n  },\n  \"destination\": {\n    \"lat\": 4569.925693133045,\n    \"lng\": 6135.020588816167,\n    \"address\": \"string\"\n  },\n  \"pickup\": {\n    \"lat\": 5647.922037350472,\n    \"lng\": 7344.030082636405,\n    \"address\": \"string\"\n  },\n  \"dropoff\": {\n    \"lat\": 8059.737423921251,\n    \"lng\": 7949.518180811501,\n    \"address\": \"string\"\n  },\n  \"driver\": {\n    \"first_name\": \"string\",\n    \"phone_number\": \"string\",\n    \"rating\": \"string\",\n    \"image_url\": \"https://UolomAeDjjqVvsPfpffaIMBRfzRO.ulviJI1HEvg,JTo+tMArWa3S35oeVgTlev66jagXWY0fhFLOGkHNV2F.aIUAN4eReVC46\"\n  },\n  \"vehicle\": {\n    \"make\": \"string\",\n    \"model\": \"string\",\n    \"year\": 454,\n    \"license_plate\": \"string\",\n    \"license_plate_state\": \"string\",\n    \"color\": \"string\",\n    \"image_url\": \"https://TYQhjilXzGwIwNuM.gvEJn6s8MWy,jcwgjDhWIV5kGtPlXLsMzbyYf6LbYaDsCBGZJqJBtr2kbN2ij1\"\n  },\n  \"requested_at\": \"1973-10-16T04:50:50.983Z\",\n  \"generated_at\": \"2022-04-13T17:20:40.030Z\",\n  \"price\": {\n    \"amount\": 4303,\n    \"currency\": \"XPX\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5918e464-9003-4433-ad1c-f2940dc2070d",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ride_type\": \"lyft_line\",\n  \"origin\": {\n    \"lat\": 4322.810247338086,\n    \"lng\": 5789.204797518493,\n    \"address\": \"string\"\n  },\n  \"destination\": {\n    \"lat\": 4911.473647248626,\n    \"lng\": 9441.221818033622,\n    \"address\": \"string\"\n  },\n  \"primetime_confirmation_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "14ec6bfa-ccd5-426b-9fb8-06d4c259b333",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ride_type\": \"lyft_line\",\n  \"origin\": {\n    \"lat\": 4322.810247338086,\n    \"lng\": 5789.204797518493,\n    \"address\": \"string\"\n  },\n  \"destination\": {\n    \"lat\": 4911.473647248626,\n    \"lng\": 9441.221818033622,\n    \"address\": \"string\"\n  },\n  \"primetime_confirmation_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "55a68a28-3a9b-42df-83ee-2f3e6762a6b0",
+              "name": "No drivers available",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ride_type\": \"lyft_line\",\n  \"origin\": {\n    \"lat\": 4322.810247338086,\n    \"lng\": 5789.204797518493,\n    \"address\": \"string\"\n  },\n  \"destination\": {\n    \"lat\": 4911.473647248626,\n    \"lng\": 9441.221818033622,\n    \"address\": \"string\"\n  },\n  \"primetime_confirmation_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e958ee32-745e-48b7-a47f-d6349070314f",
+          "name": "Get ride detail",
+          "request": {
+            "name": "Get ride detail",
+            "description": {
+              "content": "Returns the details of a specific ride identified by its ride ID, including status, origin, destination, driver information, and vehicle details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rides",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the ride."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db20571f-023e-48c7-97e6-891b2ec08e47",
+              "name": "Successful response with ride details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ride_id\": \"string\",\n  \"ride_type\": \"lyft_premier\",\n  \"status\": \"accepted\",\n  \"origin\": {\n    \"lat\": 9015.904764393303,\n    \"lng\": 9394.243818896675,\n    \"address\": \"string\"\n  },\n  \"destination\": {\n    \"lat\": 4569.925693133045,\n    \"lng\": 6135.020588816167,\n    \"address\": \"string\"\n  },\n  \"pickup\": {\n    \"lat\": 5647.922037350472,\n    \"lng\": 7344.030082636405,\n    \"address\": \"string\"\n  },\n  \"dropoff\": {\n    \"lat\": 8059.737423921251,\n    \"lng\": 7949.518180811501,\n    \"address\": \"string\"\n  },\n  \"driver\": {\n    \"first_name\": \"string\",\n    \"phone_number\": \"string\",\n    \"rating\": \"string\",\n    \"image_url\": \"https://UolomAeDjjqVvsPfpffaIMBRfzRO.ulviJI1HEvg,JTo+tMArWa3S35oeVgTlev66jagXWY0fhFLOGkHNV2F.aIUAN4eReVC46\"\n  },\n  \"vehicle\": {\n    \"make\": \"string\",\n    \"model\": \"string\",\n    \"year\": 454,\n    \"license_plate\": \"string\",\n    \"license_plate_state\": \"string\",\n    \"color\": \"string\",\n    \"image_url\": \"https://TYQhjilXzGwIwNuM.gvEJn6s8MWy,jcwgjDhWIV5kGtPlXLsMzbyYf6LbYaDsCBGZJqJBtr2kbN2ij1\"\n  },\n  \"requested_at\": \"1973-10-16T04:50:50.983Z\",\n  \"generated_at\": \"2022-04-13T17:20:40.030Z\",\n  \"price\": {\n    \"amount\": 4303,\n    \"currency\": \"XPX\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f43940a6-6b73-471a-b236-0008dc5f3f7a",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8a18b9db-2421-4895-b57e-c89114113321",
+              "name": "Ride not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9101c426-f343-43a4-883f-361719a73c02",
+          "name": "Cancel a ride",
+          "request": {
+            "name": "Cancel a ride",
+            "description": {
+              "content": "Cancels an ongoing or requested ride. If the ride has already been matched with a driver, a cancellation fee may apply depending on how long the driver has been en route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rides",
+                ":id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the ride."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cancel_confirmation_token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5c9e71b1-887b-485c-bbef-579bc6b65fd5",
+              "name": "Ride canceled successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cancel_confirmation_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c2daae5f-5567-4539-a0dc-27d532ac35cb",
+              "name": "Bad request - ride cannot be canceled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cancel_confirmation_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ab7d4ae4-5c42-4ca7-8227-691fdd300427",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cancel_confirmation_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6a973cd0-a610-4b78-bdf4-2cb9058c7844",
+              "name": "Ride not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cancel_confirmation_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6365c75e-f79d-46f9-b800-d6043f94c658",
+          "name": "Update ride destination",
+          "request": {
+            "name": "Update ride destination",
+            "description": {
+              "content": "Updates the destination of an active ride. This can be used to change or set the drop-off location while a ride is in progress.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rides",
+                ":id",
+                "destination"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the ride."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lat\": \"<double>\",\n  \"lng\": \"<double>\",\n  \"address\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0a0f4794-674e-435e-bca2-045d7224a03a",
+              "name": "Destination updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id",
+                    "destination"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lat\": \"<double>\",\n  \"lng\": \"<double>\",\n  \"address\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lat\": 5668.623434546631,\n  \"lng\": 7607.612625408407,\n  \"address\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c7a8178-06b1-4c09-8a6c-8452e56ece94",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id",
+                    "destination"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lat\": \"<double>\",\n  \"lng\": \"<double>\",\n  \"address\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a3cd48dc-dfe0-4d09-907a-252ce0d72db2",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id",
+                    "destination"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lat\": \"<double>\",\n  \"lng\": \"<double>\",\n  \"address\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "24a3e308-30cf-4c33-a38d-62db1e485040",
+              "name": "Ride not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id",
+                    "destination"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lat\": \"<double>\",\n  \"lng\": \"<double>\",\n  \"address\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2b56c0f-c620-4423-992a-ca6353e4d000",
+          "name": "Rate a ride",
+          "request": {
+            "name": "Rate a ride",
+            "description": {
+              "content": "Submits the passenger's rating for a completed ride. The rating includes a star score and optionally a tip amount and text feedback.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rides",
+                ":id",
+                "rating"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the ride."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": \"<integer>\",\n  \"tip\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"feedback\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7194c22f-58e5-4423-b162-619c90958590",
+              "name": "Rating submitted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id",
+                    "rating"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rating\": \"<integer>\",\n  \"tip\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"feedback\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c9b051ca-5112-4d52-ae24-cfb3ddae8583",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id",
+                    "rating"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rating\": \"<integer>\",\n  \"tip\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"feedback\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7d7c97cb-b990-4dc1-b34d-e937dce1d5e3",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id",
+                    "rating"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rating\": \"<integer>\",\n  \"tip\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"feedback\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "35419acf-2e83-453e-8641-a6200ed1421c",
+              "name": "Ride not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id",
+                    "rating"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rating\": \"<integer>\",\n  \"tip\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"feedback\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17e9669f-83d2-4f9e-8063-d9c4830cf5c1",
+          "name": "Get ride receipt",
+          "request": {
+            "name": "Get ride receipt",
+            "description": {
+              "content": "Returns the receipt for a completed ride, including fare breakdown, charges, credits applied, and total cost.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rides",
+                ":id",
+                "receipt"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the ride."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4aa1e29f-8ac6-4cd0-bb65-89498a4556d4",
+              "name": "Successful response with ride receipt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id",
+                    "receipt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ride_id\": \"string\",\n  \"price\": {\n    \"amount\": 6748,\n    \"currency\": \"OIX\",\n    \"description\": \"string\"\n  },\n  \"line_items\": [\n    {\n      \"type\": \"string\",\n      \"amount\": 9302,\n      \"currency\": \"WPL\"\n    },\n    {\n      \"type\": \"string\",\n      \"amount\": 1475,\n      \"currency\": \"PWO\"\n    }\n  ],\n  \"charges\": [\n    {\n      \"amount\": 152,\n      \"currency\": \"RPY\",\n      \"payment_method\": \"string\"\n    },\n    {\n      \"amount\": 1040,\n      \"currency\": \"VIN\",\n      \"payment_method\": \"string\"\n    }\n  ],\n  \"requested_at\": \"1956-01-06T13:13:23.250Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf0e408d-039a-4b7c-b50b-b74a61fcd5ba",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id",
+                    "receipt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "89d7f5b3-1a1b-40c2-b61f-52bf5551e33f",
+              "name": "Ride not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rides",
+                    ":id",
+                    "receipt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ride."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lyft.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "29cfa9d9-1211-4dda-9f27-ca9716b74a68",
+    "name": "Lyft Concierge Concierge Rides API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lyft Concierge API allows organizations to request rides on behalf of their customers, patients, or employees without requiring those individuals to have a Lyft account. It is designed for enterprise use cases such as healthcare patient transportation, corporate employee transit, and customer service scenarios. The API enables organizations to build customized transportation workflows, schedule rides in advance, track ride status in real time, and manage ride programs at scale. It provides a way to embed Lyft's driver network directly into business operations and third-party applications.\n\nContact Support:\n Name: Lyft Business Support",
+      "type": "text/plain"
+    }
+  }
+}

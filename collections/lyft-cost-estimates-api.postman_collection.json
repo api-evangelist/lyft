@@ -1,0 +1,545 @@
+{
+  "item": [
+    {
+      "id": "071d89cc-a40e-4855-aba0-da0ce4c951f2",
+      "name": "Cost Estimates",
+      "description": {
+        "content": "Endpoints for estimating ride costs for concierge bookings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e43c194f-1b5b-4bee-93b1-a28a5832ea90",
+          "name": "List concierge cost estimates",
+          "request": {
+            "name": "List concierge cost estimates",
+            "description": {
+              "content": "Returns estimated costs for concierge rides between two locations. Cost estimates reflect the organization's concierge pricing, which may differ from consumer pricing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "concierge",
+                "cost"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_lat",
+                  "value": "<double>",
+                  "description": "(Required) Latitude of the pickup location."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_lng",
+                  "value": "<double>",
+                  "description": "(Required) Longitude of the pickup location."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_lat",
+                  "value": "<double>",
+                  "description": "(Required) Latitude of the destination location."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_lng",
+                  "value": "<double>",
+                  "description": "(Required) Longitude of the destination location."
+                },
+                {
+                  "disabled": false,
+                  "key": "ride_type",
+                  "value": "<string>",
+                  "description": "Filter cost estimates by a specific ride type."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ad4beaf-2e77-4ef4-878d-45f23b3b8723",
+              "name": "Successful response with cost estimates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "start_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ride_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cost_estimates\": [\n    {\n      \"ride_type\": \"string\",\n      \"display_name\": \"string\",\n      \"currency\": \"VJY\",\n      \"estimated_cost_cents_min\": 7229,\n      \"estimated_cost_cents_max\": 3347,\n      \"estimated_distance_miles\": 5909.589775382295,\n      \"estimated_duration_seconds\": 4946\n    },\n    {\n      \"ride_type\": \"string\",\n      \"display_name\": \"string\",\n      \"currency\": \"BSJ\",\n      \"estimated_cost_cents_min\": 4461,\n      \"estimated_cost_cents_max\": 7784,\n      \"estimated_distance_miles\": 2150.5196750865207,\n      \"estimated_duration_seconds\": 1266\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dba84268-2cfd-4376-b6df-71e682cfa977",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "start_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ride_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d161b43f-6451-4e63-a8ef-b5d6b6664c1b",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "concierge",
+                    "cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "start_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ride_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08206837-b8d3-4722-bd4e-93953934c9b2",
+          "name": "List cost estimates",
+          "request": {
+            "name": "List cost estimates",
+            "description": {
+              "content": "Returns the estimated cost, distance, and duration of a ride between a start and end location. Cost estimates are returned for all available ride types unless a specific ride type filter is applied. Amounts are returned in the smallest denomination of the applicable currency.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cost"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_lat",
+                  "value": "<double>",
+                  "description": "(Required) Latitude of the starting location."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_lng",
+                  "value": "<double>",
+                  "description": "(Required) Longitude of the starting location."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_lat",
+                  "value": "<double>",
+                  "description": "(Required) Latitude of the destination location."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_lng",
+                  "value": "<double>",
+                  "description": "(Required) Longitude of the destination location."
+                },
+                {
+                  "disabled": false,
+                  "key": "ride_type",
+                  "value": "<string>",
+                  "description": "A specific ride type to filter cost estimates by."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34c8788f-6c2a-44d1-9986-3ea68cd8f275",
+              "name": "Successful response with cost estimates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "start_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ride_type",
+                      "value": "lyft_premier"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cost_estimates\": [\n    {\n      \"ride_type\": \"lyft_lux\",\n      \"display_name\": \"string\",\n      \"currency\": \"MCX\",\n      \"estimated_cost_cents_min\": 4675,\n      \"estimated_cost_cents_max\": 5481,\n      \"estimated_distance_miles\": 4135.9902367318555,\n      \"estimated_duration_seconds\": 9875,\n      \"primetime_percentage\": \"string\",\n      \"primetime_confirmation_token\": \"string\"\n    },\n    {\n      \"ride_type\": \"lyft_lux\",\n      \"display_name\": \"string\",\n      \"currency\": \"ZTH\",\n      \"estimated_cost_cents_min\": 2871,\n      \"estimated_cost_cents_max\": 8190,\n      \"estimated_distance_miles\": 2740.5671470698767,\n      \"estimated_duration_seconds\": 7406,\n      \"primetime_percentage\": \"string\",\n      \"primetime_confirmation_token\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19d84a19-3f26-4a3f-95bb-d29ce7c8a5a7",
+              "name": "Bad request - invalid or missing parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "start_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ride_type",
+                      "value": "lyft_premier"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a2e87743-327b-4dcb-a0eb-4b45d01c33a8",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cost"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "start_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "end_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ride_type",
+                      "value": "lyft_premier"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lyft.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cfa4ad50-7cff-4a29-b7a9-62b4e0d85231",
+    "name": "Lyft Concierge Concierge Rides Cost Estimates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lyft Concierge API allows organizations to request rides on behalf of their customers, patients, or employees without requiring those individuals to have a Lyft account. It is designed for enterprise use cases such as healthcare patient transportation, corporate employee transit, and customer service scenarios. The API enables organizations to build customized transportation workflows, schedule rides in advance, track ride status in real time, and manage ride programs at scale. It provides a way to embed Lyft's driver network directly into business operations and third-party applications.\n\nContact Support:\n Name: Lyft Business Support",
+      "type": "text/plain"
+    }
+  }
+}

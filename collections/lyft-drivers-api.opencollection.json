@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lyft Concierge Concierge Rides Drivers API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Drivers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List nearby drivers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/drivers",
+            "params": [
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the location."
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the location."
+              }
+            ]
+          },
+          "docs": "Returns the positions of nearby drivers for each ride type at the specified location. This endpoint is useful for displaying driver availability on a map."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

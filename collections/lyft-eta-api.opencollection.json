@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lyft Concierge Concierge Rides ETA API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ETA",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List pickup ETAs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/eta",
+            "params": [
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the location."
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the location."
+              },
+              {
+                "name": "destination_lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the destination location for improved ETA accuracy."
+              },
+              {
+                "name": "destination_lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the destination location for improved ETA accuracy."
+              },
+              {
+                "name": "ride_type",
+                "value": "",
+                "type": "query",
+                "description": "A specific ride type to filter ETA results by."
+              }
+            ]
+          },
+          "docs": "Returns the estimated time in seconds for the nearest driver to reach the specified pickup location. ETAs can be filtered by ride type and optionally account for a destination location to improve accuracy."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

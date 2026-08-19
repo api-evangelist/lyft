@@ -1,0 +1,177 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lyft Concierge Concierge Rides API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rides",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List rides",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/rides",
+            "params": [
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to rides starting after this point in time. The value should be in ISO 8601 format."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to rides starting before this point in time. The value should be in ISO 8601 format."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of rides to return. Default is 10."
+              }
+            ]
+          },
+          "docs": "Returns a list of past and current rides for the authenticated user. Results can be filtered by start and end time."
+        },
+        {
+          "info": {
+            "name": "Request a ride",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lyft.com/v1/rides",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Requests a new Lyft ride on behalf of the authenticated user. The request must include a ride type and origin location. A destination may optionally be specified at the time of request."
+        },
+        {
+          "info": {
+            "name": "Get ride detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/rides/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ride."
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific ride identified by its ride ID, including status, origin, destination, driver information, and vehicle details."
+        },
+        {
+          "info": {
+            "name": "Cancel a ride",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lyft.com/v1/rides/:id/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ride."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels an ongoing or requested ride. If the ride has already been matched with a driver, a cancellation fee may apply depending on how long the driver has been en route."
+        },
+        {
+          "info": {
+            "name": "Update ride destination",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lyft.com/v1/rides/:id/destination",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ride."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the destination of an active ride. This can be used to change or set the drop-off location while a ride is in progress."
+        },
+        {
+          "info": {
+            "name": "Rate a ride",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lyft.com/v1/rides/:id/rating",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ride."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits the passenger's rating for a completed ride. The rating includes a star score and optionally a tip amount and text feedback."
+        },
+        {
+          "info": {
+            "name": "Get ride receipt",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/rides/:id/receipt",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ride."
+              }
+            ]
+          },
+          "docs": "Returns the receipt for a completed ride, including fare breakdown, charges, credits applied, and total cost."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

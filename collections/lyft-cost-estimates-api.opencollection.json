@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lyft Concierge Concierge Rides Cost Estimates API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cost Estimates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List concierge cost estimates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/concierge/cost",
+            "params": [
+              {
+                "name": "start_lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the pickup location."
+              },
+              {
+                "name": "start_lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the pickup location."
+              },
+              {
+                "name": "end_lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the destination location."
+              },
+              {
+                "name": "end_lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the destination location."
+              },
+              {
+                "name": "ride_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter cost estimates by a specific ride type."
+              }
+            ]
+          },
+          "docs": "Returns estimated costs for concierge rides between two locations. Cost estimates reflect the organization's concierge pricing, which may differ from consumer pricing."
+        },
+        {
+          "info": {
+            "name": "List cost estimates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lyft.com/v1/cost",
+            "params": [
+              {
+                "name": "start_lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the starting location."
+              },
+              {
+                "name": "start_lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the starting location."
+              },
+              {
+                "name": "end_lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the destination location."
+              },
+              {
+                "name": "end_lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the destination location."
+              },
+              {
+                "name": "ride_type",
+                "value": "",
+                "type": "query",
+                "description": "A specific ride type to filter cost estimates by."
+              }
+            ]
+          },
+          "docs": "Returns the estimated cost, distance, and duration of a ride between a start and end location. Cost estimates are returned for all available ride types unless a specific ride type filter is applied. Amounts are returned in the smallest denomination of the applicable currency."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

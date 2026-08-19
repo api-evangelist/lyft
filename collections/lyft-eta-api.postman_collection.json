@@ -1,0 +1,291 @@
+{
+  "item": [
+    {
+      "id": "8313e8e0-749c-4489-8eea-22451ea142c5",
+      "name": "ETA",
+      "description": {
+        "content": "Endpoints for estimating the time for the nearest driver to reach a specified pickup location.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ce658e7a-fdbf-47b7-a560-00676fd3fdb3",
+          "name": "List pickup ETAs",
+          "request": {
+            "name": "List pickup ETAs",
+            "description": {
+              "content": "Returns the estimated time in seconds for the nearest driver to reach the specified pickup location. ETAs can be filtered by ride type and optionally account for a destination location to improve accuracy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eta"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<double>",
+                  "description": "(Required) Latitude of the location."
+                },
+                {
+                  "disabled": false,
+                  "key": "lng",
+                  "value": "<double>",
+                  "description": "(Required) Longitude of the location."
+                },
+                {
+                  "disabled": false,
+                  "key": "destination_lat",
+                  "value": "<double>",
+                  "description": "Latitude of the destination location for improved ETA accuracy."
+                },
+                {
+                  "disabled": false,
+                  "key": "destination_lng",
+                  "value": "<double>",
+                  "description": "Longitude of the destination location for improved ETA accuracy."
+                },
+                {
+                  "disabled": false,
+                  "key": "ride_type",
+                  "value": "<string>",
+                  "description": "A specific ride type to filter ETA results by."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c71a5660-0b4c-47ab-a748-36a5faaf329c",
+              "name": "Successful response with ETA estimates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eta"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "destination_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "destination_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ride_type",
+                      "value": "lyft_lux"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"eta_estimates\": [\n    {\n      \"ride_type\": \"lyft_line\",\n      \"display_name\": \"string\",\n      \"eta_seconds\": 9331,\n      \"is_valid_estimate\": true\n    },\n    {\n      \"ride_type\": \"lyft_premier\",\n      \"display_name\": \"string\",\n      \"eta_seconds\": 6238,\n      \"is_valid_estimate\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5adf705b-3ae5-4df9-b0db-2e9e326d8f31",
+              "name": "Bad request - invalid or missing parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eta"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "destination_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "destination_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ride_type",
+                      "value": "lyft_lux"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bf2deb78-8923-47d4-8f3a-dc7d80dcf052",
+              "name": "Unauthorized - invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eta"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "destination_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "destination_lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ride_type",
+                      "value": "lyft_lux"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lyft.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0163ba2d-94f9-424b-82f7-6e3bc079043a",
+    "name": "Lyft Concierge Concierge Rides ETA API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lyft Concierge API allows organizations to request rides on behalf of their customers, patients, or employees without requiring those individuals to have a Lyft account. It is designed for enterprise use cases such as healthcare patient transportation, corporate employee transit, and customer service scenarios. The API enables organizations to build customized transportation workflows, schedule rides in advance, track ride status in real time, and manage ride programs at scale. It provides a way to embed Lyft's driver network directly into business operations and third-party applications.\n\nContact Support:\n Name: Lyft Business Support",
+      "type": "text/plain"
+    }
+  }
+}
