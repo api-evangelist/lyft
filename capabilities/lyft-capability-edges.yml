@@ -1,0 +1,54 @@
+slug: lyft
+provider: lyft
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Automotive & Mobility
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Concierge Rides
+  spec_file: lyft-concierge-rides-api-openapi.yml
+  capability_id: BC-3490.20
+  capability_id_l1: BC-3490
+  capability_name: Trip and Booking Operations
+  confidence: 0.92
+  evidence: POST /concierge/rides createConciergeRide  Create a concierge ride; POST /concierge/rides/{id}/cancel  Cancel
+    a concierge ride; GET /concierge/rides/{id}/status
+  reason: Operations create, retrieve, track and cancel on-demand rides on behalf of passengers — the
+    capture, dispatch and lifecycle management of mobility bookings and trips.
+- tag: Rides
+  spec_file: lyft-rides-api-openapi.yml
+  capability_id: BC-3490.20
+  capability_id_l1: BC-3490
+  capability_name: Trip and Booking Operations
+  confidence: 0.92
+  evidence: POST /rides  createRide  Request a ride; PUT /rides/{id}/destination  Update ride destination;
+    GET /rides/{id}/receipt  Get ride receipt
+  reason: Full trip lifecycle — request, track, modify destination, cancel, rate and receipt — which is
+    the core trip and booking operations capability of a ride-hailing operator.
+- tag: Ride Types
+  spec_file: lyft-ride-types-api-openapi.yml
+  capability_id: BC-3490.10
+  capability_id_l1: BC-3490
+  capability_name: Mobility Service Catalogue Management
+  confidence: 0.78
+  evidence: 'GET /ridetypes  listRideTypes  List ride types; schemas: ConciergeRideType, RideType, PricingDetails'
+  reason: Exposes the catalogue of available mobility service types with pricing details and availability
+    by location, matching mobility service catalogue management.
+- tag: Cost Estimates
+  spec_file: lyft-cost-estimates-api-openapi.yml
+  capability_id: BC-3490
+  capability_id_l1: BC-3490
+  capability_name: Mobility Services Operations Management
+  confidence: 0.7
+  evidence: 'GET /concierge/cost  listConciergeCostEstimates  List concierge cost estimates; schemas:
+    CostEstimate, ConciergeCostEstimate, RideTypeEnum'
+  reason: Pre-booking fare estimation for ride-hailing trips — clearly mobility services operations, but
+    sits between trip/booking operations and pricing management, so no L2 is asserted.

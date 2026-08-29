@@ -145,6 +145,9 @@ apis:
   - type: Documentation
     url: https://www.lyft.com/developers/products/concierge-api
 common:
+- type: CapabilityMap
+  url: capabilities/lyft-capability-edges.yml
+  name: lyft Business Capability Map
 - type: AgenticAccess
   url: agentic-access/lyft-agentic-access.yml
 - type: DomainSecurity
