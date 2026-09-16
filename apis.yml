@@ -31,9 +31,8 @@ url: https://raw.githubusercontent.com/api-evangelist/lyft/refs/heads/main/apis.
 apis:
 - aid: lyft:lyft-concierge-rides-api
   name: lyft Concierge Rides API
-  description: >-
-    Endpoints for creating, scheduling, tracking, and managing rides on behalf of passengers who may not
-    have a Lyft account.
+  description: Endpoints for creating, scheduling, tracking, and managing rides on behalf of passengers
+    who may not have a Lyft account.
   humanURL: https://developer.lyft.com/docs
   baseURL: https://api.lyft.com
   tags:
@@ -81,8 +80,7 @@ apis:
     url: https://www.lyft.com/developers/products/concierge-api
 - aid: lyft:lyft-eta-api
   name: lyft ETA API
-  description: >-
-    Endpoints for estimating the time for the nearest driver to reach a specified pickup location.
+  description: Endpoints for estimating the time for the nearest driver to reach a specified pickup location.
   humanURL: https://developer.lyft.com/docs
   baseURL: https://api.lyft.com
   tags:
@@ -130,9 +128,8 @@ apis:
     url: https://www.lyft.com/developers/products/concierge-api
 - aid: lyft:lyft-rides-api
   name: lyft Rides API
-  description: >-
-    Endpoints for requesting, tracking, canceling, and managing Lyft rides on behalf of an authenticated
-    user.
+  description: Endpoints for requesting, tracking, canceling, and managing Lyft rides on behalf of an
+    authenticated user.
   humanURL: https://developer.lyft.com/docs
   baseURL: https://api.lyft.com
   tags:
@@ -147,6 +144,8 @@ apis:
   - type: Documentation
     url: https://www.lyft.com/developers/products/concierge-api
 common:
+- type: Website
+  url: https://lyft.com
 - type: CapabilityMap
   url: capabilities/lyft-capability-edges.yml
   name: lyft Business Capability Map
@@ -170,7 +169,6 @@ common:
   url: json-schema/lyft-cost-estimate-schema.json
 - url: https://www.lyft.com/blog
   type: Blog
-modified: '2026-05-19'
-description: Lyft is a transportation network company that develops, markets, and
-  operates a mobile app offering ride-hailing, vehicles for hire, motorized scooters,
-  bicycle-sharing, and food delivery services.
+modified: '2026-09-16'
+description: Lyft is a transportation network company that develops, markets, and operates a mobile app
+  offering ride-hailing, vehicles for hire, motorized scooters, bicycle-sharing, and food delivery services.
