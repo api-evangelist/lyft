@@ -33,7 +33,7 @@ apis:
   name: lyft Concierge Rides API
   description: Endpoints for creating, scheduling, tracking, and managing rides on behalf of passengers
     who may not have a Lyft account.
-  humanURL: https://developer.lyft.com/docs
+  humanURL: https://www.lyft.com/developers
   baseURL: https://api.lyft.com
   tags:
   - Concierge Rides
@@ -41,15 +41,16 @@ apis:
   - type: OpenAPI
     url: openapi/lyft-concierge-rides-api-openapi.yml
   - type: Documentation
-    url: https://developer.lyft.com/docs
-  - type: GraphQL
-    url: graphql/lyft-graphql.md
-  - type: Documentation
     url: https://www.lyft.com/developers/products/concierge-api
+  - type: Documentation
+    url: https://help.lyft.com/business/hc/en-us/articles/360001599667-Concierge-API-overview
+    name: Concierge API overview (public help centre)
+  - type: Overlay
+    url: overlays/lyft-concierge-rides-api-overlay.yaml
 - aid: lyft:lyft-cost-estimates-api
   name: lyft Cost Estimates API
   description: Endpoints for estimating ride costs for concierge bookings.
-  humanURL: https://developer.lyft.com/docs
+  humanURL: https://www.lyft.com/developers
   baseURL: https://api.lyft.com
   tags:
   - Cost Estimates
@@ -57,15 +58,16 @@ apis:
   - type: OpenAPI
     url: openapi/lyft-cost-estimates-api-openapi.yml
   - type: Documentation
-    url: https://developer.lyft.com/docs
-  - type: GraphQL
-    url: graphql/lyft-graphql.md
-  - type: Documentation
     url: https://www.lyft.com/developers/products/concierge-api
+  - type: Documentation
+    url: https://help.lyft.com/business/hc/en-us/articles/360001599667-Concierge-API-overview
+    name: Concierge API overview (public help centre)
+  - type: Overlay
+    url: overlays/lyft-cost-estimates-api-overlay.yaml
 - aid: lyft:lyft-drivers-api
   name: lyft Drivers API
   description: Endpoints for checking the availability and proximity of nearby Lyft drivers.
-  humanURL: https://developer.lyft.com/docs
+  humanURL: https://www.lyft.com/developers
   baseURL: https://api.lyft.com
   tags:
   - Drivers
@@ -73,15 +75,16 @@ apis:
   - type: OpenAPI
     url: openapi/lyft-drivers-api-openapi.yml
   - type: Documentation
-    url: https://developer.lyft.com/docs
-  - type: GraphQL
-    url: graphql/lyft-graphql.md
-  - type: Documentation
     url: https://www.lyft.com/developers/products/concierge-api
+  - type: Documentation
+    url: https://help.lyft.com/business/hc/en-us/articles/360001599667-Concierge-API-overview
+    name: Concierge API overview (public help centre)
+  - type: Overlay
+    url: overlays/lyft-drivers-api-overlay.yaml
 - aid: lyft:lyft-eta-api
   name: lyft ETA API
   description: Endpoints for estimating the time for the nearest driver to reach a specified pickup location.
-  humanURL: https://developer.lyft.com/docs
+  humanURL: https://www.lyft.com/developers
   baseURL: https://api.lyft.com
   tags:
   - ETA
@@ -89,31 +92,35 @@ apis:
   - type: OpenAPI
     url: openapi/lyft-eta-api-openapi.yml
   - type: Documentation
-    url: https://developer.lyft.com/docs
-  - type: GraphQL
-    url: graphql/lyft-graphql.md
-  - type: Documentation
     url: https://www.lyft.com/developers/products/concierge-api
+  - type: Documentation
+    url: https://help.lyft.com/business/hc/en-us/articles/360001599667-Concierge-API-overview
+    name: Concierge API overview (public help centre)
+  - type: Overlay
+    url: overlays/lyft-eta-api-overlay.yaml
 - aid: lyft:lyft-profile-api
   name: lyft Profile API
   description: Endpoints for retrieving profile information for the authenticated Lyft user.
-  humanURL: https://developer.lyft.com/docs
+  humanURL: https://www.lyft.com/developers
   baseURL: https://api.lyft.com
   tags:
+  - Profiles
+  tags_raw:
   - Profile
   properties:
   - type: OpenAPI
     url: openapi/lyft-profile-api-openapi.yml
   - type: Documentation
-    url: https://developer.lyft.com/docs
-  - type: GraphQL
-    url: graphql/lyft-graphql.md
-  - type: Documentation
     url: https://www.lyft.com/developers/products/concierge-api
+  - type: Documentation
+    url: https://help.lyft.com/business/hc/en-us/articles/360001599667-Concierge-API-overview
+    name: Concierge API overview (public help centre)
+  - type: Overlay
+    url: overlays/lyft-profile-api-overlay.yaml
 - aid: lyft:lyft-ride-types-api
   name: lyft Ride Types API
   description: Endpoints for retrieving available ride types for concierge bookings.
-  humanURL: https://developer.lyft.com/docs
+  humanURL: https://www.lyft.com/developers
   baseURL: https://api.lyft.com
   tags:
   - Ride Types
@@ -121,16 +128,17 @@ apis:
   - type: OpenAPI
     url: openapi/lyft-ride-types-api-openapi.yml
   - type: Documentation
-    url: https://developer.lyft.com/docs
-  - type: GraphQL
-    url: graphql/lyft-graphql.md
-  - type: Documentation
     url: https://www.lyft.com/developers/products/concierge-api
+  - type: Documentation
+    url: https://help.lyft.com/business/hc/en-us/articles/360001599667-Concierge-API-overview
+    name: Concierge API overview (public help centre)
+  - type: Overlay
+    url: overlays/lyft-ride-types-api-overlay.yaml
 - aid: lyft:lyft-rides-api
   name: lyft Rides API
   description: Endpoints for requesting, tracking, canceling, and managing Lyft rides on behalf of an
     authenticated user.
-  humanURL: https://developer.lyft.com/docs
+  humanURL: https://www.lyft.com/developers
   baseURL: https://api.lyft.com
   tags:
   - Rides
@@ -138,12 +146,54 @@ apis:
   - type: OpenAPI
     url: openapi/lyft-rides-api-openapi.yml
   - type: Documentation
-    url: https://developer.lyft.com/docs
-  - type: GraphQL
-    url: graphql/lyft-graphql.md
-  - type: Documentation
     url: https://www.lyft.com/developers/products/concierge-api
+  - type: Documentation
+    url: https://help.lyft.com/business/hc/en-us/articles/360001599667-Concierge-API-overview
+    name: Concierge API overview (public help centre)
+  - type: Overlay
+    url: overlays/lyft-rides-api-overlay.yaml
+- aid: lyft:lyft-gbfs-feeds
+  name: Lyft Micromobility GBFS Feeds
+  description: Live General Bikeshare Feed Specification (GBFS) feeds for the eight bikeshare and scooter
+    systems Lyft operates — Citi Bike, Divvy, Bay Wheels, Bluebikes, Capital Bikeshare, Biketown, Lyft
+    Scooters DC and Lyft Denver. Station inventory and status, free-floating vehicles, vehicle types,
+    service alerts, system hours and regions, and machine-readable consumer ride pricing, all served anonymously
+    from Lyft's own host with no key and no account. 96 feed endpoints across 8 systems, GBFS 1.1 and
+    2.3.
+  humanURL: https://www.lyft.com/bikes
+  baseURL: https://gbfs.lyft.com
+  tags:
+  - GBFS
+  - Micromobility
+  - Bike Share
+  - Scooters
+  - Stations
+  - Open Data
+  tags_raw:
+  - GBFS
+  - Micromobility
+  - Bikeshare
+  - Scooters
+  - Stations
+  - Open Data
+  properties:
+  - type: GBFS
+    url: gbfs/lyft-gbfs.yml
+    name: Lyft GBFS feed index (8 systems, probed 2026-09-17)
+  - type: GBFS
+    url: https://gbfs.lyft.com/gbfs/2.3/dca/gbfs.json
+    name: GBFS auto-discovery — Lyft Scooters, Washington DC
+  - type: GBFS
+    url: https://gbfs.citibikenyc.com/gbfs/2.3/gbfs.json
+    name: GBFS auto-discovery — Citi Bike (feeds served from gbfs.lyft.com)
+  - type: Documentation
+    url: https://github.com/MobilityData/gbfs/blob/master/gbfs.md
+    name: GBFS specification
+  - type: AgentSkill
+    url: skills/lyft-read-micromobility-feeds.md
 common:
+- type: VulnerabilityDisclosure
+  url: security/lyft-vulnerability-disclosure.yml
 - type: Website
   url: https://lyft.com
 - type: CapabilityMap
@@ -169,6 +219,116 @@ common:
   url: json-schema/lyft-cost-estimate-schema.json
 - url: https://www.lyft.com/blog
   type: Blog
-modified: '2026-09-16'
-description: Lyft is a transportation network company that develops, markets, and operates a mobile app
-  offering ride-hailing, vehicles for hire, motorized scooters, bicycle-sharing, and food delivery services.
+- type: WellKnown
+  url: well-known/lyft-well-known.yml
+- type: OAuthScopes
+  url: scopes/lyft-scopes.yml
+- type: Packages
+  url: packages/lyft-packages.yml
+- type: SDKs
+  url: packages/lyft-packages.yml
+  name: Four first-party SDKs (Node, Android, iOS, Go) — all dormant
+- type: Conformance
+  url: conformance/lyft-conformance.yml
+- type: ErrorCatalog
+  url: errors/lyft-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/lyft-lifecycle.yml
+- type: Conventions
+  url: conventions/lyft-conventions.yml
+- type: DataModel
+  url: data-model/lyft-data-model.yml
+- type: X-MCPServerCandidate
+  url: mcp/lyft-mcp.yml
+  name: Derived candidate — Lyft ships no reachable MCP server
+- type: Webhooks
+  url: asyncapi/lyft-webhooks.yml
+  name: Subscription scopes published; no event catalogue
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/lyft-llms.txt
+- type: Plans
+  url: plans/lyft-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/lyft-rate-limits.yml
+- type: FinOps
+  url: finops/lyft-finops.yml
+- type: GBFS
+  url: gbfs/lyft-gbfs.yml
+  name: 8 systems, 96 anonymous feed endpoints
+- type: Security
+  url: https://www.lyft.com/security
+- type: DeveloperPortal
+  url: https://www.lyft.com/developers
+  name: Requires sign-in
+- type: Documentation
+  url: https://help.lyft.com/business/hc/en-us/articles/360001599667-Concierge-API-overview
+  name: Concierge API overview (public help centre)
+- type: GettingStarted
+  url: https://help.lyft.com/business/hc/en-us/articles/8587470351891-Managing-your-API-client-and-program-connections
+  name: Managing your API client and program connections
+- type: Support
+  url: https://help.lyft.com/hc/en-us
+- type: TermsOfService
+  url: https://www.lyft.com/terms
+- type: PrivacyPolicy
+  url: https://www.lyft.com/privacy
+- type: SignUp
+  url: https://www.lyft.com/signup
+modified: '2026-09-17'
+description: 'Lyft is a transportation network company operating ride-hailing, bikeshare, scooter-share
+  and related mobility services across the United States and Canada. Its API surface has two halves that
+  behave very differently. The ride-hailing developer program — the Rides and Concierge APIs on api.lyft.com,
+  used for patient transport, employee transit and customer-service ride booking — is gated: www.lyft.com/developers
+  redirects to a sign-in, access is granted through a Lyft Business relationship, and the old documentation
+  host developer.lyft.com no longer resolves. The micromobility side is wide open: Lyft serves live GBFS
+  feeds for eight bikeshare and scooter systems (Citi Bike, Divvy, Bay Wheels, Bluebikes, Capital Bikeshare,
+  Biketown, and its own DC and Denver fleets) anonymously from gbfs.lyft.com, alongside a public RFC 8414
+  OAuth metadata document that publishes the platform''s full 47-scope vocabulary.'
+tags:
+- Transportation
+- Mobility
+- Ride Hailing
+- Micromobility
+- Bike Share
+- Scooters
+- GBFS
+- Logistics
+- Travel
+tags_raw:
+- Transportation
+- Mobility
+- Ride Hailing
+- Micromobility
+- Bikeshare
+- Scooters
+- GBFS
+- Logistics
+- Travel
+created: '2026-05-03'
+maintainers:
+- FN: API Evangelist
+  email: info@apievangelist.com
+  url: https://apievangelist.com
+x-enrichment:
+  date: '2026-09-17'
+  status: enriched
+  artifacts_added: 41
+  pass: local-v3
+x-coverage:
+  state: covered
+  reason: covered
+  detail: 'The ride-hailing developer portal is sign-in gated and its old docs host is gone, but contract
+    discovery still landed two real first-party surfaces: the RFC 8414 OAuth metadata on api.lyft.com
+    and eight live GBFS feed systems on gbfs.lyft.com.'
+  evidence:
+  - url: https://api.lyft.com/.well-known/oauth-authorization-server
+    status: 200
+  - url: https://gbfs.lyft.com/gbfs/2.3/dca/gbfs.json
+    status: 200
+  - url: https://www.lyft.com/developers
+    status: 302
+  - url: https://developer.lyft.com/docs
+    status: 0
+  checked: '2026-09-17'
