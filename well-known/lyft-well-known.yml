@@ -1,0 +1,119 @@
+specification: API Commons Well-Known
+specificationVersion: '0.1'
+provider: lyft
+providerId: lyft
+generated: '2026-09-17'
+method: probed
+source: anonymous HTTPS GET of the named /.well-known/ paths on every host this record knows
+description: >-
+  Well-known discovery documents probed across every host in this record — the registrable domain,
+  www, the API host from every OpenAPI servers[] block and apis.yml baseURL, the account/login host
+  every developer-portal URL redirects to, and the public help-centre host. One path is served:
+  api.lyft.com publishes RFC 8414 OAuth 2.0 Authorization Server Metadata, which is the only
+  machine-readable discovery document Lyft serves anonymously and the only first-party source for
+  the platform's OAuth endpoints and scope vocabulary.
+hosts:
+- host: api.lyft.com
+  note: API host named by every OpenAPI servers[] block and every apis.yml baseURL.
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: lyft-oauth-authorization-server.json
+    spec: RFC 8414
+    note: 47 scopes, authorization_code + client_credentials + refresh_token, PKCE S256.
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: lyft.com
+  note: Registrable domain.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: www.lyft.com
+  note: Primary website and (login-gated) developer portal.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: account.lyft.com
+  note: Identity host every www.lyft.com/developers request 302s to.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: help.lyft.com
+  note: Public help centre carrying the only anonymously readable Concierge API documentation.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+findings:
+- No security.txt is served on any host, although Lyft does publish a vulnerability disclosure
+  policy as an HTML page at https://www.lyft.com/security (see security/lyft-vulnerability-disclosure.yml).
+- No A2A agent card on any host or either path, so no a2a/ artifact was written.
+- No /.well-known/api-catalog, so no APICatalog pointer is claimed.

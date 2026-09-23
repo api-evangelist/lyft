@@ -1,0 +1,37 @@
+specification: API Commons Webhooks
+specificationVersion: '0.1'
+provider: lyft
+providerId: lyft
+generated: '2026-09-17'
+method: probed
+source: https://api.lyft.com/.well-known/oauth-authorization-server
+confidence: medium
+description: 'Lyft publishes subscription and webhook OAuth scopes in its own authorization-server metadata, which
+  is a first-party advertisement that an event surface exists. What it does not give us is an event catalogue: no
+  payload schema, delivery semantics, retry policy, signing scheme or event-name list is anonymously readable, because
+  the developer portal 302s to a login. Everything below is the scope vocabulary verbatim plus what the scope name
+  itself states. No event names, payloads or headers are invented.'
+asyncapi_published: false
+asyncapi_note: No AsyncAPI document is served on any Lyft host; /asyncapi.yaml and /asyncapi.json were not found
+  and no event catalogue exists to derive one from. Nothing is fabricated here.
+subscription_scopes:
+- scope: rides.subscribe_all
+  reads_as: Subscribe to all ride events for the authorized user.
+- scope: rides.subscribe_ride_request
+  reads_as: Subscribe to ride-request events.
+- scope: rides.subscribe_ride_receipt
+  reads_as: Subscribe to ride-receipt events.
+- scope: memberships.updates_subscribe
+  reads_as: Subscribe to membership update events.
+- scope: tapi.atms.webhook
+  reads_as: Webhook scope on the transportation API (tapi) surface — the only scope whose name says "webhook" outright.
+events_documented: false
+delivery:
+  transport: unknown
+  signing: unknown
+  retries: unknown
+  ordering: unknown
+gaps:
+- No public event catalogue, so a consumer cannot know which events exist without a Lyft Business contact.
+- No published signing scheme, so an integrator cannot verify webhook authenticity before signing a contract.
+- No AsyncAPI, no event schemas, no replay or retry policy.

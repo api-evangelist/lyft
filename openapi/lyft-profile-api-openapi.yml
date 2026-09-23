@@ -1,10 +1,10 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lyft Concierge Concierge Rides Profile API
-  description: The Lyft Concierge API allows organizations to request rides on behalf of their customers, patients, or employees without requiring those individuals to have a Lyft account. It is designed for enterprise use cases such as healthcare patient transportation, corporate employee transit, and customer service scenarios. The API enables organizations to build customized transportation workflows, schedule rides in advance, track ride status in real time, and manage ride programs at scale. It provides a way to embed Lyft's driver network directly into business operations and third-party applications.
+  title: Lyft Ride-Sharing Profile API
+  description: The Lyft Ride-Sharing API provides developers with programmatic access to Lyft's rideshare platform.
   version: '1.0'
   contact:
-    name: Lyft Business Support
+    name: Lyft Developer Support
     url: https://www.lyft.com/developers
   termsOfService: https://www.lyft.com/terms
 servers:
@@ -55,7 +55,12 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-      description: OAuth 2.0 access token obtained through the client credentials flow for the organization's concierge API client.
+      description: OAuth 2.0 access token. Use the 2-legged client credentials flow for public endpoints (ETA, cost, ride types) or the 3-legged authorization code flow for user-specific endpoints (rides, profile).
+    clientToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Client token for accessing public endpoints without user authorization. Passed as a Bearer token in the Authorization header.
 externalDocs:
-  description: Lyft Concierge API Documentation
-  url: https://www.lyft.com/developers/products/concierge-api
+  description: Lyft API Documentation
+  url: https://developer.lyft.com/docs

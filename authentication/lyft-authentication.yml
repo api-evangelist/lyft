@@ -1,6 +1,8 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/lyft-concierge-openapi.yml, openapi/lyft-ride-sharing-openapi.yml
+generated: '2026-09-17'
+method: probed
+source: https://api.lyft.com/.well-known/oauth-authorization-server (live RFC 8414 metadata) + openapi/lyft-concierge-rides-api-openapi.yml,
+  openapi/lyft-cost-estimates-api-openapi.yml, openapi/lyft-drivers-api-openapi.yml, openapi/lyft-eta-api-openapi.yml,
+  openapi/lyft-profile-api-openapi.yml, openapi/lyft-ride-types-api-openapi.yml, openapi/lyft-rides-api-openapi.yml
 summary:
   types:
   - apiKey
@@ -11,16 +13,73 @@ schemes:
 - name: bearerAuth
   type: http
   scheme: bearer
-  description: OAuth 2.0 access token obtained through the client credentials flow for the organization's
-    concierge API client.
+  description: OAuth 2.0 access token obtained through the client credentials flow for the organization's concierge
+    API client.
   sources:
-  - openapi/lyft-concierge-openapi.yml
-  - openapi/lyft-ride-sharing-openapi.yml
+  - openapi/lyft-concierge-rides-api-openapi.yml
+  - openapi/lyft-cost-estimates-api-openapi.yml
+  - openapi/lyft-drivers-api-openapi.yml
+  - openapi/lyft-eta-api-openapi.yml
+  - openapi/lyft-profile-api-openapi.yml
+  - openapi/lyft-ride-types-api-openapi.yml
+  - openapi/lyft-rides-api-openapi.yml
 - name: clientToken
   type: apiKey
   in: header
   parameter: Authorization
-  description: Client token for accessing public endpoints without user authorization. Passed
-    as a Bearer token in the Authorization header.
+  description: Client token for accessing public endpoints without user authorization. Passed as a Bearer token
+    in the Authorization header.
   sources:
-  - openapi/lyft-ride-sharing-openapi.yml
+  - openapi/lyft-cost-estimates-api-openapi.yml
+  - openapi/lyft-drivers-api-openapi.yml
+  - openapi/lyft-eta-api-openapi.yml
+  - openapi/lyft-profile-api-openapi.yml
+  - openapi/lyft-ride-types-api-openapi.yml
+  - openapi/lyft-rides-api-openapi.yml
+oauth:
+  issuer: https://api.lyft.com
+  authorization_endpoint: https://api.lyft.com/oauth/authorize
+  token_endpoint: https://api.lyft.com/oauth/token
+  grant_types_supported:
+  - authorization_code
+  - client_credentials
+  - refresh_token
+  response_types_supported:
+  - code
+  token_endpoint_auth_methods_supported:
+  - client_secret_basic
+  - none
+  code_challenge_methods_supported:
+  - S256
+  pkce: 'S256 required for public clients (code_challenge_methods_supported: [S256]); token_endpoint_auth_methods_supported
+    includes "none", which is the public-client case PKCE protects'
+  scope_count: 47
+  scopes: scopes/lyft-scopes.yml
+  discovery_document: well-known/lyft-oauth-authorization-server.json
+  metadata_spec: RFC 8414
+  source: https://api.lyft.com/.well-known/oauth-authorization-server
+flows:
+- name: client_credentials
+  use: Two-legged, for public endpoints that need no user context (cost, eta, ridetypes, drivers). Matches the clientToken
+    scheme in the specs.
+  evidence: https://api.lyft.com/.well-known/oauth-authorization-server
+- name: authorization_code
+  use: Three-legged, for user-context endpoints (profile, rides) and the concierge surface.
+  evidence: https://api.lyft.com/.well-known/oauth-authorization-server
+- name: refresh_token
+  use: Token renewal; the published vocabulary includes an "offline" scope.
+  evidence: https://api.lyft.com/.well-known/oauth-authorization-server
+openid_connect:
+  scopes_advertised:
+  - openid
+  - profile
+  - profile.email
+  - profile.phone
+  discovery_document_served: false
+  evidence: GET https://api.lyft.com/.well-known/openid-configuration -> 404 on 2026-09-17, while the OAuth 2.0
+    metadata document at the sibling path returns 200.
+  note: OIDC scopes are advertised without an OIDC discovery document, so a client cannot resolve jwks_uri or userinfo_endpoint
+    anonymously.
+docs: null
+docs_note: Lyft publishes no anonymously readable authentication reference. https://www.lyft.com/developers 302s
+  to https://account.lyft.com/auth/email; developer.lyft.com (cited by every Lyft SDK README) is NXDOMAIN.

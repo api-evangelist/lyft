@@ -1,0 +1,83 @@
+specification: API Commons Conformance
+specificationVersion: '0.1'
+provider: lyft
+providerId: lyft
+generated: '2026-09-17'
+method: probed
+source: https://api.lyft.com/.well-known/oauth-authorization-server; gbfs/lyft-gbfs.yml; openapi/*.yml
+description: 'Cross-cutting and domain standards Lyft demonstrably conforms to, each entry carrying the exact artifact
+  or URL that proves it. Absences are recorded as conforms: false rather than omitted.'
+conformance:
+- id: oauth2
+  name: OAuth 2.0 (RFC 6749)
+  conforms: true
+  evidence: https://api.lyft.com/.well-known/oauth-authorization-server
+  detail: authorization_code, client_credentials and refresh_token grants declared by the provider's own metadata
+    document.
+- id: oauth2-authorization-server-metadata
+  name: OAuth 2.0 Authorization Server Metadata (RFC 8414)
+  conforms: true
+  evidence: https://api.lyft.com/.well-known/oauth-authorization-server
+  detail: 'A conformant metadata document is served anonymously at the RFC 8414 path on the API host: issuer, authorization_endpoint,
+    token_endpoint, scopes_supported, grant_types_supported, response_types_supported.'
+- id: pkce
+  name: Proof Key for Code Exchange (RFC 7636)
+  conforms: true
+  evidence: https://api.lyft.com/.well-known/oauth-authorization-server
+  detail: 'code_challenge_methods_supported: ["S256"]. Plain is not offered.'
+- id: oidc
+  name: OpenID Connect Discovery 1.0
+  conforms: false
+  evidence: https://api.lyft.com/.well-known/openid-configuration -> 404 (2026-09-17)
+  detail: openid, profile, profile.email and profile.phone are in the published scope vocabulary, but no OIDC discovery
+    document is served, so jwks_uri and userinfo_endpoint are not anonymously resolvable.
+- id: gbfs
+  name: General Bikeshare Feed Specification 1.1 and 2.3
+  conforms: true
+  domain_standard: true
+  market: shared micromobility / transportation
+  evidence: https://gbfs.lyft.com/gbfs/2.3/dca/gbfs.json (200), https://gbfs.citibikenyc.com/gbfs/2.3/gbfs.json
+    (200) — full index in gbfs/lyft-gbfs.yml
+  detail: 'Eight systems served from gbfs.lyft.com, each publishing the GBFS auto-discovery document plus system_information,
+    station_information, station_status, free_bike_status, system_pricing_plans, system_alerts, gbfs_versions and
+    (on 2.3) vehicle_types. This is the domain standard for shared mobility: a consumer that already speaks GBFS
+    reads Lyft''s micromobility fleet with no bespoke connector. Six systems serve 2.3; lyft_bay and lyft_bos still
+    serve 1.1.'
+- id: rfc9457
+  name: Problem Details for HTTP APIs (RFC 9457)
+  conforms: false
+  evidence: openapi/*.yml — no 4xx/5xx response declares application/problem+json
+  detail: Error responses carry a description only; no problem+json media type and no machine-readable error schema.
+    See errors/lyft-problem-types.yml.
+- id: rfc8594
+  name: Sunset HTTP Header (RFC 8594)
+  conforms: false
+  evidence: openapi/*.yml declares no Sunset or Deprecation response headers; no public deprecation policy page
+    was found
+  detail: No operation is marked deprecated and no retirement signalling is published, although Lyft has in fact
+    retired developer surfaces (see lifecycle/lyft-lifecycle.yml).
+- id: pagination
+  name: Offset/limit pagination
+  conforms: true
+  evidence: openapi/lyft-rides-api-openapi.yml, openapi/lyft-concierge-rides-api-openapi.yml — limit and offset
+    query parameters on the list operations
+  detail: Offset-based; no cursor, no Link header, no documented page-metadata envelope.
+- id: idempotency
+  name: Idempotency keys on unsafe methods
+  conforms: false
+  evidence: openapi/*.yml — no Idempotency-Key header on any POST/PUT; no public docs page states one
+  detail: Ride creation (POST /rides, POST /concierge/rides) has no documented replay protection. See conventions/lyft-conventions.yml.
+not_applicable:
+- id: fhir
+  reason: Not a healthcare data provider, although the Concierge API is marketed for patient transportation.
+- id: psd2
+  reason: Not a payment service provider.
+- id: scim
+  reason: No published identity-provisioning surface.
+- id: gtfs
+  reason: GTFS covers fixed-route transit schedules; Lyft publishes no fixed-route service. GBFS is the applicable
+    standard and is served.
+certifications_published: false
+certifications_note: No trust centre and no named certification (SOC 2, ISO 27001, PCI DSS, HIPAA, FedRAMP) is published
+  on any anonymously reachable Lyft page; probe-security-programs.py returned trust=none. No Compliance pointer
+  is therefore claimed.

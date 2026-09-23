@@ -1,0 +1,72 @@
+# Lyft
+
+> Lyft is a transportation network company operating ride-hailing, bikeshare and scooter services across
+> the United States and Canada. Its API surface has two halves that behave very differently: a
+> login-gated ride-hailing developer program (Concierge and Rides), and a wide-open, anonymously
+> readable GBFS micromobility data surface on gbfs.lyft.com.
+
+Generated: 2026-09-17
+Method: generated (from this repository's apis.yml and artifacts; Lyft serves no /llms.txt of its own —
+https://www.lyft.com/llms.txt and https://api.lyft.com/llms.txt both returned 404 on 2026-09-17)
+Maintained by: API Evangelist (https://apievangelist.com) — an independent third-party profile, not Lyft.
+
+## What is anonymously reachable
+
+- OAuth 2.0 authorization server metadata (RFC 8414), 47 scopes: https://api.lyft.com/.well-known/oauth-authorization-server
+- GBFS auto-discovery, 8 micromobility systems, 96 feed endpoints, no authentication: https://gbfs.lyft.com/gbfs/2.3/dca/gbfs.json
+- Vulnerability disclosure and bug bounty policy: https://www.lyft.com/security
+- Concierge API overview (help centre): https://help.lyft.com/business/hc/en-us/articles/360001599667-Concierge-API-overview
+- Managing API clients and program connections: https://help.lyft.com/business/hc/en-us/articles/8587470351891-Managing-your-API-client-and-program-connections
+
+## What is NOT reachable
+
+- The developer portal: https://www.lyft.com/developers 302s to https://account.lyft.com/auth/email
+- developer.lyft.com — the documentation host every Lyft SDK README still links to — is NXDOMAIN
+- No OpenAPI, no API reference, no changelog, no status page, no rate-limit documentation, no scope reference
+- No MCP endpoint, no A2A agent card, no AsyncAPI
+
+## APIs described in this profile
+
+Base URL for all of them: https://api.lyft.com/v1 — bearer token, OAuth 2.0.
+
+- Rides API — listRides, createRide, getRide, cancelRide, updateRideDestination, rateRide, getRideReceipt
+- Concierge Rides API — listConciergeRides, createConciergeRide, getConciergeRide, cancelConciergeRide, getConciergeRideStatus
+- Cost Estimates API — listCostEstimates, listConciergeCostEstimates
+- ETA API — listETAs
+- Ride Types API — listRideTypes, listConciergeRideTypes
+- Drivers API — listNearbyDrivers
+- Profile API — getProfile
+- Micromobility GBFS feeds — 8 systems (Citi Bike, Divvy, Bay Wheels, Bluebikes, Capital Bikeshare, Biketown,
+  Lyft Scooters DC, Lyft Denver), GBFS 1.1 and 2.3, anonymous
+
+## Artifacts in this repository
+
+- openapi/ — 7 refined OpenAPI 3.2.0 definitions, 18 operations
+- gbfs/ — verbatim GBFS discovery and system_information documents for 8 systems, plus an index
+- well-known/ — the RFC 8414 OAuth metadata document and the full probe record across 5 hosts
+- scopes/ — the 47-scope OAuth vocabulary, read from the provider's own metadata
+- authentication/ — OAuth flows, endpoints, PKCE, and the missing OIDC discovery document
+- conformance/ — OAuth 2.0, RFC 8414, PKCE, GBFS (domain standard); RFC 9457 and RFC 8594 absent
+- conventions/ — pagination, error envelope, idempotency (none) and reversibility (cancel, no stated window)
+- errors/ — the 4xx catalogue derived from the contract; no error schema is published
+- lifecycle/ — versioning, and the retirements Lyft shipped without a machine-readable signal
+- packages/ — four first-party SDKs, all dormant; newest release 2021-09-20
+- plans/, rate-limits/ — honest zeros for the API, plus the GBFS-published consumer ride pricing
+- mcp/ — a derived candidate tool surface; Lyft ships no reachable MCP server
+- skills/ — agent skills grounded in real operationIds
+- asyncapi/ — the webhook evidence: subscription scopes published, no event catalogue
+
+## Agent notes
+
+- POST /rides and POST /concierge/rides have NO idempotency key. A retried create dispatches a second
+  driver and charges a second fare. Do not retry blindly.
+- Both ride surfaces can be reversed with a cancel operation, but no numeric free-cancellation window is
+  published; a fee "may apply depending on how long the driver has been en route".
+- No 429 and no Retry-After is declared anywhere. Back off on your own schedule.
+- GBFS feeds advertise ttl: 60. Honour it; do not poll faster.
+- The lyft_den GBFS feed has not updated since 2024-12-16 despite advertising ttl 60. Treat it as stale.
+
+## Contact
+
+Corrections, re-scores and removal are free: https://github.com/api-evangelist/lyft/issues or
+info@apievangelist.com

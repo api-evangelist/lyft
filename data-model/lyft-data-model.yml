@@ -1,0 +1,700 @@
+specification: API Commons Data Model
+specificationVersion: '0.1'
+provider: lyft
+providerId: lyft
+generated: '2026-09-17'
+method: derived
+source: openapi/*.yml components.schemas ($ref graph)
+description: 'Entity graph derived from the $ref links in the published Lyft contract. Two product surfaces share
+  one shape vocabulary: a consumer ride surface (Ride, Driver, Vehicle, Price, Charge, LineItem, RideReceipt, Profile)
+  and a concierge surface that re-declares near-identical Concierge* twins (ConciergeRide, ConciergeDriver, ConciergeVehicle,
+  ConciergePrice) rather than reusing them.'
+entity_count: 28
+relationship_count: 31
+entities:
+- entity: Charge
+  field_count: 3
+  sources:
+  - openapi/lyft-rides-api-openapi.yml
+  fields:
+  - name: amount
+    type: integer
+    ref: null
+  - name: currency
+    type: string
+    ref: null
+  - name: payment_method
+    type: string
+    ref: null
+- entity: ConciergeCostEstimate
+  field_count: 7
+  sources:
+  - openapi/lyft-cost-estimates-api-openapi.yml
+  fields:
+  - name: ride_type
+    type: string
+    ref: null
+  - name: display_name
+    type: string
+    ref: null
+  - name: currency
+    type: string
+    ref: null
+  - name: estimated_cost_cents_min
+    type: integer
+    ref: null
+  - name: estimated_cost_cents_max
+    type: integer
+    ref: null
+  - name: estimated_distance_miles
+    type: number
+    ref: null
+  - name: estimated_duration_seconds
+    type: integer
+    ref: null
+- entity: ConciergeDriver
+  field_count: 4
+  sources:
+  - openapi/lyft-concierge-rides-api-openapi.yml
+  fields:
+  - name: first_name
+    type: string
+    ref: null
+  - name: phone_number
+    type: string
+    ref: null
+  - name: rating
+    type: string
+    ref: null
+  - name: image_url
+    type: string
+    ref: null
+- entity: ConciergePrice
+  field_count: 3
+  sources:
+  - openapi/lyft-concierge-rides-api-openapi.yml
+  fields:
+  - name: amount
+    type: integer
+    ref: null
+  - name: currency
+    type: string
+    ref: null
+  - name: description
+    type: string
+    ref: null
+- entity: ConciergeRide
+  field_count: 15
+  sources:
+  - openapi/lyft-concierge-rides-api-openapi.yml
+  fields:
+  - name: ride_id
+    type: string
+    ref: null
+  - name: ride_type
+    type: string
+    ref: null
+  - name: status
+    type: null
+    ref: ConciergeRideStatusEnum
+  - name: passenger
+    type: null
+    ref: Passenger
+  - name: origin
+    type: null
+    ref: Location
+  - name: destination
+    type: null
+    ref: Location
+  - name: driver
+    type: null
+    ref: ConciergeDriver
+  - name: vehicle
+    type: null
+    ref: ConciergeVehicle
+  - name: scheduled_pickup_time
+    type: string
+    ref: null
+  - name: requested_at
+    type: string
+    ref: null
+  - name: completed_at
+    type: string
+    ref: null
+  - name: canceled_at
+    type: string
+    ref: null
+  - name: price
+    type: null
+    ref: ConciergePrice
+  - name: notes
+    type: string
+    ref: null
+  - name: cost_center
+    type: string
+    ref: null
+- entity: ConciergeRideStatus
+  field_count: 5
+  sources:
+  - openapi/lyft-concierge-rides-api-openapi.yml
+  fields:
+  - name: ride_id
+    type: string
+    ref: null
+  - name: status
+    type: null
+    ref: ConciergeRideStatusEnum
+  - name: driver_location
+    type: object
+    ref: null
+  - name: eta_seconds
+    type: integer
+    ref: null
+  - name: updated_at
+    type: string
+    ref: null
+- entity: ConciergeRideStatusEnum
+  field_count: 0
+  sources:
+  - openapi/lyft-concierge-rides-api-openapi.yml
+  fields: []
+- entity: ConciergeRideType
+  field_count: 4
+  sources:
+  - openapi/lyft-ride-types-api-openapi.yml
+  fields:
+  - name: ride_type
+    type: string
+    ref: null
+  - name: display_name
+    type: string
+    ref: null
+  - name: seats
+    type: integer
+    ref: null
+  - name: image_url
+    type: string
+    ref: null
+- entity: ConciergeVehicle
+  field_count: 5
+  sources:
+  - openapi/lyft-concierge-rides-api-openapi.yml
+  fields:
+  - name: make
+    type: string
+    ref: null
+  - name: model
+    type: string
+    ref: null
+  - name: year
+    type: integer
+    ref: null
+  - name: license_plate
+    type: string
+    ref: null
+  - name: color
+    type: string
+    ref: null
+- entity: CostEstimate
+  field_count: 9
+  sources:
+  - openapi/lyft-cost-estimates-api-openapi.yml
+  fields:
+  - name: ride_type
+    type: null
+    ref: RideTypeEnum
+  - name: display_name
+    type: string
+    ref: null
+  - name: currency
+    type: string
+    ref: null
+  - name: estimated_cost_cents_min
+    type: integer
+    ref: null
+  - name: estimated_cost_cents_max
+    type: integer
+    ref: null
+  - name: estimated_distance_miles
+    type: number
+    ref: null
+  - name: estimated_duration_seconds
+    type: integer
+    ref: null
+  - name: primetime_percentage
+    type: string
+    ref: null
+  - name: primetime_confirmation_token
+    type: string
+    ref: null
+- entity: CreateConciergeRideRequest
+  field_count: 7
+  sources:
+  - openapi/lyft-concierge-rides-api-openapi.yml
+  fields:
+  - name: ride_type
+    type: string
+    ref: null
+  - name: passenger
+    type: null
+    ref: Passenger
+  - name: origin
+    type: null
+    ref: Location
+  - name: destination
+    type: null
+    ref: Location
+  - name: scheduled_pickup_time
+    type: string
+    ref: null
+  - name: notes
+    type: string
+    ref: null
+  - name: cost_center
+    type: string
+    ref: null
+- entity: CreateRideRequest
+  field_count: 4
+  sources:
+  - openapi/lyft-rides-api-openapi.yml
+  fields:
+  - name: ride_type
+    type: null
+    ref: RideTypeEnum
+  - name: origin
+    type: null
+    ref: Location
+  - name: destination
+    type: null
+    ref: Location
+  - name: primetime_confirmation_token
+    type: string
+    ref: null
+- entity: Driver
+  field_count: 4
+  sources:
+  - openapi/lyft-rides-api-openapi.yml
+  fields:
+  - name: first_name
+    type: string
+    ref: null
+  - name: phone_number
+    type: string
+    ref: null
+  - name: rating
+    type: string
+    ref: null
+  - name: image_url
+    type: string
+    ref: null
+- entity: DriverLocation
+  field_count: 1
+  sources:
+  - openapi/lyft-drivers-api-openapi.yml
+  fields:
+  - name: locations
+    type: array
+    ref: null
+- entity: ETAEstimate
+  field_count: 4
+  sources:
+  - openapi/lyft-eta-api-openapi.yml
+  fields:
+  - name: ride_type
+    type: null
+    ref: RideTypeEnum
+  - name: display_name
+    type: string
+    ref: null
+  - name: eta_seconds
+    type: integer
+    ref: null
+  - name: is_valid_estimate
+    type: boolean
+    ref: null
+- entity: LineItem
+  field_count: 3
+  sources:
+  - openapi/lyft-rides-api-openapi.yml
+  fields:
+  - name: type
+    type: string
+    ref: null
+  - name: amount
+    type: integer
+    ref: null
+  - name: currency
+    type: string
+    ref: null
+- entity: Location
+  field_count: 6
+  sources:
+  - openapi/lyft-concierge-rides-api-openapi.yml
+  - openapi/lyft-rides-api-openapi.yml
+  fields:
+  - name: lat
+    type: number
+    ref: null
+  - name: lng
+    type: number
+    ref: null
+  - name: address
+    type: string
+    ref: null
+  - name: city
+    type: string
+    ref: null
+  - name: state
+    type: string
+    ref: null
+  - name: zip
+    type: string
+    ref: null
+- entity: NearbyDriversByRideType
+  field_count: 2
+  sources:
+  - openapi/lyft-drivers-api-openapi.yml
+  fields:
+  - name: ride_type
+    type: null
+    ref: RideTypeEnum
+  - name: drivers
+    type: array
+    ref: DriverLocation
+- entity: Passenger
+  field_count: 4
+  sources:
+  - openapi/lyft-concierge-rides-api-openapi.yml
+  fields:
+  - name: first_name
+    type: string
+    ref: null
+  - name: last_name
+    type: string
+    ref: null
+  - name: phone_number
+    type: string
+    ref: null
+  - name: email
+    type: string
+    ref: null
+- entity: Price
+  field_count: 3
+  sources:
+  - openapi/lyft-rides-api-openapi.yml
+  fields:
+  - name: amount
+    type: integer
+    ref: null
+  - name: currency
+    type: string
+    ref: null
+  - name: description
+    type: string
+    ref: null
+- entity: PricingDetails
+  field_count: 7
+  sources:
+  - openapi/lyft-ride-types-api-openapi.yml
+  fields:
+  - name: base_charge
+    type: integer
+    ref: null
+  - name: cost_per_mile
+    type: integer
+    ref: null
+  - name: cost_per_minute
+    type: integer
+    ref: null
+  - name: cost_minimum
+    type: integer
+    ref: null
+  - name: trust_and_service
+    type: integer
+    ref: null
+  - name: cancel_penalty_amount
+    type: integer
+    ref: null
+  - name: currency
+    type: string
+    ref: null
+- entity: Profile
+  field_count: 4
+  sources:
+  - openapi/lyft-profile-api-openapi.yml
+  fields:
+  - name: id
+    type: string
+    ref: null
+  - name: first_name
+    type: string
+    ref: null
+  - name: last_name
+    type: string
+    ref: null
+  - name: has_taken_a_ride
+    type: boolean
+    ref: null
+- entity: RideDetail
+  field_count: 12
+  sources:
+  - openapi/lyft-rides-api-openapi.yml
+  fields:
+  - name: ride_id
+    type: string
+    ref: null
+  - name: ride_type
+    type: null
+    ref: RideTypeEnum
+  - name: status
+    type: string
+    ref: null
+  - name: origin
+    type: null
+    ref: Location
+  - name: destination
+    type: null
+    ref: Location
+  - name: pickup
+    type: null
+    ref: Location
+  - name: dropoff
+    type: null
+    ref: Location
+  - name: driver
+    type: null
+    ref: Driver
+  - name: vehicle
+    type: null
+    ref: Vehicle
+  - name: requested_at
+    type: string
+    ref: null
+  - name: generated_at
+    type: string
+    ref: null
+  - name: price
+    type: null
+    ref: Price
+- entity: RideRatingRequest
+  field_count: 3
+  sources:
+  - openapi/lyft-rides-api-openapi.yml
+  fields:
+  - name: rating
+    type: integer
+    ref: null
+  - name: tip
+    type: object
+    ref: null
+  - name: feedback
+    type: string
+    ref: null
+- entity: RideReceipt
+  field_count: 5
+  sources:
+  - openapi/lyft-rides-api-openapi.yml
+  fields:
+  - name: ride_id
+    type: string
+    ref: null
+  - name: price
+    type: null
+    ref: Price
+  - name: line_items
+    type: array
+    ref: LineItem
+  - name: charges
+    type: array
+    ref: Charge
+  - name: requested_at
+    type: string
+    ref: null
+- entity: RideType
+  field_count: 5
+  sources:
+  - openapi/lyft-ride-types-api-openapi.yml
+  fields:
+  - name: ride_type
+    type: null
+    ref: RideTypeEnum
+  - name: display_name
+    type: string
+    ref: null
+  - name: seats
+    type: integer
+    ref: null
+  - name: image_url
+    type: string
+    ref: null
+  - name: pricing_details
+    type: null
+    ref: PricingDetails
+- entity: RideTypeEnum
+  field_count: 0
+  sources:
+  - openapi/lyft-cost-estimates-api-openapi.yml
+  - openapi/lyft-drivers-api-openapi.yml
+  - openapi/lyft-eta-api-openapi.yml
+  - openapi/lyft-ride-types-api-openapi.yml
+  - openapi/lyft-rides-api-openapi.yml
+  fields: []
+- entity: Vehicle
+  field_count: 7
+  sources:
+  - openapi/lyft-rides-api-openapi.yml
+  fields:
+  - name: make
+    type: string
+    ref: null
+  - name: model
+    type: string
+    ref: null
+  - name: year
+    type: integer
+    ref: null
+  - name: license_plate
+    type: string
+    ref: null
+  - name: license_plate_state
+    type: string
+    ref: null
+  - name: color
+    type: string
+    ref: null
+  - name: image_url
+    type: string
+    ref: null
+relationships:
+- from: ConciergeRide
+  to: ConciergeRideStatusEnum
+  kind: has_one
+  via: status
+- from: ConciergeRide
+  to: Passenger
+  kind: has_one
+  via: passenger
+- from: ConciergeRide
+  to: Location
+  kind: has_one
+  via: origin
+- from: ConciergeRide
+  to: Location
+  kind: has_one
+  via: destination
+- from: ConciergeRide
+  to: ConciergeDriver
+  kind: has_one
+  via: driver
+- from: ConciergeRide
+  to: ConciergeVehicle
+  kind: has_one
+  via: vehicle
+- from: ConciergeRide
+  to: ConciergePrice
+  kind: has_one
+  via: price
+- from: ConciergeRideStatus
+  to: ConciergeRideStatusEnum
+  kind: has_one
+  via: status
+- from: CreateConciergeRideRequest
+  to: Passenger
+  kind: has_one
+  via: passenger
+- from: CreateConciergeRideRequest
+  to: Location
+  kind: has_one
+  via: origin
+- from: CreateConciergeRideRequest
+  to: Location
+  kind: has_one
+  via: destination
+- from: CostEstimate
+  to: RideTypeEnum
+  kind: has_one
+  via: ride_type
+- from: NearbyDriversByRideType
+  to: RideTypeEnum
+  kind: has_one
+  via: ride_type
+- from: NearbyDriversByRideType
+  to: DriverLocation
+  kind: has_many
+  via: drivers
+- from: ETAEstimate
+  to: RideTypeEnum
+  kind: has_one
+  via: ride_type
+- from: RideType
+  to: RideTypeEnum
+  kind: has_one
+  via: ride_type
+- from: RideType
+  to: PricingDetails
+  kind: has_one
+  via: pricing_details
+- from: CreateRideRequest
+  to: RideTypeEnum
+  kind: has_one
+  via: ride_type
+- from: CreateRideRequest
+  to: Location
+  kind: has_one
+  via: origin
+- from: CreateRideRequest
+  to: Location
+  kind: has_one
+  via: destination
+- from: RideDetail
+  to: RideTypeEnum
+  kind: has_one
+  via: ride_type
+- from: RideDetail
+  to: Location
+  kind: has_one
+  via: origin
+- from: RideDetail
+  to: Location
+  kind: has_one
+  via: destination
+- from: RideDetail
+  to: Location
+  kind: has_one
+  via: pickup
+- from: RideDetail
+  to: Location
+  kind: has_one
+  via: dropoff
+- from: RideDetail
+  to: Driver
+  kind: has_one
+  via: driver
+- from: RideDetail
+  to: Vehicle
+  kind: has_one
+  via: vehicle
+- from: RideDetail
+  to: Price
+  kind: has_one
+  via: price
+- from: RideReceipt
+  to: Price
+  kind: has_one
+  via: price
+- from: RideReceipt
+  to: LineItem
+  kind: has_many
+  via: line_items
+- from: RideReceipt
+  to: Charge
+  kind: has_many
+  via: charges
+id_conventions:
+  style: opaque string ride ids in the {id} path parameter
+  prefixes_documented: false
+  note: No id-prefix scheme is documented; the object reference is not publicly readable.
+findings:
+- ConciergeRide/ConciergeDriver/ConciergeVehicle/ConciergePrice duplicate the ride-surface entities instead of sharing
+  them, so a consumer integrating both surfaces carries two models of the same real-world objects.
+- Location is the one schema genuinely shared between the two surfaces.

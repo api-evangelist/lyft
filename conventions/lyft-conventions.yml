@@ -1,0 +1,122 @@
+specification: API Commons Conventions
+specificationVersion: '0.1'
+provider: lyft
+providerId: lyft
+generated: '2026-09-17'
+method: derived
+source: openapi/*.yml, https://api.lyft.com/.well-known/oauth-authorization-server, authentication/lyft-authentication.yml
+description: Cross-cutting runtime semantics of the Lyft API surface, derived from the published contract and the
+  provider's live OAuth metadata. Lyft publishes no anonymously readable conventions or API-design guide, so anything
+  not visible in the contract is recorded as undocumented rather than guessed.
+auth:
+  style: OAuth 2.0 bearer token
+  header: 'Authorization: Bearer <token>'
+  public_endpoints: client_credentials (two-legged) token, called clientToken in the specs
+  user_endpoints: authorization_code (three-legged) token
+  see: authentication/lyft-authentication.yml
+idempotency:
+  coverage: none
+  mechanism: null
+  header: null
+  retention: null
+  evidence: No Idempotency-Key (or equivalent) header appears on any of the 4 mutating operations in openapi/*.yml,
+    and no public documentation states one.
+  mutating_operations:
+  - createRide
+  - cancelRide
+  - updateRideDestination
+  - rateRide
+  - createConciergeRide
+  - cancelConciergeRide
+  note: Ride creation is the highest-consequence write on this API — a replayed POST /rides dispatches a second
+    driver and charges a second fare — and it has no published replay protection. This is the single largest agent-readiness
+    gap in the contract.
+reversibility:
+  grade: documented
+  summary: Both ride surfaces publish a first-class reversal operation, and both describe the window qualitatively
+    rather than numerically.
+  write_surfaces:
+  - operation: createRide
+    path: POST /rides
+    reversal:
+      operation: cancelRide
+      path: POST /rides/{id}/cancel
+      window_stated: false
+      window_prose: '"Cancels an ongoing or requested ride. If the ride has already been matched with a driver,
+        a cancellation fee may apply depending on how long the driver has been en route."'
+      source: openapi/lyft-rides-api-openapi.yml
+      cost_on_reversal: A cancellation fee may apply; the amount and the free-cancellation window are not stated
+        in the contract.
+  - operation: createConciergeRide
+    path: POST /concierge/rides
+    reversal:
+      operation: cancelConciergeRide
+      path: POST /concierge/rides/{id}/cancel
+      window_stated: false
+      window_prose: '"Cancels a concierge ride that has been requested or scheduled. Rides that have already been
+        completed cannot be canceled. Cancellation fees may apply depending on the ride''s current status and how
+        long a driver has been assigned."'
+      source: openapi/lyft-concierge-rides-api-openapi.yml
+      boundary: 'Terminal: once the ride is completed it cannot be cancelled.'
+  - operation: updateRideDestination
+    path: PUT /rides/{id}/destination
+    reversal:
+      operation: updateRideDestination
+      path: PUT /rides/{id}/destination
+      window_stated: false
+      note: Self-reversing — the destination can be set again while the ride is active. No undo semantics are documented.
+  - operation: rateRide
+    path: PUT /rides/{id}/rating
+    reversal: null
+    note: No documented way to withdraw or amend a submitted rating or tip.
+  grade_reason: 'A reversal path exists and is a real operation on both write surfaces, which earns "documented".
+    It is not "verified" because no numeric window is published anywhere: the contract says a fee "may apply depending
+    on how long the driver has been en route" without stating the threshold, and no anonymously readable Lyft page
+    states one for the API. No window is asserted here that Lyft does not state.'
+dry_run_mode:
+  supported: false
+  evidence: No test/simulate/preview parameter or mode on any operation.
+  note: Cost estimates (GET /cost, GET /concierge/cost) and ETAs are read-only previews of price and wait, but they
+    do not rehearse the dispatch itself.
+pagination:
+  style: offset
+  params:
+  - limit
+  - offset
+  response_fields: None documented — no total, next or has_more field is declared
+  default_page_size: null
+  max_page_size: null
+  evidence: openapi/lyft-rides-api-openapi.yml, openapi/lyft-concierge-rides-api-openapi.yml
+  note: A client cannot tell from the response whether more pages exist; it has to infer from a short page.
+filtering:
+  params:
+  - status
+  - start_time
+  - end_time
+  - ride_type
+  expansion: null
+  sparse_fields: null
+metadata:
+  supported: false
+  note: No customer-defined metadata field on any resource.
+request_tracing:
+  request_id_header: null
+  evidence: No request-id or correlation header is declared on any response.
+versioning:
+  style: path
+  current: v1
+  see: lifecycle/lyft-lifecycle.yml
+error_envelope:
+  shape: null
+  media_type: null
+  see: errors/lyft-problem-types.yml
+  note: No error schema is published; 4xx responses carry a prose description only.
+rate_limit_signaling:
+  headers: []
+  status_on_exhaustion: null
+  evidence: No RateLimit-*, X-RateLimit-* or Retry-After header is declared on any response, and no 429 is declared
+    on any operation.
+  see: rate-limits/lyft-rate-limits.yml
+webhooks:
+  see: asyncapi/lyft-webhooks.yml
+  note: Subscription scopes are published in the OAuth metadata; no event catalogue or payload schema is public.

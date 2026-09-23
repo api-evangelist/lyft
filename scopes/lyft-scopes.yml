@@ -1,0 +1,132 @@
+specification: API Commons OAuth Scopes
+specificationVersion: '0.1'
+provider: lyft
+providerId: lyft
+generated: '2026-09-17'
+method: probed
+source: https://api.lyft.com/.well-known/oauth-authorization-server
+description: 'The complete OAuth 2.0 scope vocabulary Lyft publishes for api.lyft.com, read verbatim from
+  the provider''s own RFC 8414 authorization-server metadata. Lyft''s developer portal is login-gated,
+  so this anonymous discovery document is the only public source for the scope vocabulary; no scope reference
+  page is publicly readable and Lyft publishes no human-readable description for any individual scope,
+  so none is recorded here. The family: grouping is our own, derived from the scope prefix.'
+docs: null
+docs_note: 'No publicly readable scope/permission reference page: https://www.lyft.com/developers 302s
+  to https://account.lyft.com/auth/email.'
+issuer: https://api.lyft.com
+authorization_endpoint: https://api.lyft.com/oauth/authorize
+token_endpoint: https://api.lyft.com/oauth/token
+grant_types_supported:
+- authorization_code
+- client_credentials
+- refresh_token
+code_challenge_methods_supported:
+- S256
+token_endpoint_auth_methods_supported:
+- client_secret_basic
+- none
+scope_count: 47
+scopes:
+- scope: autonomouspartners.set
+  family: other
+- scope: driver.details.address
+  family: driver
+- scope: driver.details.basic
+  family: driver
+- scope: driver.details.license
+  family: driver
+- scope: drivers.tracking.read
+  family: driver
+- scope: enterprise.support_tickets.create
+  family: enterprise
+- scope: external_supply_integrator
+  family: other
+- scope: lb.ride_costs.get
+  family: lyft-business
+- scope: lb.ride_receipts.get
+  family: lyft-business
+- scope: lb.rides.cancel
+  family: lyft-business
+- scope: lb.rides.dispatch
+  family: lyft-business
+- scope: lb.rides.update
+  family: lyft-business
+- scope: loyalty_tier
+  family: openid-connect-and-core
+- scope: lus_partnership.account_management
+  family: other
+- scope: lyft_enterprise.admin_access
+  family: enterprise
+- scope: lyft_rewards.usage
+  family: memberships-and-rewards
+- scope: lyft_rider_mcp.read
+  family: agent/mcp
+- scope: memberships.updates_subscribe
+  family: memberships-and-rewards
+- scope: offline
+  family: openid-connect-and-core
+- scope: openid
+  family: openid-connect-and-core
+- scope: privileged.admin
+  family: privileged (partner-restricted)
+- scope: privileged.b2b_payouts.boomi_partner_records
+  family: privileged (partner-restricted)
+- scope: privileged.driver.tax.summary
+  family: privileged (partner-restricted)
+- scope: privileged.enterprise.dell_boomi
+  family: privileged (partner-restricted)
+- scope: privileged.enterprise.invoices
+  family: privileged (partner-restricted)
+- scope: privileged.enterprise.ride_program
+  family: privileged (partner-restricted)
+- scope: privileged.mobility.rides
+  family: privileged (partner-restricted)
+- scope: privileged.price.upfront
+  family: privileged (partner-restricted)
+- scope: privileged.rides.additional_fields.drivers_license
+  family: privileged (partner-restricted)
+- scope: privileged.rides.dispatch
+  family: privileged (partner-restricted)
+- scope: privileged.wav_dispatch
+  family: privileged (partner-restricted)
+- scope: profile
+  family: openid-connect-and-core
+- scope: profile.email
+  family: profile
+- scope: profile.phone
+  family: profile
+- scope: public
+  family: openid-connect-and-core
+- scope: rides.active_ride
+  family: rider-rides
+- scope: rides.read
+  family: rider-rides
+- scope: rides.request
+  family: rider-rides
+- scope: rides.subscribe_all
+  family: rider-rides
+- scope: rides.subscribe_ride_receipt
+  family: rider-rides
+- scope: rides.subscribe_ride_request
+  family: rider-rides
+- scope: routes.read
+  family: rider-rides
+- scope: scopedurl
+  family: openid-connect-and-core
+- scope: tapi.atms.webhook
+  family: transportation-api
+- scope: transportation_api.trip_insights
+  family: transportation-api
+- scope: transportation_api.trips
+  family: transportation-api
+- scope: users.create
+  family: other
+notes:
+- openid + profile + offline are present, but api.lyft.com serves no /.well-known/openid-configuration
+  (404), so the OIDC discovery document is absent even though OIDC scopes are advertised.
+- lyft_rider_mcp.read is an MCP-specific scope in the published vocabulary — first-party evidence that
+  an MCP surface exists behind authentication. No anonymously reachable MCP endpoint was found (see mcp/lyft-mcp.yml).
+- rides.subscribe_all, rides.subscribe_ride_request, rides.subscribe_ride_receipt, memberships.updates_subscribe
+  and tapi.atms.webhook are subscription/webhook scopes (see asyncapi/lyft-webhooks.yml).
+- The 18 operations in openapi/ are covered by a small part of this vocabulary; most scopes belong to
+  Lyft Business, enterprise, driver and privileged partner surfaces that publish no public contract.

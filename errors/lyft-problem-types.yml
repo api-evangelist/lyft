@@ -1,0 +1,95 @@
+specification: API Commons Error Catalog
+specificationVersion: '0.1'
+provider: lyft
+providerId: lyft
+generated: '2026-09-17'
+method: derived
+source: openapi/*.yml (4xx/5xx responses across all 18 published operations)
+format: none
+format_note: 'No error format is published. No response declares application/problem+json (RFC 9457) and no response
+  declares a schema at all: every 4xx carries a prose description and nothing else. There is no documented error
+  envelope, no error code registry, and no remediation guidance. An agent cannot branch on anything but the HTTP
+  status.'
+docs: null
+docs_note: No anonymously readable error reference exists; the developer portal 302s to a login.
+problem_count: 4
+problems:
+- status: 400
+  type: null
+  title: Bad request - invalid filter parameters
+  descriptions_in_spec:
+  - Bad request - invalid filter parameters
+  - Bad request - invalid or missing parameters
+  - Bad request - invalid parameters
+  - Bad request - ride cannot be canceled
+  operation_count: 14
+  operations:
+  - cancelConciergeRide
+  - cancelRide
+  - createConciergeRide
+  - createRide
+  - listConciergeCostEstimates
+  - listConciergeRideTypes
+  - listConciergeRides
+  - listCostEstimates
+  - listETAs
+  - listNearbyDrivers
+  - listRideTypes
+  - listRides
+  - rateRide
+  - updateRideDestination
+- status: 401
+  type: null
+  title: Unauthorized - invalid or missing access token
+  descriptions_in_spec:
+  - Unauthorized - invalid or missing access token
+  operation_count: 19
+  operations:
+  - cancelConciergeRide
+  - cancelRide
+  - createConciergeRide
+  - createRide
+  - getConciergeRide
+  - getConciergeRideStatus
+  - getProfile
+  - getRide
+  - getRideReceipt
+  - listConciergeCostEstimates
+  - listConciergeRideTypes
+  - listConciergeRides
+  - listCostEstimates
+  - listETAs
+  - listNearbyDrivers
+  - listRideTypes
+  - listRides
+  - rateRide
+  - updateRideDestination
+- status: 404
+  type: null
+  title: No drivers available
+  descriptions_in_spec:
+  - No drivers available
+  - Ride not found
+  operation_count: 9
+  operations:
+  - cancelConciergeRide
+  - cancelRide
+  - createRide
+  - getConciergeRide
+  - getConciergeRideStatus
+  - getRide
+  - getRideReceipt
+  - rateRide
+  - updateRideDestination
+- status: 422
+  type: null
+  title: Unprocessable entity - validation error
+  descriptions_in_spec:
+  - Unprocessable entity - validation error
+  operation_count: 1
+  operations:
+  - createConciergeRide
+gaps:
+- No 429 is declared on any operation, so a client has no declared contract for throttling (see rate-limits/lyft-rate-limits.yml).
+- No 5xx is declared on any operation.
+- No error body schema anywhere in the published contract.

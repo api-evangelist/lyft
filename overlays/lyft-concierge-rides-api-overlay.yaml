@@ -1,0 +1,42 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements — Lyft Concierge Concierge Rides API
+  version: 1.0.0
+extends: lyft-concierge-rides-api-openapi.yml
+x-generated: '2026-09-17'
+x-method: generated
+x-source: apis.yml, conventions/lyft-conventions.yml, well-known/lyft-well-known.yml, live probes 2026-09-17
+actions:
+- target: $.info
+  description: Point the definition at the only anonymously readable Lyft documentation that exists, and at the
+    provider's live OAuth metadata document.
+  update:
+    x-api-evangelist:
+      profile: https://github.com/api-evangelist/lyft
+      generated: '2026-09-17'
+      note: Enhancement overlay maintained by API Evangelist. Not authored or endorsed by Lyft.
+    x-oauth-metadata: https://api.lyft.com/.well-known/oauth-authorization-server
+    x-public-docs: https://help.lyft.com/business/hc/en-us/articles/360001599667-Concierge-API-overview
+- target: $.externalDocs
+  description: developer.lyft.com is NXDOMAIN as of 2026-09-17; replace the dead documentation link with the live
+    help-centre article.
+  update:
+    description: Lyft Business help centre — Concierge API overview (the developer portal at www.lyft.com/developers
+      requires sign-in)
+    url: https://help.lyft.com/business/hc/en-us/articles/360001599667-Concierge-API-overview
+- target: $.paths['/concierge/rides'].post
+  description: 'Record the agent-safety facts this operation does not state: no replay protection, and which operation
+    reverses it.'
+  update:
+    x-idempotency:
+      supported: false
+      note: No Idempotency-Key header is defined. A retried request dispatches a second driver and charges a second
+        fare.
+    x-reversibility:
+      reversal_operation: cancelConciergeRide
+      window_stated: false
+      note: Cancellation is available; no numeric free-cancellation window is published by Lyft.
+- target: $.paths['/concierge/rides/{id}/cancel'].post
+  description: Mark this operation as the reversal path for ride creation.
+  update:
+    x-reversal-of: createConciergeRide

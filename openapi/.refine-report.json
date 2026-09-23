@@ -1,26 +1,36 @@
 {
   "provider": "lyft",
   "sources": [
-    "lyft-concierge-rides-api-openapi.yml",
-    "lyft-cost-estimates-api-openapi.yml",
-    "lyft-drivers-api-openapi.yml",
-    "lyft-eta-api-openapi.yml",
-    "lyft-profile-api-openapi.yml",
-    "lyft-ride-types-api-openapi.yml",
-    "lyft-rides-api-openapi.yml"
+    "_original/lyft-concierge-openapi.yml",
+    "_original/lyft-ride-sharing-openapi.yml"
   ],
   "outputs": [
     "lyft-concierge-rides-api-openapi.yml",
     "lyft-cost-estimates-api-openapi.yml",
+    "lyft-ride-types-api-openapi.yml",
     "lyft-drivers-api-openapi.yml",
     "lyft-eta-api-openapi.yml",
     "lyft-profile-api-openapi.yml",
-    "lyft-ride-types-api-openapi.yml",
     "lyft-rides-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "lyft-concierge-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "lyft-ride-sharing-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'Cost Estimates' spans 2 source specs (lyft-concierge-openapi.yml, lyft-ride-sharing-openapi.yml): per-path servers applied",
+    "tag 'Ride Types' spans 2 source specs (lyft-concierge-openapi.yml, lyft-ride-sharing-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "lyft-concierge-rides-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lyft-cost-estimates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lyft-drivers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lyft-eta-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lyft-profile-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lyft-ride-types-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lyft-rides-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

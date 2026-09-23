@@ -1,0 +1,309 @@
+specification: API Commons GBFS Feed Index
+specificationVersion: '0.1'
+provider: lyft
+providerId: lyft
+generated: '2026-09-17'
+method: probed
+source: anonymous HTTPS GET of each GBFS auto-discovery document, 2026-09-17; system list cross-checked against
+  MobilityData systems.csv
+standard:
+  name: General Bikeshare Feed Specification (GBFS)
+  body: MobilityData / North American Bikeshare Association
+  spec: https://github.com/MobilityData/gbfs/blob/master/gbfs.md
+  versions_served:
+  - '1.1'
+  - '2.3'
+description: 'Lyft serves live GBFS feeds for eight micromobility systems from its own host, gbfs.lyft.com. GBFS
+  is the open domain standard for shared-mobility data, and these feeds are the only public, anonymous, machine-readable,
+  first-party API contract Lyft currently serves: the ride-hailing developer portal is login-gated and api.lyft.com
+  publishes no specification. Every system''s own system_information document declares a system_id of the form lyft_<code>
+  and, in six of eight cases, an operator of "Lyft" or "Motivate International, Inc." (Lyft''s micromobility subsidiary)
+  — so ownership is asserted by the documents themselves, not inferred from the fetch host. Brand-domain discovery
+  URLs (citibikenyc.com, divvybikes.com, baywheels.com, bluebikes.com, capitalbikeshare.com, biketownpdx.com) list
+  feed URLs that all resolve to gbfs.lyft.com.'
+ownership_evidence:
+- gbfs/lyft-nyc-system-information.json declares system_id "lyft_nyc", operator "Lyft".
+- gbfs/lyft-dca-system-information.json declares system_id "lyft_dca", name "Lyft Scooters", operator "Motivate
+  International, Inc.", url https://www.lyft.com/scooters/washington-dc.
+- Every brand-domain gbfs.json lists feed URLs on the host gbfs.lyft.com.
+system_count: 8
+endpoint_count: 96
+auth: none — every feed is served anonymously over HTTPS
+systems:
+- system_id: lyft_nyc
+  name: Citi Bike
+  location: New York, NY
+  operator_declared: Lyft
+  system_url: http://www.citibikenyc.com
+  gbfs_version: '2.3'
+  auto_discovery_url: https://gbfs.citibikenyc.com/gbfs/2.3/gbfs.json
+  canonical_feed_root: https://gbfs.lyft.com/gbfs/2.3/bkn/gbfs.json
+  feed_host: gbfs.lyft.com
+  languages:
+  - en
+  - fr
+  - es
+  feed_count: 12
+  feeds:
+  - gbfs
+  - system_information
+  - station_information
+  - station_status
+  - free_bike_status
+  - system_hours
+  - system_calendar
+  - system_regions
+  - system_pricing_plans
+  - system_alerts
+  - gbfs_versions
+  - vehicle_types
+  last_updated_epoch: 1789682446
+  last_updated_utc: '2026-09-17T22:00:46Z'
+  ttl_seconds: 60
+  http_status: 200
+  saved:
+  - gbfs/lyft-nyc-gbfs.json
+  - gbfs/lyft-nyc-system-information.json
+- system_id: lyft_chi
+  name: Divvy
+  location: Chicago, IL
+  operator_declared: null
+  system_url: http://www.divvybikes.com
+  gbfs_version: '2.3'
+  auto_discovery_url: https://gbfs.divvybikes.com/gbfs/2.3/gbfs.json
+  canonical_feed_root: https://gbfs.lyft.com/gbfs/2.3/chi/gbfs.json
+  feed_host: gbfs.lyft.com
+  languages:
+  - en
+  - fr
+  - es
+  feed_count: 12
+  feeds:
+  - gbfs
+  - system_information
+  - station_information
+  - station_status
+  - free_bike_status
+  - system_hours
+  - system_calendar
+  - system_regions
+  - system_pricing_plans
+  - system_alerts
+  - gbfs_versions
+  - vehicle_types
+  last_updated_epoch: 1789682499
+  last_updated_utc: '2026-09-17T22:01:39Z'
+  ttl_seconds: 60
+  http_status: 200
+  saved:
+  - gbfs/lyft-chi-gbfs.json
+  - gbfs/lyft-chi-system-information.json
+- system_id: lyft_bay
+  name: Lyft Bike
+  location: San Francisco Bay Area, CA
+  operator_declared: Lyft
+  system_url: https://lyftbikes.com/
+  gbfs_version: '1.1'
+  auto_discovery_url: https://gbfs.baywheels.com/gbfs/gbfs.json
+  canonical_feed_root: https://gbfs.lyft.com/gbfs/1.1/bay/gbfs.json
+  feed_host: gbfs.lyft.com
+  languages:
+  - en
+  - fr
+  - es
+  feed_count: 12
+  feeds:
+  - gbfs
+  - ebikes_at_stations
+  - system_information
+  - station_information
+  - station_status
+  - free_bike_status
+  - system_hours
+  - system_calendar
+  - system_regions
+  - system_pricing_plans
+  - system_alerts
+  - gbfs_versions
+  last_updated_epoch: 1789682536
+  last_updated_utc: '2026-09-17T22:02:16Z'
+  ttl_seconds: 60
+  http_status: 200
+  saved:
+  - gbfs/lyft-bay-gbfs.json
+  - gbfs/lyft-bay-system-information.json
+- system_id: lyft_bos
+  name: Bluebikes
+  location: Boston, MA
+  operator_declared: Lyft
+  system_url: http://bluebikes.com
+  gbfs_version: '1.1'
+  auto_discovery_url: https://gbfs.bluebikes.com/gbfs/gbfs.json
+  canonical_feed_root: https://gbfs.lyft.com/gbfs/1.1/bos/gbfs.json
+  feed_host: gbfs.lyft.com
+  languages:
+  - en
+  - fr
+  - es
+  feed_count: 12
+  feeds:
+  - gbfs
+  - ebikes_at_stations
+  - system_information
+  - station_information
+  - station_status
+  - free_bike_status
+  - system_hours
+  - system_calendar
+  - system_regions
+  - system_pricing_plans
+  - system_alerts
+  - gbfs_versions
+  last_updated_epoch: 1789682496
+  last_updated_utc: '2026-09-17T22:01:36Z'
+  ttl_seconds: 60
+  http_status: 200
+  saved:
+  - gbfs/lyft-bos-gbfs.json
+  - gbfs/lyft-bos-system-information.json
+- system_id: lyft_cabi
+  name: Capital Bikeshare
+  location: Washington, DC
+  operator_declared: Lyft
+  system_url: https://capitalbikeshare.com
+  gbfs_version: '2.3'
+  auto_discovery_url: https://gbfs.capitalbikeshare.com/gbfs/2.3/gbfs.json
+  canonical_feed_root: https://gbfs.lyft.com/gbfs/2.3/dca/gbfs.json
+  feed_host: gbfs.lyft.com
+  languages:
+  - en
+  - fr
+  - es
+  feed_count: 12
+  feeds:
+  - gbfs
+  - system_information
+  - station_information
+  - station_status
+  - free_bike_status
+  - system_hours
+  - system_calendar
+  - system_regions
+  - system_pricing_plans
+  - system_alerts
+  - gbfs_versions
+  - vehicle_types
+  last_updated_epoch: 1789682538
+  last_updated_utc: '2026-09-17T22:02:18Z'
+  ttl_seconds: 60
+  http_status: 200
+  saved:
+  - gbfs/lyft-cabi-gbfs.json
+  - gbfs/lyft-cabi-system-information.json
+- system_id: lyft_pdx
+  name: Biketown
+  location: Portland, OR
+  operator_declared: null
+  system_url: https://biketownpdx.com
+  gbfs_version: '2.3'
+  auto_discovery_url: https://gbfs.biketownpdx.com/gbfs/2.3/gbfs.json
+  canonical_feed_root: https://gbfs.lyft.com/gbfs/2.3/pdx/gbfs.json
+  feed_host: gbfs.lyft.com
+  languages:
+  - en
+  feed_count: 12
+  feeds:
+  - gbfs
+  - system_information
+  - station_information
+  - station_status
+  - free_bike_status
+  - system_hours
+  - system_calendar
+  - system_regions
+  - system_pricing_plans
+  - system_alerts
+  - gbfs_versions
+  - vehicle_types
+  last_updated_epoch: 1789682534
+  last_updated_utc: '2026-09-17T22:02:14Z'
+  ttl_seconds: 60
+  http_status: 200
+  saved:
+  - gbfs/lyft-pdx-gbfs.json
+  - gbfs/lyft-pdx-system-information.json
+- system_id: lyft_dca
+  name: Lyft Scooters
+  location: Washington, DC
+  operator_declared: Motivate International, Inc.
+  system_url: https://www.lyft.com/scooters/washington-dc
+  gbfs_version: '2.3'
+  auto_discovery_url: https://gbfs.lyft.com/gbfs/2.3/dca/gbfs.json
+  canonical_feed_root: https://gbfs.lyft.com/gbfs/2.3/dca/gbfs.json
+  feed_host: gbfs.lyft.com
+  languages:
+  - en
+  - fr
+  - es
+  feed_count: 12
+  feeds:
+  - gbfs
+  - system_information
+  - station_information
+  - station_status
+  - free_bike_status
+  - system_hours
+  - system_calendar
+  - system_regions
+  - system_pricing_plans
+  - system_alerts
+  - gbfs_versions
+  - vehicle_types
+  last_updated_epoch: 1789682536
+  last_updated_utc: '2026-09-17T22:02:16Z'
+  ttl_seconds: 60
+  http_status: 200
+  saved:
+  - gbfs/lyft-dca-gbfs.json
+  - gbfs/lyft-dca-system-information.json
+- system_id: lyft_den
+  name: Lyft Bikes & Scooters
+  location: Denver, CO
+  operator_declared: Lyft
+  system_url: null
+  gbfs_version: '2.3'
+  auto_discovery_url: https://gbfs.lyft.com/gbfs/2.3/den/gbfs.json
+  canonical_feed_root: https://gbfs.lyft.com/gbfs/2.3/den/gbfs.json
+  feed_host: gbfs.lyft.com
+  languages:
+  - en
+  feed_count: 12
+  feeds:
+  - gbfs
+  - system_information
+  - station_information
+  - station_status
+  - free_bike_status
+  - system_hours
+  - system_calendar
+  - system_regions
+  - system_pricing_plans
+  - system_alerts
+  - gbfs_versions
+  - vehicle_types
+  last_updated_epoch: 1734371826
+  last_updated_utc: '2024-12-16T17:57:06Z'
+  ttl_seconds: 60
+  http_status: 200
+  saved:
+  - gbfs/lyft-den-gbfs.json
+  - gbfs/lyft-den-system-information.json
+findings:
+- Two of the eight systems (lyft_bay, lyft_bos) still serve GBFS 1.1, a version superseded by 2.3 on the other six
+  — a consumer reading the fleet has to handle two versions of the standard from one provider.
+- 'The lyft_den feed is stale: it advertises ttl 60 seconds but its last_updated is 2024-12-16T17:57:06Z, roughly
+  21 months before this probe, while every other system updated within a minute of it. A consumer honouring ttl
+  would poll it every minute forever and never see a change.'
+- system_pricing_plans is served per system and carries real machine-readable consumer ride pricing (see plans/lyft-plans-pricing.yml
+  service_pricing).
+- cogobikeshare.com (CoGo, Columbus OH) did not resolve at probe time, so that system is not recorded here.

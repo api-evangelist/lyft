@@ -1,90 +1,42 @@
 specification: API Commons Rate Limits
 specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: lyft
 providerId: lyft
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-tags:
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the lyft API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
+generated: '2026-09-17'
+modified: '2026-09-17'
+method: searched
+source: openapi/*.yml; https://www.lyft.com/developers (302 to login); https://help.lyft.com/business/hc/en-us;
+  live responses from api.lyft.com and gbfs.lyft.com
+description: 'Lyft publishes no rate limits for its API. This file replaces a 2026-05-04 scaffold that asserted
+  10/100/1000 requests per minute across Free, Professional and Enterprise tiers with monthly quotas; none of those
+  numbers was ever published by Lyft, and Lyft publishes no such tiers (see plans/lyft-plans-pricing.yml). An honest
+  zero is the finding: an integrator cannot learn the throttling contract before signing one.'
+limit_count: 0
+limits: []
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  limit: null
+  remaining: null
+  reset: null
+  retryAfter: null
+  policy: null
+headers_evidence: No RateLimit-*, X-RateLimit-* or Retry-After response header is declared on any of the 18 published
+  operations, and none was observed on any live anonymous response.
 responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Lyft Ride-Sharing API
-      - Lyft Concierge API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Lyft Ride-Sharing API
-      - Lyft Concierge API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Lyft Ride-Sharing API
-      - Lyft Concierge API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Lyft Ride-Sharing API
-      - Lyft Concierge API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Lyft Ride-Sharing API
-      - Lyft Concierge API
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers: []
+  throttled: null
+responseCodes_evidence: No operation in openapi/*.yml declares a 429 response.
+observed:
+- host: www.lyft.com
+  observation: Repeated anonymous requests returned HTTP 429 with an empty body and no RateLimit-* or Retry-After
+    header during well-known probing on 2026-09-17.
+  reading: The website edge does throttle, and it signals nothing a client could act on. This is edge behaviour
+    on the marketing host, not a documented API limit.
+- host: gbfs.lyft.com
+  observation: 'No throttling observed across 30+ anonymous feed requests; every GBFS feed advertises ttl: 60, which
+    is a polling-cadence hint rather than a rate limit.'
+  reading: ttl 60 is the closest thing Lyft publishes to a documented client cadence, and it applies only to the
+    GBFS surface.
+policies: []
+gaps:
+- No published limit for any tier, key or endpoint.
+- 'No runtime signal: an agent cannot see how close it is to a limit, and on exhaustion has no Retry-After to honour.'

@@ -1,0 +1,160 @@
+specification: API Commons MCP Server
+specificationVersion: '0.1'
+provider: lyft
+providerId: lyft
+generated: '2026-09-17'
+method: derived
+source: openapi/*.yml (18 operations); probe record below
+status: candidate
+description: 'Lyft ships no MCP server that an agent can reach anonymously, so this is a CANDIDATE tool surface
+  derived one-for-one from the published REST operations. It is a proposal, not something Lyft operates. There is,
+  however, first-party evidence that an MCP surface exists behind Lyft authentication: the scope lyft_rider_mcp.read
+  appears in Lyft''s own published OAuth authorization-server metadata. No endpoint for it is discoverable anonymously
+  and none is invented here.'
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: derived
+evidence:
+  mcp_scope_published:
+    scope: lyft_rider_mcp.read
+    source: https://api.lyft.com/.well-known/oauth-authorization-server
+    status: 200
+    reading: Lyft has provisioned an OAuth scope for a rider-facing MCP surface. The scope is real and first-party;
+      the server behind it is not publicly addressable.
+  probes:
+  - url: https://mcp.lyft.com/
+    result: DNS NXDOMAIN
+  - url: https://rider-mcp.lyft.com/
+    result: DNS NXDOMAIN
+  - url: https://api.lyft.com/mcp
+    status: 404
+  - url: https://api.lyft.com/v1/mcp
+    status: 404
+  - url: https://api.lyft.com/mcp/rider
+    status: 404
+  - url: https://api.lyft.com/.well-known/oauth-protected-resource
+    status: 404
+    reading: An MCP resource server would normally publish this document (RFC 9728); its absence is consistent with
+      no anonymously reachable MCP resource.
+tool_count: 19
+tools:
+- tool: listConciergeRides
+  rest:
+  - listConciergeRides
+  http: GET /concierge/rides
+  description: List concierge rides
+  action_class: read
+- tool: createConciergeRide
+  rest:
+  - createConciergeRide
+  http: POST /concierge/rides
+  description: Create a concierge ride
+  action_class: write
+- tool: getConciergeRide
+  rest:
+  - getConciergeRide
+  http: GET /concierge/rides/{id}
+  description: Get concierge ride detail
+  action_class: read
+- tool: cancelConciergeRide
+  rest:
+  - cancelConciergeRide
+  http: POST /concierge/rides/{id}/cancel
+  description: Cancel a concierge ride
+  action_class: write
+- tool: getConciergeRideStatus
+  rest:
+  - getConciergeRideStatus
+  http: GET /concierge/rides/{id}/status
+  description: Get concierge ride status
+  action_class: read
+- tool: listConciergeCostEstimates
+  rest:
+  - listConciergeCostEstimates
+  http: GET /concierge/cost
+  description: List concierge cost estimates
+  action_class: read
+- tool: listCostEstimates
+  rest:
+  - listCostEstimates
+  http: GET /cost
+  description: List cost estimates
+  action_class: read
+- tool: listNearbyDrivers
+  rest:
+  - listNearbyDrivers
+  http: GET /drivers
+  description: List nearby drivers
+  action_class: read
+- tool: listETAs
+  rest:
+  - listETAs
+  http: GET /eta
+  description: List pickup ETAs
+  action_class: read
+- tool: getProfile
+  rest:
+  - getProfile
+  http: GET /profile
+  description: Get user profile
+  action_class: read
+- tool: listConciergeRideTypes
+  rest:
+  - listConciergeRideTypes
+  http: GET /concierge/ridetypes
+  description: List available concierge ride types
+  action_class: read
+- tool: listRideTypes
+  rest:
+  - listRideTypes
+  http: GET /ridetypes
+  description: List ride types
+  action_class: read
+- tool: listRides
+  rest:
+  - listRides
+  http: GET /rides
+  description: List rides
+  action_class: read
+- tool: createRide
+  rest:
+  - createRide
+  http: POST /rides
+  description: Request a ride
+  action_class: write
+- tool: getRide
+  rest:
+  - getRide
+  http: GET /rides/{id}
+  description: Get ride detail
+  action_class: read
+- tool: cancelRide
+  rest:
+  - cancelRide
+  http: POST /rides/{id}/cancel
+  description: Cancel a ride
+  action_class: write
+- tool: updateRideDestination
+  rest:
+  - updateRideDestination
+  http: PUT /rides/{id}/destination
+  description: Update ride destination
+  action_class: write
+- tool: rateRide
+  rest:
+  - rateRide
+  http: PUT /rides/{id}/rating
+  description: Rate a ride
+  action_class: write
+- tool: getRideReceipt
+  rest:
+  - getRideReceipt
+  http: GET /rides/{id}/receipt
+  description: Get ride receipt
+  action_class: read
+note: 'Wired as X-MCPServerCandidate, never MCPServer: no MCPServer pointer is claimed for a server Lyft does not
+  publish.'

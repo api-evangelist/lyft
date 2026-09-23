@@ -1,12 +1,9 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lyft Concierge Concierge Rides Ride Types API
-  description: The Lyft Concierge API allows organizations to request rides on behalf of their customers, patients, or employees without requiring those individuals to have a Lyft account. It is designed for enterprise use cases such as healthcare patient transportation, corporate employee transit, and customer service scenarios. The API enables organizations to build customized transportation workflows, schedule rides in advance, track ride status in real time, and manage ride programs at scale. It provides a way to embed Lyft's driver network directly into business operations and third-party applications.
+  title: Lyft Ride Types API
   version: '1.0'
-  contact:
-    name: Lyft Business Support
-    url: https://www.lyft.com/developers
   termsOfService: https://www.lyft.com/terms
+  description: 'Operations tagged Ride Types across 2 of this provider''s published API definitions: lyft-concierge-openapi.yml, lyft-ride-sharing-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.lyft.com/v1
   description: Production Server
@@ -55,6 +52,9 @@ paths:
           description: Bad request - invalid parameters
         '401':
           description: Unauthorized - invalid or missing access token
+    servers:
+    - url: https://api.lyft.com/v1
+      description: Production Server
   /ridetypes:
     get:
       operationId: listRideTypes
@@ -88,8 +88,28 @@ paths:
           description: Bad request - invalid or missing parameters
         '401':
           description: Unauthorized - invalid or missing access token
+    servers:
+    - url: https://api.lyft.com/v1
+      description: Production Server
 components:
   schemas:
+    ConciergeRideType:
+      type: object
+      description: A ride type available for concierge bookings at a given location.
+      properties:
+        ride_type:
+          type: string
+          description: Identifier for the ride type.
+        display_name:
+          type: string
+          description: Human-readable name for the ride type.
+        seats:
+          type: integer
+          description: Maximum number of passenger seats.
+        image_url:
+          type: string
+          format: uri
+          description: URL to an image representing the ride type.
     PricingDetails:
       type: object
       description: Pricing breakdown for a ride type, including base charge, per-mile and per-minute rates, minimum cost, and cancellation penalty. All monetary amounts are in the smallest denomination of the currency (e.g., cents for USD).
@@ -116,6 +136,16 @@ components:
           type: string
           description: ISO 4217 currency code.
           pattern: ^[A-Z]{3}$
+    RideTypeEnum:
+      type: string
+      description: Identifier for the type of Lyft ride.
+      enum:
+      - lyft
+      - lyft_line
+      - lyft_plus
+      - lyft_premier
+      - lyft_lux
+      - lyft_luxsuv
     RideType:
       type: object
       description: Details about an available ride type at a given location, including its name, pricing, and capacity.
@@ -134,33 +164,6 @@ components:
           description: URL to an image representing the ride type.
         pricing_details:
           $ref: '#/components/schemas/PricingDetails'
-    RideTypeEnum:
-      type: string
-      description: Identifier for the type of Lyft ride.
-      enum:
-      - lyft
-      - lyft_line
-      - lyft_plus
-      - lyft_premier
-      - lyft_lux
-      - lyft_luxsuv
-    ConciergeRideType:
-      type: object
-      description: A ride type available for concierge bookings at a given location.
-      properties:
-        ride_type:
-          type: string
-          description: Identifier for the ride type.
-        display_name:
-          type: string
-          description: Human-readable name for the ride type.
-        seats:
-          type: integer
-          description: Maximum number of passenger seats.
-        image_url:
-          type: string
-          format: uri
-          description: URL to an image representing the ride type.
   parameters:
     lng:
       name: lng
@@ -183,6 +186,11 @@ components:
       type: http
       scheme: bearer
       description: OAuth 2.0 access token obtained through the client credentials flow for the organization's concierge API client.
-externalDocs:
-  description: Lyft Concierge API Documentation
-  url: https://www.lyft.com/developers/products/concierge-api
+    clientToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Client token for accessing public endpoints without user authorization. Passed as a Bearer token in the Authorization header.
+x-refined-from:
+- lyft-concierge-openapi.yml
+- lyft-ride-sharing-openapi.yml

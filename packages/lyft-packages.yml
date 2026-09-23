@@ -1,0 +1,98 @@
+specification: API Commons Packages
+specificationVersion: '0.1'
+provider: lyft
+providerId: lyft
+generated: '2026-09-17'
+method: searched
+source: >-
+  github.com/lyft org listing, plus registry metadata endpoints: registry.npmjs.org/node-lyft,
+  repo1.maven.org/maven2/com/lyft/lyft-android-sdk/maven-metadata.xml,
+  trunk.cocoapods.org/api/v1/pods/LyftSDK, proxy.golang.org/github.com/lyft/lyft-go-sdk/@latest
+description: >-
+  First-party Lyft client libraries for the public Lyft API, with the version and publication date read
+  from each package registry. Every one of them is dormant: the most recently published artifact shipped
+  in September 2021 and the newest source commit in any of these repos is March 2023. Two carry an
+  explicit end-of-life signal — the Go SDK's own README opens with a deprecation notice, and the Node
+  SDK repository is archived on GitHub. Lyft publishes no first-party Python, Ruby, PHP, .NET or Java
+  (server-side) client.
+package_count: 4
+official_count: 4
+packages:
+- name: node-lyft
+  registry: npm
+  url: https://www.npmjs.com/package/node-lyft
+  repository: https://github.com/lyft/lyft-node-sdk
+  language: JavaScript
+  official: true
+  official_evidence: 'Published from the lyft GitHub org; package.json description: "The official node SDK for Lyft''s APIs".'
+  license: Apache-2.0
+  version: 1.0.3
+  published: '2017-06-29'
+  status: archived
+  note: >-
+    GitHub repository is archived (read-only). Three versions ever published; the last was 2017-06-29,
+    more than nine years before this probe.
+- name: com.lyft:lyft-android-sdk
+  registry: maven-central
+  url: https://repo1.maven.org/maven2/com/lyft/lyft-android-sdk/
+  repository: https://github.com/lyft/lyft-android-sdk
+  language: Java/Android
+  official: true
+  official_evidence: 'Group com.lyft, published from the lyft GitHub org; POM developer id "lyft", name "Lyft Open Source".'
+  license: Apache-2.0
+  version: 2.0.2
+  published: '2021-09-20'
+  status: dormant
+  note: >-
+    Most recently published first-party Lyft package of any kind. Seven versions, last source push
+    2023-03-20. Ships the Lyft deeplink button plus a networking layer rather than a full API client.
+- name: LyftSDK
+  registry: cocoapods
+  url: https://cocoapods.org/pods/LyftSDK
+  repository: https://github.com/lyft/Lyft-iOS-sdk
+  language: Swift
+  official: true
+  official_evidence: 'Published from the lyft GitHub org; podspec author scimen@lyft.com, homepage github.com/lyft/lyft-iOS-sdk.'
+  license: Apache-2.0
+  version: 2.0.0
+  published: '2019-07-02'
+  status: dormant
+  note: >-
+    Seven versions on the CocoaPods trunk; the 2.0.0 release is dated 2019-07-02. Last source push
+    2023-03-20. No Swift Package Manager manifest is published.
+- name: github.com/lyft/lyft-go-sdk
+  registry: go
+  url: https://pkg.go.dev/github.com/lyft/lyft-go-sdk
+  repository: https://github.com/lyft/lyft-go-sdk
+  language: Go
+  official: true
+  official_evidence: Module path is under the lyft GitHub org.
+  license: Apache-2.0
+  version: v1.2.1
+  published: '2017-07-24'
+  status: deprecated
+  note: >-
+    The repository README opens with "DEPRECATION NOTICE — Please note that this SDK is deprecated and
+    is no longer officially supported by Lyft." Its links point at developer.lyft.com, a host that no
+    longer resolves (NXDOMAIN).
+samples:
+- name: lyft-node-samples
+  url: https://github.com/lyft/lyft-node-samples
+  note: Sample applications, not a published package.
+- name: lyft-go-samples
+  url: https://github.com/lyft/lyft-go-samples
+  note: Sample applications, not a published package.
+absent:
+- registry: pypi
+  note: >-
+    No first-party Lyft package. The PyPI package `lyft_rides` (0.2, 2017-09-25) is third-party —
+    author Gautam Mishra, repository github.com/gautammishra/lyft-rides-python-sdk — and is NOT
+    recorded as a Lyft SDK.
+- registry: rubygems
+  note: No first-party package found.
+- registry: nuget
+  note: No first-party package found.
+- registry: packagist
+  note: No first-party package found.
+- registry: crates.io
+  note: No first-party package found.

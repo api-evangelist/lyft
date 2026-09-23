@@ -1,0 +1,56 @@
+specification: API Commons Lifecycle
+specificationVersion: '0.1'
+provider: lyft
+providerId: lyft
+generated: '2026-09-17'
+method: probed
+source: https://api.lyft.com/v1 (path versioning), DNS + HTTP probes of developer.lyft.com and status.lyft.com,
+  github.com/lyft SDK repositories
+versioning:
+  scheme: path
+  current: v1
+  evidence: servers[] url https://api.lyft.com/v1 in every published definition
+  policy_published: false
+  policy_note: No versioning policy is publicly readable; the developer portal is login-gated.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  deprecated_operations: []
+  evidence: 'No operation in openapi/*.yml carries deprecated: true; no Sunset or Deprecation response header is
+    declared anywhere.'
+  observed_retirements:
+  - what: developer.lyft.com — the documentation host cited by apis.yml, by every Lyft SDK README, and by Lyft's
+      own OAuth docs links
+    state: retired without a redirect
+    evidence: DNS NXDOMAIN for developer.lyft.com on 2026-09-17; https://developer.lyft.com/docs does not resolve
+    impact: Every published Lyft SDK README and sample still links to a host that no longer exists.
+  - what: Go SDK (github.com/lyft/lyft-go-sdk)
+    state: deprecated by the provider
+    evidence: 'Repository README: "DEPRECATION NOTICE — Please note that this SDK is deprecated and is no longer
+      officially supported by Lyft."'
+  - what: Node SDK (github.com/lyft/lyft-node-sdk)
+    state: archived
+    evidence: GitHub repository archived flag is true; last npm release node-lyft 1.0.3 on 2017-06-29.
+  - what: lyft_den GBFS feed
+    state: stale but still served
+    evidence: https://gbfs.lyft.com/gbfs/2.3/den/gbfs.json last_updated 2024-12-16T17:57:06Z with ttl 60, probed
+      2026-09-17.
+  note: Real retirements have happened and none of them was announced through a machine-readable signal.
+status_page:
+  published: false
+  evidence: status.lyft.com does not resolve (NXDOMAIN, 2026-09-17); no status or uptime page is linked from any
+    anonymously reachable Lyft page.
+  note: No StatusPage pointer is claimed.
+sla:
+  published: false
+  note: No public SLA. Lyft Business terms are contracted, not published.
+changelog:
+  published: false
+  evidence: No dated API changelog is reachable anonymously; www.lyft.com/developers 302s to account.lyft.com/auth/email.
+  note: No ChangeLog pointer is claimed.
+support:
+  public_help_centre: https://help.lyft.com/business/hc/en-us
+  api_articles:
+  - https://help.lyft.com/business/hc/en-us/articles/360001599667-Concierge-API-overview
+  - https://help.lyft.com/business/hc/en-us/articles/8587470351891-Managing-your-API-client-and-program-connections

@@ -1,0 +1,30 @@
+specification: API Commons Agent Skills
+specificationVersion: '0.1'
+provider: lyft
+providerId: lyft
+generated: '2026-09-17'
+method: generated
+source: openapi/*.yml operationIds (verified against the specs), gbfs/lyft-gbfs.yml, conventions/lyft-conventions.yml
+description: 'Packaged agent skills for the three flows a consumer actually runs against Lyft: dispatching a ride
+  for an authenticated rider, dispatching one for a passenger with no Lyft account, and reading the open micromobility
+  feeds. Every operationId referenced exists in the published contract.'
+skill_count: 3
+skills:
+- name: lyft-request-a-ride
+  file: lyft-request-a-ride.md
+  api: lyft:lyft-rides-api
+  operations: 8
+  summary: Quote, dispatch, track, amend, cancel and settle a ride for an authenticated rider.
+- name: lyft-concierge-ride-for-a-passenger
+  file: lyft-concierge-ride-for-a-passenger.md
+  api: lyft:lyft-concierge-rides-api
+  operations: 7
+  summary: Book and manage a ride on behalf of someone with no Lyft account.
+- name: lyft-read-micromobility-feeds
+  file: lyft-read-micromobility-feeds.md
+  api: lyft:lyft-gbfs-feeds
+  operations: 8
+  summary: Read live station, vehicle, pricing and alert data for eight GBFS systems, anonymously.
+safety_notes:
+- No idempotency key exists on either ride-creation operation; every skill says so at the point of the call.
+- No numeric cancellation window is published; no skill quotes one.
