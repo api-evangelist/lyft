@@ -166,16 +166,6 @@ components:
         estimated_duration_seconds:
           type: integer
           description: Estimated ride duration in seconds.
-    RideTypeEnum:
-      type: string
-      description: Identifier for the type of Lyft ride.
-      enum:
-      - lyft
-      - lyft_line
-      - lyft_plus
-      - lyft_premier
-      - lyft_lux
-      - lyft_luxsuv
     CostEstimate:
       type: object
       description: Estimated cost, distance, and duration for a ride between two locations for a specific ride type.
@@ -208,6 +198,16 @@ components:
         primetime_confirmation_token:
           type: string
           description: A token that must be included when requesting a ride during Prime Time pricing.
+    RideTypeEnum:
+      type: string
+      description: Identifier for the type of Lyft ride.
+      enum:
+      - lyft
+      - lyft_line
+      - lyft_plus
+      - lyft_premier
+      - lyft_lux
+      - lyft_luxsuv
   securitySchemes:
     bearerAuth:
       type: http

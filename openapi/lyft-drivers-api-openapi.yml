@@ -44,18 +44,24 @@ paths:
         '401':
           description: Unauthorized - invalid or missing access token
 components:
+  parameters:
+    lng:
+      name: lng
+      in: query
+      description: Longitude of the location.
+      required: true
+      schema:
+        type: number
+        format: double
+    lat:
+      name: lat
+      in: query
+      description: Latitude of the location.
+      required: true
+      schema:
+        type: number
+        format: double
   schemas:
-    NearbyDriversByRideType:
-      type: object
-      description: Collection of nearby driver positions for a specific ride type.
-      properties:
-        ride_type:
-          $ref: '#/components/schemas/RideTypeEnum'
-        drivers:
-          type: array
-          description: List of nearby drivers with their locations.
-          items:
-            $ref: '#/components/schemas/DriverLocation'
     DriverLocation:
       type: object
       description: Geographic location of a nearby driver.
@@ -74,6 +80,17 @@ components:
                 type: number
                 format: double
                 description: Longitude of the driver's position.
+    NearbyDriversByRideType:
+      type: object
+      description: Collection of nearby driver positions for a specific ride type.
+      properties:
+        ride_type:
+          $ref: '#/components/schemas/RideTypeEnum'
+        drivers:
+          type: array
+          description: List of nearby drivers with their locations.
+          items:
+            $ref: '#/components/schemas/DriverLocation'
     RideTypeEnum:
       type: string
       description: Identifier for the type of Lyft ride.
@@ -84,23 +101,6 @@ components:
       - lyft_premier
       - lyft_lux
       - lyft_luxsuv
-  parameters:
-    lng:
-      name: lng
-      in: query
-      description: Longitude of the location.
-      required: true
-      schema:
-        type: number
-        format: double
-    lat:
-      name: lat
-      in: query
-      description: Latitude of the location.
-      required: true
-      schema:
-        type: number
-        format: double
   securitySchemes:
     bearerAuth:
       type: http

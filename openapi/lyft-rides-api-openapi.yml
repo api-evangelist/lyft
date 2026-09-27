@@ -225,41 +225,21 @@ paths:
         '404':
           description: Ride not found
 components:
-  parameters:
-    rideId:
-      name: id
-      in: path
-      description: The unique identifier of the ride.
-      required: true
-      schema:
-        type: string
   schemas:
-    Vehicle:
+    Charge:
       type: object
-      description: Information about the vehicle assigned to a ride.
+      description: A payment charge applied to a ride.
       properties:
-        make:
-          type: string
-          description: Vehicle manufacturer name.
-        model:
-          type: string
-          description: Vehicle model name.
-        year:
+        amount:
           type: integer
-          description: Vehicle model year.
-        license_plate:
+          description: Amount charged in the smallest currency denomination.
+        currency:
           type: string
-          description: Vehicle license plate number.
-        license_plate_state:
+          description: ISO 4217 currency code.
+          pattern: ^[A-Z]{3}$
+        payment_method:
           type: string
-          description: State where the vehicle is registered.
-        color:
-          type: string
-          description: Color of the vehicle.
-        image_url:
-          type: string
-          format: uri
-          description: URL to an image of the vehicle.
+          description: Description of the payment method used for this charge.
     CreateRideRequest:
       type: object
       description: Request body for creating a new Lyft ride.
@@ -318,16 +298,6 @@ components:
           description: Timestamp when this ride detail object was generated.
         price:
           $ref: '#/components/schemas/Price'
-    RideTypeEnum:
-      type: string
-      description: Identifier for the type of Lyft ride.
-      enum:
-      - lyft
-      - lyft_line
-      - lyft_plus
-      - lyft_premier
-      - lyft_lux
-      - lyft_luxsuv
     Location:
       type: object
       description: A geographic location with optional address information.
@@ -343,20 +313,55 @@ components:
         address:
           type: string
           description: Human-readable address of the location.
-    Charge:
+    Vehicle:
       type: object
-      description: A payment charge applied to a ride.
+      description: Information about the vehicle assigned to a ride.
       properties:
-        amount:
+        make:
+          type: string
+          description: Vehicle manufacturer name.
+        model:
+          type: string
+          description: Vehicle model name.
+        year:
           type: integer
-          description: Amount charged in the smallest currency denomination.
-        currency:
+          description: Vehicle model year.
+        license_plate:
           type: string
-          description: ISO 4217 currency code.
-          pattern: ^[A-Z]{3}$
-        payment_method:
+          description: Vehicle license plate number.
+        license_plate_state:
           type: string
-          description: Description of the payment method used for this charge.
+          description: State where the vehicle is registered.
+        color:
+          type: string
+          description: Color of the vehicle.
+        image_url:
+          type: string
+          format: uri
+          description: URL to an image of the vehicle.
+    RideReceipt:
+      type: object
+      description: Receipt for a completed ride, including fare breakdown and total charges.
+      properties:
+        ride_id:
+          type: string
+          description: Unique identifier for the ride.
+        price:
+          $ref: '#/components/schemas/Price'
+        line_items:
+          type: array
+          description: Itemized list of charges that make up the total fare.
+          items:
+            $ref: '#/components/schemas/LineItem'
+        charges:
+          type: array
+          description: List of payment charges applied to this ride.
+          items:
+            $ref: '#/components/schemas/Charge'
+        requested_at:
+          type: string
+          format: date-time
+          description: Timestamp when the ride was requested.
     Price:
       type: object
       description: Price information for a ride, including the total amount and currency.
@@ -371,6 +376,33 @@ components:
         description:
           type: string
           description: Human-readable description of the price.
+    RideTypeEnum:
+      type: string
+      description: Identifier for the type of Lyft ride.
+      enum:
+      - lyft
+      - lyft_line
+      - lyft_plus
+      - lyft_premier
+      - lyft_lux
+      - lyft_luxsuv
+    Driver:
+      type: object
+      description: Information about the driver assigned to a ride.
+      properties:
+        first_name:
+          type: string
+          description: The driver's first name.
+        phone_number:
+          type: string
+          description: The driver's contact phone number.
+        rating:
+          type: string
+          description: The driver's average rating.
+        image_url:
+          type: string
+          format: uri
+          description: URL to the driver's profile photo.
     LineItem:
       type: object
       description: A single line item on a ride receipt representing a specific charge or credit.
@@ -410,46 +442,14 @@ components:
         feedback:
           type: string
           description: Optional text feedback about the ride experience.
-    RideReceipt:
-      type: object
-      description: Receipt for a completed ride, including fare breakdown and total charges.
-      properties:
-        ride_id:
-          type: string
-          description: Unique identifier for the ride.
-        price:
-          $ref: '#/components/schemas/Price'
-        line_items:
-          type: array
-          description: Itemized list of charges that make up the total fare.
-          items:
-            $ref: '#/components/schemas/LineItem'
-        charges:
-          type: array
-          description: List of payment charges applied to this ride.
-          items:
-            $ref: '#/components/schemas/Charge'
-        requested_at:
-          type: string
-          format: date-time
-          description: Timestamp when the ride was requested.
-    Driver:
-      type: object
-      description: Information about the driver assigned to a ride.
-      properties:
-        first_name:
-          type: string
-          description: The driver's first name.
-        phone_number:
-          type: string
-          description: The driver's contact phone number.
-        rating:
-          type: string
-          description: The driver's average rating.
-        image_url:
-          type: string
-          format: uri
-          description: URL to the driver's profile photo.
+  parameters:
+    rideId:
+      name: id
+      in: path
+      description: The unique identifier of the ride.
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

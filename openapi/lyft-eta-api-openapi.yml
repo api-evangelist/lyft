@@ -65,16 +65,6 @@ paths:
           description: Unauthorized - invalid or missing access token
 components:
   schemas:
-    RideTypeEnum:
-      type: string
-      description: Identifier for the type of Lyft ride.
-      enum:
-      - lyft
-      - lyft_line
-      - lyft_plus
-      - lyft_premier
-      - lyft_lux
-      - lyft_luxsuv
     ETAEstimate:
       type: object
       description: Estimated time of arrival for the nearest driver of a given ride type.
@@ -90,6 +80,16 @@ components:
         is_valid_estimate:
           type: boolean
           description: Whether the estimate is considered valid based on current driver availability.
+    RideTypeEnum:
+      type: string
+      description: Identifier for the type of Lyft ride.
+      enum:
+      - lyft
+      - lyft_line
+      - lyft_plus
+      - lyft_premier
+      - lyft_lux
+      - lyft_luxsuv
   parameters:
     lat:
       name: lat
