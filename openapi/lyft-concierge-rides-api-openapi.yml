@@ -222,35 +222,37 @@ components:
         cost_center:
           type: string
           description: The cost center code associated with this ride.
-    CreateConciergeRideRequest:
+    ConciergePrice:
       type: object
-      description: Request body for creating a new concierge ride on behalf of a passenger.
-      required:
-      - ride_type
-      - passenger
-      - origin
-      - destination
+      description: Price information for a concierge ride.
       properties:
-        ride_type:
+        amount:
+          type: integer
+          description: Total price in the smallest denomination of the currency.
+        currency:
           type: string
-          description: Identifier for the type of Lyft ride to request.
-        passenger:
-          $ref: '#/components/schemas/Passenger'
-        origin:
-          $ref: '#/components/schemas/Location'
-        destination:
-          $ref: '#/components/schemas/Location'
-        scheduled_pickup_time:
+          description: ISO 4217 currency code.
+          pattern: ^[A-Z]{3}$
+        description:
           type: string
-          format: date-time
-          description: The requested pickup time for a scheduled ride. If omitted, the ride will be dispatched immediately. Must be at least 30 minutes in the future and no more than 7 days ahead.
-        notes:
+          description: Human-readable description of the price.
+    ConciergeDriver:
+      type: object
+      description: Information about the driver assigned to a concierge ride.
+      properties:
+        first_name:
           type: string
-          description: Special instructions or notes for the driver, such as building entrance details or patient mobility requirements.
-          maxLength: 500
-        cost_center:
+          description: The driver's first name.
+        phone_number:
           type: string
-          description: An optional cost center code for billing and reporting purposes.
+          description: The driver's contact phone number.
+        rating:
+          type: string
+          description: The driver's average rating.
+        image_url:
+          type: string
+          format: uri
+          description: URL to the driver's profile photo.
     Location:
       type: object
       description: A geographic location with optional address details.
@@ -278,20 +280,18 @@ components:
         zip:
           type: string
           description: Postal code.
-    ConciergePrice:
-      type: object
-      description: Price information for a concierge ride.
-      properties:
-        amount:
-          type: integer
-          description: Total price in the smallest denomination of the currency.
-        currency:
-          type: string
-          description: ISO 4217 currency code.
-          pattern: ^[A-Z]{3}$
-        description:
-          type: string
-          description: Human-readable description of the price.
+    ConciergeRideStatusEnum:
+      type: string
+      description: Status of a concierge ride throughout its lifecycle.
+      enum:
+      - pending
+      - scheduled
+      - matched
+      - arriving
+      - pickedUp
+      - droppedOff
+      - canceled
+      - failed
     ConciergeVehicle:
       type: object
       description: Information about the vehicle assigned to a concierge ride.
@@ -339,35 +339,35 @@ components:
           type: string
           format: date-time
           description: Timestamp when the status was last updated.
-    ConciergeDriver:
+    CreateConciergeRideRequest:
       type: object
-      description: Information about the driver assigned to a concierge ride.
+      description: Request body for creating a new concierge ride on behalf of a passenger.
+      required:
+      - ride_type
+      - passenger
+      - origin
+      - destination
       properties:
-        first_name:
+        ride_type:
           type: string
-          description: The driver's first name.
-        phone_number:
+          description: Identifier for the type of Lyft ride to request.
+        passenger:
+          $ref: '#/components/schemas/Passenger'
+        origin:
+          $ref: '#/components/schemas/Location'
+        destination:
+          $ref: '#/components/schemas/Location'
+        scheduled_pickup_time:
           type: string
-          description: The driver's contact phone number.
-        rating:
+          format: date-time
+          description: The requested pickup time for a scheduled ride. If omitted, the ride will be dispatched immediately. Must be at least 30 minutes in the future and no more than 7 days ahead.
+        notes:
           type: string
-          description: The driver's average rating.
-        image_url:
+          description: Special instructions or notes for the driver, such as building entrance details or patient mobility requirements.
+          maxLength: 500
+        cost_center:
           type: string
-          format: uri
-          description: URL to the driver's profile photo.
-    ConciergeRideStatusEnum:
-      type: string
-      description: Status of a concierge ride throughout its lifecycle.
-      enum:
-      - pending
-      - scheduled
-      - matched
-      - arriving
-      - pickedUp
-      - droppedOff
-      - canceled
-      - failed
+          description: An optional cost center code for billing and reporting purposes.
     Passenger:
       type: object
       description: Contact information for the ride passenger. The passenger does not need to have a Lyft account.

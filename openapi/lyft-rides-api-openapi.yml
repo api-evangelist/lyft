@@ -226,36 +226,64 @@ paths:
           description: Ride not found
 components:
   schemas:
-    Charge:
+    RideReceipt:
       type: object
-      description: A payment charge applied to a ride.
+      description: Receipt for a completed ride, including fare breakdown and total charges.
       properties:
-        amount:
-          type: integer
-          description: Amount charged in the smallest currency denomination.
-        currency:
+        ride_id:
           type: string
-          description: ISO 4217 currency code.
-          pattern: ^[A-Z]{3}$
-        payment_method:
+          description: Unique identifier for the ride.
+        price:
+          $ref: '#/components/schemas/Price'
+        line_items:
+          type: array
+          description: Itemized list of charges that make up the total fare.
+          items:
+            $ref: '#/components/schemas/LineItem'
+        charges:
+          type: array
+          description: List of payment charges applied to this ride.
+          items:
+            $ref: '#/components/schemas/Charge'
+        requested_at:
           type: string
-          description: Description of the payment method used for this charge.
-    CreateRideRequest:
+          format: date-time
+          description: Timestamp when the ride was requested.
+    RideTypeEnum:
+      type: string
+      description: Identifier for the type of Lyft ride.
+      enum:
+      - lyft
+      - lyft_line
+      - lyft_plus
+      - lyft_premier
+      - lyft_lux
+      - lyft_luxsuv
+    RideRatingRequest:
       type: object
-      description: Request body for creating a new Lyft ride.
+      description: Request body for rating a completed ride.
       required:
-      - ride_type
-      - origin
+      - rating
       properties:
-        ride_type:
-          $ref: '#/components/schemas/RideTypeEnum'
-        origin:
-          $ref: '#/components/schemas/Location'
-        destination:
-          $ref: '#/components/schemas/Location'
-        primetime_confirmation_token:
+        rating:
+          type: integer
+          description: Star rating for the ride, from 1 to 5.
+          minimum: 1
+          maximum: 5
+        tip:
+          type: object
+          description: Optional tip for the driver.
+          properties:
+            amount:
+              type: integer
+              description: Tip amount in the smallest denomination of the currency.
+            currency:
+              type: string
+              description: ISO 4217 currency code for the tip.
+              pattern: ^[A-Z]{3}$
+        feedback:
           type: string
-          description: A token confirming the user has accepted Prime Time pricing. Required when Prime Time is in effect.
+          description: Optional text feedback about the ride experience.
     RideDetail:
       type: object
       description: Detailed information about a Lyft ride including its status, route, driver, and vehicle information.
@@ -298,6 +326,34 @@ components:
           description: Timestamp when this ride detail object was generated.
         price:
           $ref: '#/components/schemas/Price'
+    Price:
+      type: object
+      description: Price information for a ride, including the total amount and currency.
+      properties:
+        amount:
+          type: integer
+          description: Total price in the smallest denomination of the currency.
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+          pattern: ^[A-Z]{3}$
+        description:
+          type: string
+          description: Human-readable description of the price.
+    Charge:
+      type: object
+      description: A payment charge applied to a ride.
+      properties:
+        amount:
+          type: integer
+          description: Amount charged in the smallest currency denomination.
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+          pattern: ^[A-Z]{3}$
+        payment_method:
+          type: string
+          description: Description of the payment method used for this charge.
     Location:
       type: object
       description: A geographic location with optional address information.
@@ -313,6 +369,53 @@ components:
         address:
           type: string
           description: Human-readable address of the location.
+    LineItem:
+      type: object
+      description: A single line item on a ride receipt representing a specific charge or credit.
+      properties:
+        type:
+          type: string
+          description: Type of the line item such as base fare, distance, time, or fees.
+        amount:
+          type: integer
+          description: Amount of the line item in the smallest currency denomination.
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+          pattern: ^[A-Z]{3}$
+    Driver:
+      type: object
+      description: Information about the driver assigned to a ride.
+      properties:
+        first_name:
+          type: string
+          description: The driver's first name.
+        phone_number:
+          type: string
+          description: The driver's contact phone number.
+        rating:
+          type: string
+          description: The driver's average rating.
+        image_url:
+          type: string
+          format: uri
+          description: URL to the driver's profile photo.
+    CreateRideRequest:
+      type: object
+      description: Request body for creating a new Lyft ride.
+      required:
+      - ride_type
+      - origin
+      properties:
+        ride_type:
+          $ref: '#/components/schemas/RideTypeEnum'
+        origin:
+          $ref: '#/components/schemas/Location'
+        destination:
+          $ref: '#/components/schemas/Location'
+        primetime_confirmation_token:
+          type: string
+          description: A token confirming the user has accepted Prime Time pricing. Required when Prime Time is in effect.
     Vehicle:
       type: object
       description: Information about the vehicle assigned to a ride.
@@ -339,109 +442,6 @@ components:
           type: string
           format: uri
           description: URL to an image of the vehicle.
-    RideReceipt:
-      type: object
-      description: Receipt for a completed ride, including fare breakdown and total charges.
-      properties:
-        ride_id:
-          type: string
-          description: Unique identifier for the ride.
-        price:
-          $ref: '#/components/schemas/Price'
-        line_items:
-          type: array
-          description: Itemized list of charges that make up the total fare.
-          items:
-            $ref: '#/components/schemas/LineItem'
-        charges:
-          type: array
-          description: List of payment charges applied to this ride.
-          items:
-            $ref: '#/components/schemas/Charge'
-        requested_at:
-          type: string
-          format: date-time
-          description: Timestamp when the ride was requested.
-    Price:
-      type: object
-      description: Price information for a ride, including the total amount and currency.
-      properties:
-        amount:
-          type: integer
-          description: Total price in the smallest denomination of the currency.
-        currency:
-          type: string
-          description: ISO 4217 currency code.
-          pattern: ^[A-Z]{3}$
-        description:
-          type: string
-          description: Human-readable description of the price.
-    RideTypeEnum:
-      type: string
-      description: Identifier for the type of Lyft ride.
-      enum:
-      - lyft
-      - lyft_line
-      - lyft_plus
-      - lyft_premier
-      - lyft_lux
-      - lyft_luxsuv
-    Driver:
-      type: object
-      description: Information about the driver assigned to a ride.
-      properties:
-        first_name:
-          type: string
-          description: The driver's first name.
-        phone_number:
-          type: string
-          description: The driver's contact phone number.
-        rating:
-          type: string
-          description: The driver's average rating.
-        image_url:
-          type: string
-          format: uri
-          description: URL to the driver's profile photo.
-    LineItem:
-      type: object
-      description: A single line item on a ride receipt representing a specific charge or credit.
-      properties:
-        type:
-          type: string
-          description: Type of the line item such as base fare, distance, time, or fees.
-        amount:
-          type: integer
-          description: Amount of the line item in the smallest currency denomination.
-        currency:
-          type: string
-          description: ISO 4217 currency code.
-          pattern: ^[A-Z]{3}$
-    RideRatingRequest:
-      type: object
-      description: Request body for rating a completed ride.
-      required:
-      - rating
-      properties:
-        rating:
-          type: integer
-          description: Star rating for the ride, from 1 to 5.
-          minimum: 1
-          maximum: 5
-        tip:
-          type: object
-          description: Optional tip for the driver.
-          properties:
-            amount:
-              type: integer
-              description: Tip amount in the smallest denomination of the currency.
-            currency:
-              type: string
-              description: ISO 4217 currency code for the tip.
-              pattern: ^[A-Z]{3}$
-        feedback:
-          type: string
-          description: Optional text feedback about the ride experience.
   parameters:
     rideId:
       name: id
