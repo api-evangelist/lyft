@@ -64,17 +64,24 @@ paths:
         '401':
           description: Unauthorized - invalid or missing access token
 components:
+  parameters:
+    lat:
+      name: lat
+      in: query
+      description: Latitude of the location.
+      required: true
+      schema:
+        type: number
+        format: double
+    lng:
+      name: lng
+      in: query
+      description: Longitude of the location.
+      required: true
+      schema:
+        type: number
+        format: double
   schemas:
-    RideTypeEnum:
-      type: string
-      description: Identifier for the type of Lyft ride.
-      enum:
-      - lyft
-      - lyft_line
-      - lyft_plus
-      - lyft_premier
-      - lyft_lux
-      - lyft_luxsuv
     ETAEstimate:
       type: object
       description: Estimated time of arrival for the nearest driver of a given ride type.
@@ -90,23 +97,16 @@ components:
         is_valid_estimate:
           type: boolean
           description: Whether the estimate is considered valid based on current driver availability.
-  parameters:
-    lng:
-      name: lng
-      in: query
-      description: Longitude of the location.
-      required: true
-      schema:
-        type: number
-        format: double
-    lat:
-      name: lat
-      in: query
-      description: Latitude of the location.
-      required: true
-      schema:
-        type: number
-        format: double
+    RideTypeEnum:
+      type: string
+      description: Identifier for the type of Lyft ride.
+      enum:
+      - lyft
+      - lyft_line
+      - lyft_plus
+      - lyft_premier
+      - lyft_lux
+      - lyft_luxsuv
   securitySchemes:
     bearerAuth:
       type: http

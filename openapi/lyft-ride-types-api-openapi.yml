@@ -110,16 +110,6 @@ components:
           type: string
           format: uri
           description: URL to an image representing the ride type.
-    RideTypeEnum:
-      type: string
-      description: Identifier for the type of Lyft ride.
-      enum:
-      - lyft
-      - lyft_line
-      - lyft_plus
-      - lyft_premier
-      - lyft_lux
-      - lyft_luxsuv
     PricingDetails:
       type: object
       description: Pricing breakdown for a ride type, including base charge, per-mile and per-minute rates, minimum cost, and cancellation penalty. All monetary amounts are in the smallest denomination of the currency (e.g., cents for USD).
@@ -146,6 +136,16 @@ components:
           type: string
           description: ISO 4217 currency code.
           pattern: ^[A-Z]{3}$
+    RideTypeEnum:
+      type: string
+      description: Identifier for the type of Lyft ride.
+      enum:
+      - lyft
+      - lyft_line
+      - lyft_plus
+      - lyft_premier
+      - lyft_lux
+      - lyft_luxsuv
     RideType:
       type: object
       description: Details about an available ride type at a given location, including its name, pricing, and capacity.

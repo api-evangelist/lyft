@@ -222,37 +222,6 @@ components:
         cost_center:
           type: string
           description: The cost center code associated with this ride.
-    ConciergePrice:
-      type: object
-      description: Price information for a concierge ride.
-      properties:
-        amount:
-          type: integer
-          description: Total price in the smallest denomination of the currency.
-        currency:
-          type: string
-          description: ISO 4217 currency code.
-          pattern: ^[A-Z]{3}$
-        description:
-          type: string
-          description: Human-readable description of the price.
-    ConciergeDriver:
-      type: object
-      description: Information about the driver assigned to a concierge ride.
-      properties:
-        first_name:
-          type: string
-          description: The driver's first name.
-        phone_number:
-          type: string
-          description: The driver's contact phone number.
-        rating:
-          type: string
-          description: The driver's average rating.
-        image_url:
-          type: string
-          format: uri
-          description: URL to the driver's profile photo.
     Location:
       type: object
       description: A geographic location with optional address details.
@@ -280,37 +249,6 @@ components:
         zip:
           type: string
           description: Postal code.
-    ConciergeRideStatusEnum:
-      type: string
-      description: Status of a concierge ride throughout its lifecycle.
-      enum:
-      - pending
-      - scheduled
-      - matched
-      - arriving
-      - pickedUp
-      - droppedOff
-      - canceled
-      - failed
-    ConciergeVehicle:
-      type: object
-      description: Information about the vehicle assigned to a concierge ride.
-      properties:
-        make:
-          type: string
-          description: Vehicle manufacturer name.
-        model:
-          type: string
-          description: Vehicle model name.
-        year:
-          type: integer
-          description: Vehicle model year.
-        license_plate:
-          type: string
-          description: Vehicle license plate number.
-        color:
-          type: string
-          description: Color of the vehicle.
     ConciergeRideStatus:
       type: object
       description: Real-time status and tracking information for a concierge ride.
@@ -339,6 +277,68 @@ components:
           type: string
           format: date-time
           description: Timestamp when the status was last updated.
+    ConciergeDriver:
+      type: object
+      description: Information about the driver assigned to a concierge ride.
+      properties:
+        first_name:
+          type: string
+          description: The driver's first name.
+        phone_number:
+          type: string
+          description: The driver's contact phone number.
+        rating:
+          type: string
+          description: The driver's average rating.
+        image_url:
+          type: string
+          format: uri
+          description: URL to the driver's profile photo.
+    ConciergePrice:
+      type: object
+      description: Price information for a concierge ride.
+      properties:
+        amount:
+          type: integer
+          description: Total price in the smallest denomination of the currency.
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+          pattern: ^[A-Z]{3}$
+        description:
+          type: string
+          description: Human-readable description of the price.
+    ConciergeVehicle:
+      type: object
+      description: Information about the vehicle assigned to a concierge ride.
+      properties:
+        make:
+          type: string
+          description: Vehicle manufacturer name.
+        model:
+          type: string
+          description: Vehicle model name.
+        year:
+          type: integer
+          description: Vehicle model year.
+        license_plate:
+          type: string
+          description: Vehicle license plate number.
+        color:
+          type: string
+          description: Color of the vehicle.
+    ConciergeRideStatusEnum:
+      type: string
+      description: Status of a concierge ride throughout its lifecycle.
+      enum:
+      - pending
+      - scheduled
+      - matched
+      - arriving
+      - pickedUp
+      - droppedOff
+      - canceled
+      - failed
     CreateConciergeRideRequest:
       type: object
       description: Request body for creating a new concierge ride on behalf of a passenger.

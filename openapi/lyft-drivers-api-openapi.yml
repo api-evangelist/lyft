@@ -45,16 +45,6 @@ paths:
           description: Unauthorized - invalid or missing access token
 components:
   schemas:
-    RideTypeEnum:
-      type: string
-      description: Identifier for the type of Lyft ride.
-      enum:
-      - lyft
-      - lyft_line
-      - lyft_plus
-      - lyft_premier
-      - lyft_lux
-      - lyft_luxsuv
     NearbyDriversByRideType:
       type: object
       description: Collection of nearby driver positions for a specific ride type.
@@ -84,6 +74,16 @@ components:
                 type: number
                 format: double
                 description: Longitude of the driver's position.
+    RideTypeEnum:
+      type: string
+      description: Identifier for the type of Lyft ride.
+      enum:
+      - lyft
+      - lyft_line
+      - lyft_plus
+      - lyft_premier
+      - lyft_lux
+      - lyft_luxsuv
   parameters:
     lng:
       name: lng
