@@ -176,6 +176,77 @@ paths:
           description: Ride not found
 components:
   schemas:
+    CreateConciergeRideRequest:
+      type: object
+      description: Request body for creating a new concierge ride on behalf of a passenger.
+      required:
+      - ride_type
+      - passenger
+      - origin
+      - destination
+      properties:
+        ride_type:
+          type: string
+          description: Identifier for the type of Lyft ride to request.
+        passenger:
+          $ref: '#/components/schemas/Passenger'
+        origin:
+          $ref: '#/components/schemas/Location'
+        destination:
+          $ref: '#/components/schemas/Location'
+        scheduled_pickup_time:
+          type: string
+          format: date-time
+          description: The requested pickup time for a scheduled ride. If omitted, the ride will be dispatched immediately. Must be at least 30 minutes in the future and no more than 7 days ahead.
+        notes:
+          type: string
+          description: Special instructions or notes for the driver, such as building entrance details or patient mobility requirements.
+          maxLength: 500
+        cost_center:
+          type: string
+          description: An optional cost center code for billing and reporting purposes.
+    ConciergePrice:
+      type: object
+      description: Price information for a concierge ride.
+      properties:
+        amount:
+          type: integer
+          description: Total price in the smallest denomination of the currency.
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+          pattern: ^[A-Z]{3}$
+        description:
+          type: string
+          description: Human-readable description of the price.
+    ConciergeRideStatus:
+      type: object
+      description: Real-time status and tracking information for a concierge ride.
+      properties:
+        ride_id:
+          type: string
+          description: Unique identifier for the ride.
+        status:
+          $ref: '#/components/schemas/ConciergeRideStatusEnum'
+        driver_location:
+          type: object
+          description: Current location of the driver, available when a driver has been assigned.
+          properties:
+            lat:
+              type: number
+              format: double
+              description: Latitude of the driver's current position.
+            lng:
+              type: number
+              format: double
+              description: Longitude of the driver's current position.
+        eta_seconds:
+          type: integer
+          description: Estimated time in seconds until the driver arrives at the pickup location.
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp when the status was last updated.
     ConciergeRide:
       type: object
       description: Detailed information about a concierge ride including its current status, passenger, driver, vehicle, and route information.
@@ -249,125 +320,6 @@ components:
         zip:
           type: string
           description: Postal code.
-    ConciergeRideStatus:
-      type: object
-      description: Real-time status and tracking information for a concierge ride.
-      properties:
-        ride_id:
-          type: string
-          description: Unique identifier for the ride.
-        status:
-          $ref: '#/components/schemas/ConciergeRideStatusEnum'
-        driver_location:
-          type: object
-          description: Current location of the driver, available when a driver has been assigned.
-          properties:
-            lat:
-              type: number
-              format: double
-              description: Latitude of the driver's current position.
-            lng:
-              type: number
-              format: double
-              description: Longitude of the driver's current position.
-        eta_seconds:
-          type: integer
-          description: Estimated time in seconds until the driver arrives at the pickup location.
-        updated_at:
-          type: string
-          format: date-time
-          description: Timestamp when the status was last updated.
-    ConciergeDriver:
-      type: object
-      description: Information about the driver assigned to a concierge ride.
-      properties:
-        first_name:
-          type: string
-          description: The driver's first name.
-        phone_number:
-          type: string
-          description: The driver's contact phone number.
-        rating:
-          type: string
-          description: The driver's average rating.
-        image_url:
-          type: string
-          format: uri
-          description: URL to the driver's profile photo.
-    ConciergePrice:
-      type: object
-      description: Price information for a concierge ride.
-      properties:
-        amount:
-          type: integer
-          description: Total price in the smallest denomination of the currency.
-        currency:
-          type: string
-          description: ISO 4217 currency code.
-          pattern: ^[A-Z]{3}$
-        description:
-          type: string
-          description: Human-readable description of the price.
-    ConciergeVehicle:
-      type: object
-      description: Information about the vehicle assigned to a concierge ride.
-      properties:
-        make:
-          type: string
-          description: Vehicle manufacturer name.
-        model:
-          type: string
-          description: Vehicle model name.
-        year:
-          type: integer
-          description: Vehicle model year.
-        license_plate:
-          type: string
-          description: Vehicle license plate number.
-        color:
-          type: string
-          description: Color of the vehicle.
-    ConciergeRideStatusEnum:
-      type: string
-      description: Status of a concierge ride throughout its lifecycle.
-      enum:
-      - pending
-      - scheduled
-      - matched
-      - arriving
-      - pickedUp
-      - droppedOff
-      - canceled
-      - failed
-    CreateConciergeRideRequest:
-      type: object
-      description: Request body for creating a new concierge ride on behalf of a passenger.
-      required:
-      - ride_type
-      - passenger
-      - origin
-      - destination
-      properties:
-        ride_type:
-          type: string
-          description: Identifier for the type of Lyft ride to request.
-        passenger:
-          $ref: '#/components/schemas/Passenger'
-        origin:
-          $ref: '#/components/schemas/Location'
-        destination:
-          $ref: '#/components/schemas/Location'
-        scheduled_pickup_time:
-          type: string
-          format: date-time
-          description: The requested pickup time for a scheduled ride. If omitted, the ride will be dispatched immediately. Must be at least 30 minutes in the future and no more than 7 days ahead.
-        notes:
-          type: string
-          description: Special instructions or notes for the driver, such as building entrance details or patient mobility requirements.
-          maxLength: 500
-        cost_center:
-          type: string
-          description: An optional cost center code for billing and reporting purposes.
     Passenger:
       type: object
       description: Contact information for the ride passenger. The passenger does not need to have a Lyft account.
@@ -388,6 +340,54 @@ components:
           type: string
           format: email
           description: Email address for the passenger.
+    ConciergeRideStatusEnum:
+      type: string
+      description: Status of a concierge ride throughout its lifecycle.
+      enum:
+      - pending
+      - scheduled
+      - matched
+      - arriving
+      - pickedUp
+      - droppedOff
+      - canceled
+      - failed
+    ConciergeDriver:
+      type: object
+      description: Information about the driver assigned to a concierge ride.
+      properties:
+        first_name:
+          type: string
+          description: The driver's first name.
+        phone_number:
+          type: string
+          description: The driver's contact phone number.
+        rating:
+          type: string
+          description: The driver's average rating.
+        image_url:
+          type: string
+          format: uri
+          description: URL to the driver's profile photo.
+    ConciergeVehicle:
+      type: object
+      description: Information about the vehicle assigned to a concierge ride.
+      properties:
+        make:
+          type: string
+          description: Vehicle manufacturer name.
+        model:
+          type: string
+          description: Vehicle model name.
+        year:
+          type: integer
+          description: Vehicle model year.
+        license_plate:
+          type: string
+          description: Vehicle license plate number.
+        color:
+          type: string
+          description: Color of the vehicle.
   parameters:
     rideId:
       name: id
