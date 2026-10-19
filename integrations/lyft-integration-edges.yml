@@ -56,6 +56,66 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-transit-mobility.py
   first_seen: '2026-10-18'
+- partner_name: Go module proxy
+  partner: null
+  partner_match: null
+  type: register
+  direction: provider-built
+  category: official SDK (Go)
+  evidence: https://pkg.go.dev/github.com/lyft/lyft-go-sdk
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Go module proxy (public registry JSON)
+    spec_file: null
+    language: Go
+    packages:
+    - name: github.com/lyft/lyft-go-sdk
+      version: v1.2.1
+      released: '2017-07-24'
+      released_field: Time
+      lapsed: true
+      page: https://pkg.go.dev/github.com/lyft/lyft-go-sdk
+      repo_leg: github-org:lyft
+      publisher_leg: org:lyft
+      matched_by: github-org
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: Maven Central
+  partner: maven-central
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Java/JVM)
+  evidence: https://central.sonatype.com/artifact/com.lyft/lyft-android-sdk
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Maven Central (public registry JSON)
+    spec_file: null
+    language: Java/JVM
+    packages:
+    - name: com.lyft:lyft-android-sdk
+      version: 2.0.2
+      released: '2021-09-20'
+      released_field: lastUpdated
+      lapsed: true
+      page: https://central.sonatype.com/artifact/com.lyft/lyft-android-sdk
+      repo_leg: github-org:lyft
+      publisher_leg: groupId:lyft.com
+      matched_by: domain
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
 generated: '2026-10-18'
 method: searched
 source:
@@ -63,6 +123,13 @@ source:
 - https://github.com/MobilityData/gbfs/blob/master/systems.csv
 - https://maas-alliance.eu/
 checked:
+- https://api.nuget.org/v3
+- https://crates.io/api/v1
 - https://files.mobilitydatabase.org/feeds_v2.csv
 - https://github.com/MobilityData/gbfs/blob/master/systems.csv
 - https://maas-alliance.eu/
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
