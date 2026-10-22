@@ -125,3 +125,74 @@
     sector: Consumer
   status: not-a-workflow
   arazzo: null
+- slug: lyft-open-mobility-foundation-mds-registered-providers
+  label: Open Mobility Foundation MDS registered providers
+  partner_name: Open Mobility Foundation MDS registered providers
+  category: MDS provider registration
+  type: register
+  channel: standard-directory
+  evidence: https://raw.githubusercontent.com/openmobilityfoundation/mobility-data-specification/main/providers.csv
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Open Mobility Foundation MDS registered providers
+    standard: Mobility Data Specification (MDS)
+    spec_file: null
+    role: mds-provider
+    registrations:
+    - registered_name: Lyft
+      mode: micromobility
+      provider_id: e714f168-ce56-4b41-81b7-0b6a4bd26128
+      matched_domain: lyft.com
+      matched_by: domain
+      mds_api_host: api.lyft.com
+      gbfs_api_host: null
+      evidence_url: https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/providers.csv
+    signal_note: 'participation only: an OMF provider registration (provider_id issued); the OMF publishes no MDS
+      conformance certification'
+    detected_by: sweep-open-mobility-foundation-mds.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: lyft-apis-guru-openapi-directory
+  label: APIs.guru OpenAPI Directory
+  partner: apis-guru
+  partner_name: APIs.guru OpenAPI Directory
+  category: API definition directory listing (OpenAPI)
+  type: register
+  channel: standard-directory
+  evidence: https://apis.guru/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: APIs.guru OpenAPI Directory
+    spec_file: null
+    standard: APIs.guru OpenAPI Directory
+    role: listed-in-directory
+    directory_provider: lyft.com
+    matched_domain: lyft.com
+    matched_by: domain
+    apis_listed: 1
+    version_count: 1
+    first_added: '2017-04-22'
+    last_updated: '2018-11-28'
+    origin_publisher_hosted: true
+    origin_hosts:
+    - api.lyft.com
+    categories:
+    - location
+    own_openapi_files: 7
+    listings:
+    - key: lyft.com
+      title: Lyft
+      preferred: 1.0.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/lyft.com/1.0.0/swagger.json
+      origin_url: https://api.lyft.com/v1/spec
+      openapi_version: '2.0'
+    signal_note: 'participation only: a community directory listing (APIs.guru collects definitions; the provider
+      did not file them). Signals: version_count, apis_listed, origin_publisher_hosted.'
+    detected_by: sweep-openapi-directory-apis-guru.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
