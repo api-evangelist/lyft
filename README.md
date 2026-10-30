@@ -1,4 +1,4 @@
-# lyft (lyft)
+# Lyft
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,65 +64,197 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Lyft is a transportation network company that develops, markets, and operates a mobile app offering ride-hailing, vehicles for hire, motorized scooters, bicycle-sharing, and food delivery services.
+Lyft is a transportation network company operating ride-hailing, bikeshare, scooter-share and related mobility services across the United States and Canada. Its API surface has two halves that behave very differently. The ride-hailing developer program — the Rides and Concierge APIs on api.lyft.com, used for patient transport, employee transit and customer-service ride booking — is gated: www.lyft.com/developers redirects to a sign-in, access is granted through a Lyft Business relationship, and the old documentation host developer.lyft.com no longer resolves. The micromobility side is wide open: Lyft serves live GBFS feeds for eight bikeshare and scooter systems (Citi Bike, Divvy, Bay Wheels, Bluebikes, Capital Bikeshare, Biketown, and its own DC and Denver fleets) anonymously from gbfs.lyft.com, alongside a public RFC 8414 OAuth metadata document that publishes the platform's full 47-scope vocabulary.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/lyft/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/lyft/refs/heads/main/apis.yml)
+**Areas:** Transportation · Mobility · Ride Hailing · Micromobility · Bike Share · Scooters · GBFS · Logistics · Travel
 
-## Timestamps
+## Lyft on APIs.io
 
-- **Modified:** 2026-05-19
+Everything profiled for Lyft is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/lyft/](https://apis.io/providers/lyft/)** — or go straight to one of the APIs or properties below.
 
-## APIs
+### APIs (8)
 
-### Lyft Ride-Sharing API
+- [lyft Concierge Rides API](https://apis.io/apis/lyft/lyft-concierge-rides-api/) — Endpoints for creating, scheduling, tracking, and managing rides on behalf of passengers who may not have a Lyft account.
+- [lyft Cost Estimates API](https://apis.io/apis/lyft/lyft-cost-estimates-api/) — Endpoints for estimating ride costs for concierge bookings.
+- [lyft Drivers API](https://apis.io/apis/lyft/lyft-drivers-api/) — Endpoints for checking the availability and proximity of nearby Lyft drivers.
+- [lyft ETA API](https://apis.io/apis/lyft/lyft-eta-api/) — Endpoints for estimating the time for the nearest driver to reach a specified pickup location.
+- [lyft Profile API](https://apis.io/apis/lyft/lyft-profile-api/) — Endpoints for retrieving profile information for the authenticated Lyft user.
+- [lyft Ride Types API](https://apis.io/apis/lyft/lyft-ride-types-api/) — Endpoints for retrieving available ride types for concierge bookings.
+- [lyft Rides API](https://apis.io/apis/lyft/lyft-rides-api/) — Endpoints for requesting, tracking, canceling, and managing Lyft rides on behalf of an authenticated user.
+- [Lyft Micromobility GBFS Feeds](https://apis.io/apis/lyft/lyft-gbfs-feeds/) — Live General Bikeshare Feed Specification (GBFS) feeds for the eight bikeshare and scooter systems Lyft operates — Citi Bike, Divvy, Bay Wheels, Bluebikes,…
 
-The Lyft Ride-Sharing API provides developers with programmatic access to Lyft's rideshare platform. It includes endpoints for retrieving cost estimates between locations, estimating pickup ETAs, listing available ride types in a given area, and checking nearby driver availability. The API uses OAuth 2.0 for user-authenticated requests and client tokens for public endpoints.
+### Published properties
 
-- **Human URL:** [https://developer.lyft.com/docs](https://developer.lyft.com/docs)
-- **Base URL:** `https://api.lyft.com`
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-#### Tags
+#### AsyncAPI (1)
 
-- Drivers
-- Estimates
-- Rides
-- Rideshare
-- Transportation
+Event-driven and webhook contracts.
 
-#### Properties
+- [Lyft Webhooks](https://apis.io/asyncapis/lyft/lyft-webhooks/)
 
-- [Documentation](https://developer.lyft.com/docs)
-- [OpenAPI](openapi/lyft-ride-sharing-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/lyft-ride-sharing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/lyft-ride-sharing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### GraphQL (1)
 
-### Lyft Concierge API
+GraphQL schemas.
 
-The Lyft Concierge API allows organizations to request rides on behalf of their customers, patients, or employees without requiring those individuals to have a Lyft account. It is designed for enterprise use cases such as healthcare patient transportation, corporate employee transit, and customer service scenarios. The API enables organizations to build customized transportation workflows, schedule rides in advance, track ride status in real time, and manage ride programs at scale.
+- [Moved to /providers/lyft/](https://apis.io/graphqls/lyft/lyft-graphql/)
 
-- **Human URL:** [https://www.lyft.com/developers/products/concierge-api](https://www.lyft.com/developers/products/concierge-api)
-- **Base URL:** `https://api.lyft.com`
+#### MCP servers (1)
 
-#### Tags
+Model Context Protocol servers that expose the API to agents.
 
-- Concierge
-- Enterprise
-- Healthcare
-- Rideshare
-- Transportation
+- [Derived candidate — Lyft ships no reachable MCP server](https://apis.io/servers/lyft/derived-candidate-lyft-ships-no-reachable-mcp-server/)
 
-#### Properties
+#### Agentic access (1)
 
-- [Documentation](https://www.lyft.com/developers/products/concierge-api)
-- [OpenAPI](openapi/lyft-concierge-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/lyft-concierge.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/lyft-concierge.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Common Properties
+- [Lyft Agentic Access](https://apis.io/agentic-access/lyft/lyft-agentic-access/)
 
-- [GitHub Organization](https://github.com/lyft)
-- [LinkedIn](https://www.linkedin.com/company/lyft)
-- [JSON-LD](json-ld/lyft-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](json-schema/lyft-ride-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/lyft-ride-type-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/lyft-cost-estimate-schema.json) — [JSON Schema](https://json-schema.org/specification)
+#### JSON Schema (3)
+
+The data models the API reads and writes.
+
+- [Lyft Cost Estimate](https://apis.io/schemas/lyft/lyft-cost-estimate/)
+- [Lyft Ride](https://apis.io/schemas/lyft/lyft-ride/)
+- [Lyft Ride Type](https://apis.io/schemas/lyft/lyft-ride-type/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Lyft Context](https://apis.io/jsonld/lyft/lyft-context/)
+
+#### Collections (9)
+
+Postman and Open Collection request collections.
+
+- [Lyft Concierge API](https://apis.io/collections/lyft/open-lyft-concierge/)
+- [Lyft Concierge Concierge Rides API](https://apis.io/collections/lyft/open-lyft-concierge-rides-api/)
+- [Lyft Concierge Concierge Rides Cost Estimates API](https://apis.io/collections/lyft/open-lyft-cost-estimates-api/)
+- [Lyft Concierge Concierge Rides Drivers API](https://apis.io/collections/lyft/open-lyft-drivers-api/)
+- [Lyft Concierge Concierge Rides ETA API](https://apis.io/collections/lyft/open-lyft-eta-api/)
+- [Lyft Concierge Concierge Rides Profile API](https://apis.io/collections/lyft/open-lyft-profile-api/)
+- [Lyft Ride-Sharing API](https://apis.io/collections/lyft/open-lyft-ride-sharing/)
+- [Lyft Concierge Concierge Rides Ride Types API](https://apis.io/collections/lyft/open-lyft-ride-types-api/)
+- [Lyft Concierge Concierge Rides API](https://apis.io/collections/lyft/open-lyft-rides-api/)
+
+#### Overlays (7)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Lyft Concierge Rides Api Overlay](https://apis.io/overlays/lyft/lyft-concierge-rides-api-overlay/)
+- [Lyft Cost Estimates Api Overlay](https://apis.io/overlays/lyft/lyft-cost-estimates-api-overlay/)
+- [Lyft Drivers Api Overlay](https://apis.io/overlays/lyft/lyft-drivers-api-overlay/)
+- [Lyft Eta Api Overlay](https://apis.io/overlays/lyft/lyft-eta-api-overlay/)
+- [Lyft Profile Api Overlay](https://apis.io/overlays/lyft/lyft-profile-api-overlay/)
+- [Lyft Ride Types Api Overlay](https://apis.io/overlays/lyft/lyft-ride-types-api-overlay/)
+- [Lyft Rides Api Overlay](https://apis.io/overlays/lyft/lyft-rides-api-overlay/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Lyft — jsonschema rules](https://apis.io/rules/lyft/lyft-jsonschema-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Lyft Authentication](https://apis.io/security/lyft/lyft-authentication/)
+- [Lyft Domain Security](https://apis.io/security/lyft/lyft-domain-security/)
+- [Lyft Vulnerability Disclosure](https://apis.io/security/lyft/lyft-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Lyft Scopes](https://apis.io/scopes/lyft/lyft-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Lyft Plans Pricing](https://apis.io/plans/lyft/lyft-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Lyft Rate Limits](https://apis.io/rate-limits/lyft/lyft-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Lyft Finops](https://apis.io/finops/lyft/lyft-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://lyft.com)
+- [Documentation](https://help.lyft.com/business/hc/en-us/articles/360001599667-Concierge-API-overview)
+- [Getting started](https://help.lyft.com/business/hc/en-us/articles/8587470351891-Managing-your-API-client-and-program-connections)
+- [Sign up](https://www.lyft.com/signup)
+- [Support](https://help.lyft.com/hc/en-us)
+- [Blog](https://www.lyft.com/blog)
+- [Security](https://www.lyft.com/security)
+- [Terms of service](https://www.lyft.com/terms)
+- [Privacy policy](https://www.lyft.com/privacy)
+- [GitHub](https://github.com/lyft)
+
+## API Evangelist rating
+
+**Kin Score 47.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 62.0 |
+| Contract governance | 28.0 |
+| Operational transparency | 15.8 |
+| Developer ergonomics | 58.9 |
+| Access clarity | 23.7 |
+
+**Agent readiness 37.1** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 36.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/lyft/](https://apis.io/providers/lyft/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Lyft: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/lyft/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
